@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'talent-pool-ui'`, () => {
+  it(`should have as title 'job-portal'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('talent-pool-ui');
+    expect(app.title).toEqual('job-portal');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('talent-pool-ui app is running!');
+    expect(compiled.querySelector('.content span').textContent).toContain('job-portal app is running!');
   });
 });

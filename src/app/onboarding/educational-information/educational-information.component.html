@@ -1,0 +1,27 @@
+<h5 class="text-center">Educational Information</h5>
+<hr />
+
+<form
+	#educationalDetailsForm="ngForm"
+	(ngSubmit)="proceed(educationalDetailsForm)"
+>
+	<div class="row">
+		<div class="form-group col-md-6 col-12">
+			<label for="schoolName">School Name</label>
+			<input
+				type="text"
+				class="form-control"
+				name="schoolName"
+				ngModel
+				#schoolName="ngModel"
+				required
+			/>
+		</div>
+		<div class="form-group col-12 d-flex justify-content-between">
+			<a class="btn btn-secondary" [routerLink]="['../personal-info']">
+				Back
+			</a>
+			<input type="submit" value="Next" class="btn btn-success" />
+		</div>
+	</div>
+</form>

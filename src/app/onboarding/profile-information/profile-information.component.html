@@ -1,0 +1,43 @@
+<div
+	class="row justify-content-center align-items-center h-100 profile-container"
+>
+	<div class="col-md-8 col-12">
+		<div class="card">
+			<div class="card-body h-100">
+				<div class="row h-100">
+					<div class="col-3 h-100 border-right">
+						<div class="list-group">
+							<a
+								class="list-group-item list-group-item-action"
+								[routerLink]="['personal-info']"
+								routerLinkActive="active"
+								>Personal Information</a
+							>
+							<a
+								class="list-group-item list-group-item-action"
+								[routerLink]="['educational-info']"
+								routerLinkActive="active"
+								>Educational Information</a
+							>
+							<a
+								class="list-group-item list-group-item-action"
+								[routerLink]="['professional-info']"
+								routerLinkActive="active"
+								>Professional Information</a
+							>
+							<a
+								class="list-group-item list-group-item-action"
+								[routerLink]="['about-me']"
+								routerLinkActive="active"
+								>About Me</a
+							>
+						</div>
+					</div>
+					<div class="col-9">
+						<router-outlet></router-outlet>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
