@@ -25,3 +25,14 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Local Docker Build
+
+RUN docker build -t talent-pool-ui .
+RUN docker run -it -p 80:80 --rm talent-pool-ui .
+
+## Production Docker Build
+
+RUN ng build --prod
+RUN docker build -f dockerfile-prod -t talent-pool-ui .
+RUN docker run -it -p 80:80 --rm talent-pool-ui .
