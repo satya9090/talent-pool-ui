@@ -1,5 +1,11 @@
 <div class="row justify-content-center h-100 align-items-center">
 	<div class="col-md-8 col-12">
+		<div class="alert alert-danger" *ngIf="error">
+			{{ error }}
+		</div>
+		<div *ngIf="loading">
+			<app-loading>Loading...</app-loading>
+		</div>
 		<form [formGroup]="registerForm" (ngSubmit)="register()">
 			<div class="row">
 				<div class="col-md-6 col-12">

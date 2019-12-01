@@ -6,6 +6,9 @@ import {
 	Validators
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store/AppState';
+import { AuthLoginStart } from '../../store/actions/auth.actions';
 
 @Component({
 	selector: 'app-job-seeker-login',
@@ -15,12 +18,25 @@ import { Router } from '@angular/router';
 export class JobSeekerLoginComponent implements OnInit {
 	loginForm: FormGroup;
 	submitted = false;
-	constructor(private formBuilder: FormBuilder, private router: Router) {}
+	error: string = null;
+	loading = false;
+	constructor(
+		private formBuilder: FormBuilder,
+		private router: Router,
+		private store: Store<AppState>
+	) {}
 
 	ngOnInit() {
 		this.loginForm = this.formBuilder.group({
 			userName: ['', [Validators.required, Validators.email]],
 			password: ['', [Validators.required, Validators.minLength(6)]]
+		});
+		this.store.select('authState').subscribe(authState => {
+			this.error = authState.errorMessage;
+			this.loading = authState.loading;
+			if (authState.user) {
+				this.router.navigate(['/onboarding/personal-info']);
+			}
 		});
 	}
 	get f() {
@@ -31,6 +47,12 @@ export class JobSeekerLoginComponent implements OnInit {
 		if (this.loginForm.invalid) {
 			return;
 		}
-		this.router.navigate(['/onboarding/personal-info']);
+		console.log('here');
+		this.store.dispatch(
+			new AuthLoginStart({
+				email: this.loginForm.get('userName').value,
+				password: this.loginForm.get('password').value
+			})
+		);
 	}
 }

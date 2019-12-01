@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MustMatch } from '../../shared/CustomValidatos';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store/AppState';
+import { AuthRegistrationStart } from 'src/app/store/actions/auth.actions';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-job-seeker-registration',
@@ -10,10 +14,19 @@ import { MustMatch } from '../../shared/CustomValidatos';
 export class JobSeekerRegistrationComponent implements OnInit {
 	registerForm: FormGroup;
 	submitted = false;
-
-	constructor(private formBuilder: FormBuilder) {}
+	error: string = null;
+	loading = false;
+	constructor(
+		private formBuilder: FormBuilder,
+		private store: Store<AppState>,
+		private router: Router
+	) {}
 
 	ngOnInit() {
+		this.store.select('authState').subscribe(authState => {
+			this.error = authState.errorMessage;
+			this.loading = authState.loading;
+		});
 		this.registerForm = this.formBuilder.group(
 			{
 				firstName: ['', Validators.required],
@@ -41,7 +54,14 @@ export class JobSeekerRegistrationComponent implements OnInit {
 		if (this.registerForm.invalid) {
 			return;
 		}
-
-		alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value));
+		this.store.dispatch(
+			new AuthRegistrationStart({
+				firstName: this.registerForm.get('firstName').value,
+				lastName: this.registerForm.get('lastName').value,
+				email: this.registerForm.get('email').value,
+				phoneNumber: this.registerForm.get('phoneNumber').value,
+				password: this.registerForm.get('password').value
+			})
+		);
 	}
 }

@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import {
-	NgForm,
 	FormGroup,
 	FormBuilder,
 	FormControl,
 	Validators
 } from '@angular/forms';
+import { AppState } from 'src/app/store/AppState';
+import { AuthLoginStart } from 'src/app/store/actions/auth.actions';
 
 @Component({
 	selector: 'app-employeer-login',
@@ -15,7 +18,13 @@ import {
 export class EmployeerLoginComponent implements OnInit {
 	loginForm: FormGroup;
 	submitted = false;
-	constructor(private formBuilder: FormBuilder) {}
+	error: string = null;
+	loading = false;
+	constructor(
+		private formBuilder: FormBuilder,
+		private router: Router,
+		private store: Store<AppState>
+	) {}
 
 	ngOnInit() {
 		this.loginForm = this.formBuilder.group({
@@ -24,6 +33,13 @@ export class EmployeerLoginComponent implements OnInit {
 				Validators.required,
 				Validators.minLength(6)
 			])
+		});
+		this.store.select('authState').subscribe(authState => {
+			this.error = authState.errorMessage;
+			this.loading = authState.loading;
+			if (authState.user) {
+				this.router.navigate(['/onboarding/personal-info']);
+			}
 		});
 	}
 	get f() {
@@ -34,9 +50,12 @@ export class EmployeerLoginComponent implements OnInit {
 		if (this.loginForm.invalid) {
 			return;
 		}
-		console.log(
-			this.loginForm.value['email'],
-			this.loginForm.value['password']
+		console.log('here');
+		this.store.dispatch(
+			new AuthLoginStart({
+				email: this.loginForm.get('userName').value,
+				password: this.loginForm.get('password').value
+			})
 		);
 	}
 }

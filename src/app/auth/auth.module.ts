@@ -11,6 +11,7 @@ import { EmployeerLoginComponent } from './employeer-login/employeer-login.compo
 import { AuthRoutingModule } from './auth-routing.module';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { CoreModule } from '../core/core.module';
 
 @NgModule({
 	declarations: [
@@ -27,7 +28,8 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 		FormsModule,
 		ReactiveFormsModule,
 		HttpClientModule,
-		AuthRoutingModule
+		AuthRoutingModule,
+		CoreModule
 	]
 })
 export class AuthModule {}
