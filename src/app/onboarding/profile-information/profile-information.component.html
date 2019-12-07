@@ -15,6 +15,12 @@
 							>
 							<a
 								class="list-group-item list-group-item-action"
+								[routerLink]="['address-info']"
+								routerLinkActive="active"
+								>Address Information</a
+							>
+							<a
+								class="list-group-item list-group-item-action"
 								[routerLink]="['educational-info']"
 								routerLinkActive="active"
 								>Educational Information</a
@@ -31,9 +37,15 @@
 								routerLinkActive="active"
 								>About Me</a
 							>
+							<a
+								class="list-group-item list-group-item-action"
+								[routerLink]="['payment']"
+								routerLinkActive="active"
+								>Payment</a
+							>
 						</div>
 					</div>
-					<div class="col-9">
+					<div class="col-9 main-content">
 						<router-outlet></router-outlet>
 					</div>
 				</div>

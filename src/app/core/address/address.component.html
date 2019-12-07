@@ -1,0 +1,96 @@
+<div class="card">
+	<div class="card-header d-flex justify-content-between">
+		{{ title }}
+		<button class="btn btn-sm btn-link" (click)="toggleEditMode()">
+			{{ editMode ? 'Close' : 'Edit' }}
+		</button>
+	</div>
+	<div class="card-body">
+		<div *ngIf="!editMode; else editAddress">
+			<address>
+				{{ address.address }}, {{ address.state }}, {{ address.country }},
+				{{ address.zipcode }}
+			</address>
+		</div>
+		<ng-template #editAddress>
+			<form [formGroup]="addressForm" (ngSubmit)="changeAddress()">
+				<div class="form-group row">
+					<label for="country" class="col-3">Country</label>
+					<div class="col-9">
+						<select
+							name="country"
+							formControlName="country"
+							class="form-control"
+							[ngClass]="{ 'is-invalid': submitted && f.country.errors }"
+						>
+							<option [ngValue]="undefined">--Select Country--</option>
+							<option *ngFor="let country of countries" value="country.id">{{
+								country.name
+							}}</option>
+						</select>
+						<div *ngIf="submitted && f.country.errors" class="invalid-feedback">
+							<div *ngIf="f.country.errors.required">
+								Country is required
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="state" class="col-3">State</label>
+					<div class="col-9">
+						<select
+							name="state"
+							formControlName="state"
+							class="form-control"
+							[ngClass]="{ 'is-invalid': submitted && f.state.errors }"
+						>
+							<option [ngValue]="undefined">--Select State--</option>
+							<option *ngFor="let state of states" value="state.id">{{
+								state.name
+							}}</option>
+						</select>
+						<div *ngIf="submitted && f.state.errors" class="invalid-feedback">
+							<div *ngIf="f.state.errors.required">
+								State is required
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="zipcode" class="col-3">Zipcode</label>
+					<div class="col-9">
+						<input
+							name="zipcode"
+							formControlName="zipcode"
+							class="form-control"
+							[ngClass]="{ 'is-invalid': submitted && f.zipcode.errors }"
+						/>
+						<div *ngIf="submitted && f.zipcode.errors" class="invalid-feedback">
+							<div *ngIf="f.zipcode.errors.required">
+								Zipcode is required
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="address" class="col-3">Address</label>
+					<div class="col-9">
+						<textarea
+							name="address"
+							rows="2"
+							formControlName="address"
+							class="form-control"
+							[ngClass]="{ 'is-invalid': submitted && f.address.errors }"
+						></textarea>
+						<div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+							<div *ngIf="f.address.errors.required">
+								Address is required
+							</div>
+						</div>
+					</div>
+				</div>
+				<input class="btn btn-success btn-sm" type="submit" value="save" />
+			</form>
+		</ng-template>
+	</div>
+</div>

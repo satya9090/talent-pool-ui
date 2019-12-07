@@ -1,0 +1,33 @@
+<h5 class="text-center">Address Information</h5>
+<hr />
+
+<div class="row">
+	<div class="col-12">
+		<app-address
+			title="Permanent Address"
+			[address]="permanentAddress"
+			[restrictEdit]="false"
+		></app-address>
+	</div>
+</div>
+<br />
+<div class="row">
+	<div class="col-12">
+		<app-address
+			title="Present Address"
+			[address]="presentAddress"
+			[restrictEdit]="false"
+		></app-address>
+	</div>
+</div>
+<br />
+<div class="row">
+	<div class="col-12 d-flex justify-content-between">
+		<a class="btn btn-secondary" [routerLink]="['../personal-info']">
+			Back
+		</a>
+		<button type="button" (click)="proceed()" class="btn btn-success">
+			Next
+		</button>
+	</div>
+</div>

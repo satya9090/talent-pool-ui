@@ -10,6 +10,9 @@ import { ProfileInformationComponent } from './profile-information/profile-infor
 import { OnboardingRoutingModule } from './onboarding-routing.module';
 import { AboutMeComponent } from './about-me/about-me.component';
 import { WebCamModule } from 'ack-angular-webcam';
+import { AddressInformationComponent } from './address-information/address-information.component';
+import { CoreModule } from '../core/core.module';
+import { PaymentComponent } from './payment/payment.component';
 
 @NgModule({
 	declarations: [
@@ -17,7 +20,9 @@ import { WebCamModule } from 'ack-angular-webcam';
 		ProfessionalInformationComponent,
 		EducationalInformationComponent,
 		ProfileInformationComponent,
-		AboutMeComponent
+		AboutMeComponent,
+		AddressInformationComponent,
+		PaymentComponent
 	],
 	imports: [
 		CommonModule,
@@ -25,7 +30,8 @@ import { WebCamModule } from 'ack-angular-webcam';
 		ReactiveFormsModule,
 		HttpClientModule,
 		WebCamModule,
-		OnboardingRoutingModule
+		OnboardingRoutingModule,
+		CoreModule
 	]
 })
 export class OnboardingModule {}

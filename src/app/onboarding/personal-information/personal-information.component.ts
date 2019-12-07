@@ -28,7 +28,7 @@ export class PersonalInformationComponent implements OnInit {
 			lastName: new FormControl('', Validators.required),
 			email: new FormControl('', [Validators.required, Validators.email]),
 			phoneNumber: new FormControl('', Validators.required),
-			address: new FormControl('')
+			gender: new FormControl('', Validators.required)
 		});
 	}
 	get f() {
@@ -39,7 +39,7 @@ export class PersonalInformationComponent implements OnInit {
 		if (this.personalDetailsForm.invalid) {
 			return;
 		}
-		this.router.navigate(['../educational-info'], {
+		this.router.navigate(['../address-info'], {
 			relativeTo: this.activatedRoute
 		});
 	}
