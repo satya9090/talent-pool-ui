@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Address } from '../user.model';
+import { Address } from '../../store/models/user.model';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({

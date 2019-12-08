@@ -1,0 +1,15 @@
+<div class="card">
+	<div class="card-body">
+		<div class="d-flex w-100">
+			<img
+				[src]="details.from.profileImage"
+				class="img-thumbnail profile-image"
+				[alt]="details.from.name"
+			/>
+			<div class="message-details">
+				<p class="message">{{ details.message }}</p>
+				<p class="text-right date">{{ details.date | date: 'dd/mm/yyyy' }}</p>
+			</div>
+		</div>
+	</div>
+</div>

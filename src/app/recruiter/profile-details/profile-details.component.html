@@ -1,0 +1,32 @@
+<div class="card">
+	<div class="card-body">
+		<div class="d-flex align-items-center">
+			<div class="form-check">
+				<input
+					class="form-check-input"
+					type="checkbox"
+					[ngModel]="details.selected"
+					(change)="toggleSelection()"
+				/>
+			</div>
+			<img [src]="details.profileImage" class="img-thumbnail" />
+			<div class="details">
+				<div class="identity">
+					<span class="name">
+						{{ details.firstName }} {{ details.lastName }}
+					</span>
+					<span>Experience : {{ details.experience }} year(s)</span>
+					<fa-icon [icon]="faDownload"></fa-icon>
+				</div>
+				<p class="description">
+					Description : {{ details.profileDescription }}
+				</p>
+				<div>
+					<span class="chip" *ngFor="let tech of details.technologies">{{
+						tech
+					}}</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

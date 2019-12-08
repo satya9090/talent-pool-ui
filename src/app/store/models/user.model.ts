@@ -5,14 +5,15 @@ export interface Address {
 	address: string;
 }
 
-export interface Company{
+export interface Company {
 	id: string;
 	name: string;
 	registredOn?: Date;
-	address?: Address
+	address?: Address;
+	profileImage: string;
 }
 
-export interface ProjectDetails{
+export interface ProjectDetails {
 	name: string;
 	startDate: Date;
 	endDate: Date;
@@ -46,7 +47,7 @@ export interface CompanyExperience {
 	company: Company;
 }
 
-export interface ProfessionalDetails{
+export interface ProfessionalDetails {
 	totalExperience: number;
 	technologies: string[];
 	companyExperiences: CompanyExperience[];
@@ -60,5 +61,5 @@ export interface User {
 	permanentAddress?: Address;
 	presentAddress?: Address;
 	aboutMe: string;
-	isProfileCompleted: boolean
+	isProfileCompleted: boolean;
 }

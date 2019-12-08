@@ -5,7 +5,7 @@ import {
 	FormControl,
 	Validators
 } from '@angular/forms';
-import { Address } from '../../onboarding/user.model';
+import { Address } from '../../store/models/user.model';
 
 @Component({
 	selector: 'app-address',

@@ -16,6 +16,16 @@ const routes: Routes = [
 		path: 'onboarding',
 		loadChildren: () =>
 			import('./onboarding/onboarding.module').then(mod => mod.OnboardingModule)
+	},
+	{
+		path: 'job-seeker',
+		loadChildren: () =>
+			import('./job-seeker/job-seeker.module').then(mod => mod.JobSeekerModule)
+	},
+	{
+		path: 'recruiter',
+		loadChildren: () =>
+			import('./recruiter/recruiter.module').then(mod => mod.RecruiterModule)
 	}
 ];
 

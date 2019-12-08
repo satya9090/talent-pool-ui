@@ -1,0 +1,26 @@
+.card {
+	margin-bottom: 0.5rem;
+	.card-body {
+		padding: 0.5rem;
+		.img-thumbnail {
+			max-height: 10rem;
+		}
+		.details {
+			padding-left: 0.5rem;
+			.identity {
+				display: flex;
+				justify-content: space-between;
+				font-weight: 400;
+				font-size: 0.9rem;
+				.name {
+					font-weight: 600;
+					font-size: 1rem;
+				}
+			}
+			.description {
+				padding-top: 0.3rem;
+				font-size: 0.8rem;
+			}
+		}
+	}
+}
