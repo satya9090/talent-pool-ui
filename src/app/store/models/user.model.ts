@@ -14,6 +14,7 @@ export interface Company {
 }
 
 export interface ProjectDetails {
+	projectId?: string;
 	name: string;
 	startDate: Date;
 	endDate: Date;
@@ -55,6 +56,7 @@ export interface ProfessionalDetails {
 }
 
 export interface User {
+	userId?: string;
 	personalDetails: PersonalDetails;
 	educationalDetails: EducationalDetails;
 	professionalDetails: ProfessionalDetails;
