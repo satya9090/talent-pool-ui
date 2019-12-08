@@ -47,6 +47,23 @@
 			</div>
 		</div>
 		<div class="form-group col-md-6 col-12">
+			<label>Alternate Email</label>
+			<input
+				type="text"
+				formControlName="alternateEmail"
+				class="form-control"
+				[ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+			/>
+			<div
+				*ngIf="submitted && f.alternateEmail.errors"
+				class="invalid-feedback"
+			>
+				<div *ngIf="f.alternateEmail.errors.alternateEmail">
+					Email must be a valid email address
+				</div>
+			</div>
+		</div>
+		<div class="form-group col-md-6 col-12">
 			<label for="phone">Phone</label>
 			<input
 				type="tel"

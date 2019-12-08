@@ -13,14 +13,14 @@ const authRoutes: Routes = [
 		path: '',
 		component: AuthComponent
 	},
-	{ path: 'auth/job-seeker-login', component: JobSeekerLoginComponent },
+	{ path: 'job-seeker-login', component: JobSeekerLoginComponent },
 	{
-		path: 'auth/job-seeker-registration',
+		path: 'job-seeker-registration',
 		component: JobSeekerRegistrationComponent
 	},
-	{ path: 'auth/employeer-login', component: EmployeerLoginComponent },
+	{ path: 'employeer-login', component: EmployeerLoginComponent },
 	{
-		path: 'auth/employeer-registration',
+		path: 'employeer-registration',
 		component: EmployeerRegistartionComponent
 	},
 	{ path: 'reset-password', component: ResetPasswordComponent },

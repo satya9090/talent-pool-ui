@@ -27,6 +27,7 @@ export class PersonalInformationComponent implements OnInit {
 			firstName: new FormControl('', Validators.required),
 			lastName: new FormControl('', Validators.required),
 			email: new FormControl('', [Validators.required, Validators.email]),
+			alternateEmail: new FormControl('', [Validators.email]),
 			phoneNumber: new FormControl('', Validators.required),
 			gender: new FormControl('', Validators.required)
 		});
