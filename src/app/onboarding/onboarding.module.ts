@@ -13,6 +13,7 @@ import { WebCamModule } from 'ack-angular-webcam';
 import { AddressInformationComponent } from './address-information/address-information.component';
 import { CoreModule } from '../core/core.module';
 import { PaymentComponent } from './payment/payment.component';
+import { SkillsComponent } from './skills/skills.component';
 
 @NgModule({
 	declarations: [
@@ -22,7 +23,8 @@ import { PaymentComponent } from './payment/payment.component';
 		ProfileInformationComponent,
 		AboutMeComponent,
 		AddressInformationComponent,
-		PaymentComponent
+		PaymentComponent,
+		SkillsComponent
 	],
 	imports: [
 		CommonModule,

@@ -17,7 +17,6 @@ export class ProfileDetailsComponent implements OnInit {
 
 	ngOnInit() {}
 	toggleSelection() {
-		console.log(this.details);
 		this.store.dispatch(new ToggleProfileSelection(this.details.candidateId));
 	}
 }

@@ -14,7 +14,21 @@ const initialState: RecruiterState = {
 			candidateId: 'abcde',
 			firstName: 'Debananda',
 			lastName: 'Mohanty',
-			technologies: ['Angular', 'React', 'Docker'],
+			skills: [
+				{
+					major: 'UI',
+					minor: 'Angular',
+					lastUsedOn: 2019,
+					experienceInYears: 3
+				},
+				{ major: 'UI', minor: 'React', lastUsedOn: 2019, experienceInYears: 2 },
+				{
+					major: 'DevOps',
+					minor: 'Docker',
+					lastUsedOn: 2019,
+					experienceInYears: 1
+				}
+			],
 			experience: 10,
 			profileImage: 'http://genchi.info/images/profile-picture-12.jpg',
 			profileDescription:
@@ -25,7 +39,21 @@ const initialState: RecruiterState = {
 			candidateId: 'abcdef',
 			firstName: 'Debananda',
 			lastName: 'Mohanty',
-			technologies: ['Angular', 'React', 'Docker'],
+			skills: [
+				{
+					major: 'UI',
+					minor: 'Angular',
+					lastUsedOn: 2019,
+					experienceInYears: 3
+				},
+				{ major: 'UI', minor: 'React', lastUsedOn: 2019, experienceInYears: 2 },
+				{
+					major: 'DevOps',
+					minor: 'Docker',
+					lastUsedOn: 2019,
+					experienceInYears: 1
+				}
+			],
 			experience: 10,
 			profileImage: 'http://genchi.info/images/profile-picture-12.jpg',
 			profileDescription:

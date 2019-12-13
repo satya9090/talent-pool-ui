@@ -22,9 +22,9 @@
 					Description : {{ details.profileDescription }}
 				</p>
 				<div>
-					<span class="chip" *ngFor="let tech of details.technologies">{{
-						tech
-					}}</span>
+					<span class="chip" *ngFor="let skill of details.skills">
+						{{ skill.minor }} {{ skill.experienceInYears }}yrs
+					</span>
 				</div>
 			</div>
 		</div>

@@ -1,0 +1,63 @@
+<h5 class="text-center">Skills</h5>
+<hr />
+
+<form [formGroup]="skillForm">
+	<div class="row" formArrayName="skills">
+		<label class="col">
+			Skill
+		</label>
+		<label class="col-2">
+			Exp in Yrs
+		</label>
+		<label class="col-3">
+			Last Used On
+		</label>
+		<label class="col-2">
+			Action
+		</label>
+		<div
+			class="col-12 mb-1"
+			*ngFor="let skillControl of skillControls; let i = index"
+			[formGroupName]="i"
+		>
+			<div class="row">
+				<div class="col-5 d-flex">
+					<input
+						type="text"
+						class="form-control mr-1"
+						formControlName="major"
+					/>
+					<input type="text" class="form-control" formControlName="minor" />
+				</div>
+				<div class="col-2">
+					<input
+						type="number"
+						class="form-control"
+						formControlName="experienceInYears"
+					/>
+				</div>
+				<div class="col-3">
+					<input
+						type="number"
+						class="form-control"
+						formControlName="lastUsedOn"
+					/>
+				</div>
+				<div class="col-2">
+					<button class="btn btn-danger mr-1" (click)="removeSkill(i)">
+						-
+					</button>
+					<button class="btn btn-primary" (click)="addSkill()">+</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="form-group col-12 d-flex justify-content-between">
+			<a class="btn btn-secondary" [routerLink]="['../professional-info']">
+				Back
+			</a>
+			<input type="submit" value="Next" class="btn btn-success" />
+		</div>
+	</div>
+</form>

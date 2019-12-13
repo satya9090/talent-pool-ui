@@ -55,6 +55,13 @@ export interface ProfessionalDetails {
 	projects: ProjectDetails[];
 }
 
+export interface Skill {
+	major: string;
+	minor: string;
+	lastUsedOn: number;
+	experienceInYears: number;
+}
+
 export interface User {
 	userId?: string;
 	personalDetails: PersonalDetails;
@@ -63,5 +70,6 @@ export interface User {
 	permanentAddress?: Address;
 	presentAddress?: Address;
 	aboutMe: string;
+	skills: Skill[];
 	isProfileCompleted: boolean;
 }

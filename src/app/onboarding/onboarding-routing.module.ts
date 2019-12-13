@@ -7,6 +7,7 @@ import { EducationalInformationComponent } from './educational-information/educa
 import { AboutMeComponent } from './about-me/about-me.component';
 import { AddressInformationComponent } from './address-information/address-information.component';
 import { PaymentComponent } from './payment/payment.component';
+import { SkillsComponent } from './skills/skills.component';
 
 const onboardingRoutes: Routes = [
 	{
@@ -41,6 +42,10 @@ const onboardingRoutes: Routes = [
 			{
 				path: 'payment',
 				component: PaymentComponent
+			},
+			{
+				path: 'skills',
+				component: SkillsComponent
 			}
 		]
 	}
