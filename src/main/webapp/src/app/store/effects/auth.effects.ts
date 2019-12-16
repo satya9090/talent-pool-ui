@@ -18,7 +18,7 @@ export class AuthEffects {
 	Login$ = this.actions$.pipe(
 		ofType(AUTH_LOGIN_START),
 		switchMap((authData: AuthLoginStart) => {
-			return this.http.post<any>('http://test.com', authData.payload).pipe(
+			return this.http.post<any>('/api/login', authData.payload).pipe(
 				map(response => {
 					return new AuthSuccess(response);
 				}),
