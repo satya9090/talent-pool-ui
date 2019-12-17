@@ -21,15 +21,14 @@
     <finalName>talent-pool-ui</finalName>
     <plugins>
       <plugin>
+          <groupId>com.yotabytes.huntill</groupId>
           <artifactId>talent-pool-ui</artifactId>
           <version>3.2.2</version>
           <configuration>
-              <failOnMissingWebXml>false</failOnMissingWebXml>
-              <webResources>
-                  <resource>
-                      <directory>src\main\webapp\dist\talent-pool-ui</directory>
-                  </resource>
-              </webResources>
+              <webXml>src\main\webapp\WEB-INF\web.xml</webXml>
+              <warName>talent-pool-ui</warName>
+              <warSourceDirectory>src\main\webapp\dist\talent-pool-ui</warSourceDirectory>
+              <packagingExcludes>node_modules\**</packagingExcludes>
           </configuration>
       </plugin>
     </plugins>
