@@ -21,7 +21,6 @@ import {
 	AuthLogout
 } from '../actions/auth.actions';
 import { AuthResponse, AuthUser } from '../models/auth.model';
-import { getStoredUser } from 'src/app/shared/helper';
 
 @Injectable()
 export class AuthEffects {
@@ -88,10 +87,23 @@ export class AuthEffects {
 	autoLogin = this.actions$.pipe(
 		ofType(AUTH_AUTO_LOGIN),
 		map(() => {
-			const loadedUser = getStoredUser();
-			if (!loadedUser) {
+			const userData: {
+				access_token: string;
+				refresh_token: string;
+				token_type: string;
+				role: string[];
+				expires_in: string;
+			} = JSON.parse(localStorage.getItem('auth'));
+			if (!userData) {
 				return { type: 'DUMMY' };
 			}
+			const loadedUser = new AuthUser(
+				userData.access_token,
+				userData.token_type,
+				userData.refresh_token,
+				new Date(userData.expires_in),
+				userData.role
+			);
 			if (loadedUser.token) {
 				const expirationDuration =
 					new Date(loadedUser.expiresIn).getTime() - new Date().getTime();

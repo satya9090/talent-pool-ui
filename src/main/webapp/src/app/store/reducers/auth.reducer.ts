@@ -35,6 +35,6 @@ export function AuthReducer(state = initialState, action: AuthActions) {
 		case AUTH_LOGOUT:
 			return { ...state, user: null };
 		default:
-			return state;
+			return { ...state };
 	}
 }

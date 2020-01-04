@@ -8,7 +8,7 @@
 	<div class="card-body">
 		<div *ngIf="!editMode; else editAddress">
 			<address>
-				{{ address.address }}, {{ address.state }}, {{ address.country }},
+				{{ address.address }}, {{ address.state.name }}, {{ address.country.name }},
 				{{ address.zipcode }}
 			</address>
 		</div>
