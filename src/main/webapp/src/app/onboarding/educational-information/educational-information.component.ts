@@ -13,7 +13,6 @@ export class EducationalInformationComponent implements OnInit {
 	ngOnInit() {}
 
 	proceed(educationalDetailsForm: NgForm) {
-		console.log('here');
 		this.router.navigate(['../professional-info'], {
 			relativeTo: this.activatedRoute
 		});

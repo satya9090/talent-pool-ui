@@ -942,7 +942,6 @@ let AboutMeComponent = class AboutMeComponent {
             .getBase64()
             .then(base => {
             this.base64 = base;
-            console.log(base);
         })
             .catch(e => console.error(e));
     }
@@ -1010,14 +1009,14 @@ let AddressInformationComponent = class AddressInformationComponent {
     }
     ngOnInit() {
         this.permanentAddress = {
-            country: '',
-            state: '',
+            country: { id: 1, name: 'India' },
+            state: { id: 1, name: 'Bhubaneswar', countryId: 1 },
             zipcode: '',
             address: ''
         };
         this.presentAddress = {
-            country: '',
-            state: '',
+            country: { id: 1, name: 'India' },
+            state: { id: 1, name: 'Bhubaneswar', countryId: 1 },
             zipcode: '',
             address: ''
         };
@@ -1080,7 +1079,6 @@ let EducationalInformationComponent = class EducationalInformationComponent {
     }
     ngOnInit() { }
     proceed(educationalDetailsForm) {
-        console.log('here');
         this.router.navigate(['../professional-info'], {
             relativeTo: this.activatedRoute
         });
@@ -1350,7 +1348,8 @@ let PersonalInformationComponent = class PersonalInformationComponent {
             email: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].email]),
             alternateEmail: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].email]),
             phoneNumber: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
-            gender: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required)
+            gender: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
+            nationality: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required])
         });
     }
     get f() {

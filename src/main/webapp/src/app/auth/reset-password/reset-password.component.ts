@@ -42,6 +42,5 @@ export class ResetPasswordComponent implements OnInit {
 		if (this.resetPasswordForm.invalid) {
 			return;
 		}
-		console.log(this.resetPasswordForm);
 	}
 }

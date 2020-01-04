@@ -28,7 +28,7 @@ export class EmployeerLoginComponent implements OnInit {
 
 	ngOnInit() {
 		this.loginForm = this.formBuilder.group({
-			userName: new FormControl('', [Validators.required, Validators.email]),
+			userName: new FormControl('', [Validators.required]),
 			password: new FormControl('', [
 				Validators.required,
 				Validators.minLength(6)
@@ -37,9 +37,9 @@ export class EmployeerLoginComponent implements OnInit {
 		this.store.select('authState').subscribe(authState => {
 			this.error = authState.errorMessage;
 			this.loading = authState.loading;
-			if (authState.user) {
-				this.router.navigate(['/onboarding/personal-info']);
-			}
+			// if (authState.user) {
+			// 	this.router.navigate(['/onboarding/personal-info']);
+			// }
 		});
 	}
 	get f() {
@@ -50,7 +50,6 @@ export class EmployeerLoginComponent implements OnInit {
 		if (this.loginForm.invalid) {
 			return;
 		}
-		console.log('here');
 		this.store.dispatch(
 			new AuthLoginStart({
 				email: this.loginForm.get('userName').value,

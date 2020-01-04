@@ -8,9 +8,9 @@
 		</div>
 		<form [formGroup]="loginForm" (ngSubmit)="login()">
 			<div class="form-group">
-				<label for="email">Email</label>
+				<label>Username</label>
 				<input
-					type="email"
+					type="text"
 					formControlName="userName"
 					class="form-control"
 					[ngClass]="{ 'is-invalid': submitted && f.userName.errors }"
@@ -18,9 +18,6 @@
 				<div *ngIf="submitted && f.userName.errors" class="invalid-feedback">
 					<div *ngIf="f.userName.errors.required">
 						Username is required
-					</div>
-					<div *ngIf="f.userName.errors.email">
-						Username is not a valid email address
 					</div>
 				</div>
 			</div>

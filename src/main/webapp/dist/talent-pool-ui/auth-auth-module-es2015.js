@@ -74,7 +74,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row justify-content-center h-100 align-items-center\">\n\t<div class=\"col-md-8 col-12\">\n\t\t<div class=\"alert alert-danger\" *ngIf=\"error\">\n\t\t\t{{ error }}\n\t\t</div>\n\t\t<div *ngIf=\"loading\">\n\t\t\t<app-loading>Loading...</app-loading>\n\t\t</div>\n\t\t<form [formGroup]=\"registerForm\" (ngSubmit)=\"register()\">\n\t\t\t<div class=\"row\">\n\t\t\t\t<div class=\"col-md-6 col-12\">\n\t\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t\t<label>First Name</label>\n\t\t\t\t\t\t<input\n\t\t\t\t\t\t\ttype=\"text\"\n\t\t\t\t\t\t\tformControlName=\"firstName\"\n\t\t\t\t\t\t\tclass=\"form-control\"\n\t\t\t\t\t\t\t[ngClass]=\"{ 'is-invalid': submitted && f.firstName.errors }\"\n\t\t\t\t\t\t/>\n\t\t\t\t\t\t<div\n\t\t\t\t\t\t\t*ngIf=\"submitted && f.firstName.errors\"\n\t\t\t\t\t\t\tclass=\"invalid-feedback\"\n\t\t\t\t\t\t>\n\t\t\t\t\t\t\t<div *ngIf=\"f.firstName.errors.required\">\n\t\t\t\t\t\t\t\tFirst Name is required\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"col-md-6 col-12\">\n\t\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t\t<label>Last Name</label>\n\t\t\t\t\t\t<input\n\t\t\t\t\t\t\ttype=\"text\"\n\t\t\t\t\t\t\tformControlName=\"lastName\"\n\t\t\t\t\t\t\tclass=\"form-control\"\n\t\t\t\t\t\t\t[ngClass]=\"{ 'is-invalid': submitted && f.lastName.errors }\"\n\t\t\t\t\t\t/>\n\t\t\t\t\t\t<div\n\t\t\t\t\t\t\t*ngIf=\"submitted && f.lastName.errors\"\n\t\t\t\t\t\t\tclass=\"invalid-feedback\"\n\t\t\t\t\t\t>\n\t\t\t\t\t\t\t<div *ngIf=\"f.lastName.errors.required\">\n\t\t\t\t\t\t\t\tLast Name is required\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class=\"row\">\n\t\t\t\t<div class=\"col-md-6 col-12\">\n\t\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t\t<label for=\"phone\">Phone</label>\n\t\t\t\t\t\t<input\n\t\t\t\t\t\t\ttype=\"tel\"\n\t\t\t\t\t\t\ttype=\"text\"\n\t\t\t\t\t\t\tformControlName=\"phoneNumber\"\n\t\t\t\t\t\t\tclass=\"form-control\"\n\t\t\t\t\t\t\t[ngClass]=\"{ 'is-invalid': submitted && f.phoneNumber.errors }\"\n\t\t\t\t\t\t/>\n\t\t\t\t\t\t<div\n\t\t\t\t\t\t\t*ngIf=\"submitted && f.phoneNumber.errors\"\n\t\t\t\t\t\t\tclass=\"invalid-feedback\"\n\t\t\t\t\t\t>\n\t\t\t\t\t\t\t<div *ngIf=\"f.lastName.errors.required\">\n\t\t\t\t\t\t\t\tPhone Number is required\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"col-md-6 col-12\">\n\t\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t\t<label>Email</label>\n\t\t\t\t\t\t<input\n\t\t\t\t\t\t\ttype=\"text\"\n\t\t\t\t\t\t\tformControlName=\"email\"\n\t\t\t\t\t\t\tclass=\"form-control\"\n\t\t\t\t\t\t\t[ngClass]=\"{ 'is-invalid': submitted && f.email.errors }\"\n\t\t\t\t\t\t/>\n\t\t\t\t\t\t<div *ngIf=\"submitted && f.email.errors\" class=\"invalid-feedback\">\n\t\t\t\t\t\t\t<div *ngIf=\"f.email.errors.required\">Email is required</div>\n\t\t\t\t\t\t\t<div *ngIf=\"f.email.errors.email\">\n\t\t\t\t\t\t\t\tEmail must be a valid email address\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"col-md-6 col-12\">\n\t\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t\t<label>Password</label>\n\t\t\t\t\t\t<input\n\t\t\t\t\t\t\ttype=\"password\"\n\t\t\t\t\t\t\tformControlName=\"password\"\n\t\t\t\t\t\t\tclass=\"form-control\"\n\t\t\t\t\t\t\t[ngClass]=\"{ 'is-invalid': submitted && f.password.errors }\"\n\t\t\t\t\t\t/>\n\t\t\t\t\t\t<div\n\t\t\t\t\t\t\t*ngIf=\"submitted && f.password.errors\"\n\t\t\t\t\t\t\tclass=\"invalid-feedback\"\n\t\t\t\t\t\t>\n\t\t\t\t\t\t\t<div *ngIf=\"f.password.errors.required\">Password is required</div>\n\t\t\t\t\t\t\t<div *ngIf=\"f.password.errors.minlength\">\n\t\t\t\t\t\t\t\tPassword must be at least 6 characters\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"col-md-6 col-12\">\n\t\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t\t<label>Confirm Password</label>\n\t\t\t\t\t\t<input\n\t\t\t\t\t\t\ttype=\"password\"\n\t\t\t\t\t\t\tformControlName=\"confirmPassword\"\n\t\t\t\t\t\t\tclass=\"form-control\"\n\t\t\t\t\t\t\t[ngClass]=\"{\n\t\t\t\t\t\t\t\t'is-invalid': submitted && f.confirmPassword.errors\n\t\t\t\t\t\t\t}\"\n\t\t\t\t\t\t/>\n\t\t\t\t\t\t<div\n\t\t\t\t\t\t\t*ngIf=\"submitted && f.confirmPassword.errors\"\n\t\t\t\t\t\t\tclass=\"invalid-feedback\"\n\t\t\t\t\t\t>\n\t\t\t\t\t\t\t<div *ngIf=\"f.confirmPassword.errors.required\">\n\t\t\t\t\t\t\t\tConfirm Password is required\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div *ngIf=\"f.confirmPassword.errors.mustMatch\">\n\t\t\t\t\t\t\t\tPasswords must match\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<input type=\"submit\" class=\"btn btn-primary btn-block\" value=\"Register\" />\n\t\t</form>\n\t</div>\n</div>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row justify-content-center h-100 align-items-center\">\n\t<div class=\"col-md-8 col-12\">\n\t\t<div class=\"alert alert-danger\" *ngIf=\"error\">\n\t\t\t{{ error }}\n\t\t</div>\n\t\t<div *ngIf=\"loading\">\n\t\t\t<app-loading>Loading...</app-loading>\n\t\t</div>\n\t\t<form [formGroup]=\"registerForm\" (ngSubmit)=\"register()\">\n\t\t\t<div class=\"row\">\n\t\t\t\t<div class=\"col-md-6 col-12\">\n\t\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t\t<label>First Name</label>\n\t\t\t\t\t\t<input\n\t\t\t\t\t\t\ttype=\"text\"\n\t\t\t\t\t\t\tformControlName=\"firstName\"\n\t\t\t\t\t\t\tclass=\"form-control\"\n\t\t\t\t\t\t\t[ngClass]=\"{ 'is-invalid': submitted && f.firstName.errors }\"\n\t\t\t\t\t\t/>\n\t\t\t\t\t\t<div\n\t\t\t\t\t\t\t*ngIf=\"submitted && f.firstName.errors\"\n\t\t\t\t\t\t\tclass=\"invalid-feedback\"\n\t\t\t\t\t\t>\n\t\t\t\t\t\t\t<div *ngIf=\"f.firstName.errors.required\">\n\t\t\t\t\t\t\t\tFirst name is required\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div *ngIf=\"f.firstName.errors.minlength\">\n\t\t\t\t\t\t\t\tFirst name should be atleast 6 character long\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"col-md-6 col-12\">\n\t\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t\t<label>Last Name</label>\n\t\t\t\t\t\t<input\n\t\t\t\t\t\t\ttype=\"text\"\n\t\t\t\t\t\t\tformControlName=\"lastName\"\n\t\t\t\t\t\t\tclass=\"form-control\"\n\t\t\t\t\t\t\t[ngClass]=\"{ 'is-invalid': submitted && f.lastName.errors }\"\n\t\t\t\t\t\t/>\n\t\t\t\t\t\t<div\n\t\t\t\t\t\t\t*ngIf=\"submitted && f.lastName.errors\"\n\t\t\t\t\t\t\tclass=\"invalid-feedback\"\n\t\t\t\t\t\t>\n\t\t\t\t\t\t\t<div *ngIf=\"f.lastName.errors.required\">\n\t\t\t\t\t\t\t\tLast name is required\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div *ngIf=\"f.lastName.errors.minlength\">\n\t\t\t\t\t\t\t\tLast name should be atleast 6 character long\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class=\"row\">\n\t\t\t\t<div class=\"col-md-6 col-12\">\n\t\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t\t<label for=\"phone\">Phone</label>\n\t\t\t\t\t\t<input\n\t\t\t\t\t\t\ttype=\"tel\"\n\t\t\t\t\t\t\ttype=\"text\"\n\t\t\t\t\t\t\tformControlName=\"phoneNumber\"\n\t\t\t\t\t\t\tclass=\"form-control\"\n\t\t\t\t\t\t\t[ngClass]=\"{ 'is-invalid': submitted && f.phoneNumber.errors }\"\n\t\t\t\t\t\t/>\n\t\t\t\t\t\t<div\n\t\t\t\t\t\t\t*ngIf=\"submitted && f.phoneNumber.errors\"\n\t\t\t\t\t\t\tclass=\"invalid-feedback\"\n\t\t\t\t\t\t>\n\t\t\t\t\t\t\t<div *ngIf=\"f.lastName.errors.required\">\n\t\t\t\t\t\t\t\tPhone Number is required\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"col-md-6 col-12\">\n\t\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t\t<label>Email</label>\n\t\t\t\t\t\t<input\n\t\t\t\t\t\t\ttype=\"text\"\n\t\t\t\t\t\t\tformControlName=\"email\"\n\t\t\t\t\t\t\tclass=\"form-control\"\n\t\t\t\t\t\t\t[ngClass]=\"{ 'is-invalid': submitted && f.email.errors }\"\n\t\t\t\t\t\t/>\n\t\t\t\t\t\t<div *ngIf=\"submitted && f.email.errors\" class=\"invalid-feedback\">\n\t\t\t\t\t\t\t<div *ngIf=\"f.email.errors.required\">Email is required</div>\n\t\t\t\t\t\t\t<div *ngIf=\"f.email.errors.email\">\n\t\t\t\t\t\t\t\tEmail must be a valid email address\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"col-md-6 col-12\">\n\t\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t\t<label>Username</label>\n\t\t\t\t\t\t<input\n\t\t\t\t\t\t\ttype=\"text\"\n\t\t\t\t\t\t\tformControlName=\"userName\"\n\t\t\t\t\t\t\tclass=\"form-control\"\n\t\t\t\t\t\t\t[ngClass]=\"{ 'is-invalid': submitted && f.userName.errors }\"\n\t\t\t\t\t\t/>\n\t\t\t\t\t\t<div\n\t\t\t\t\t\t\t*ngIf=\"submitted && f.userName.errors\"\n\t\t\t\t\t\t\tclass=\"invalid-feedback\"\n\t\t\t\t\t\t>\n\t\t\t\t\t\t\t<div *ngIf=\"f.userName.errors.required\">Username is required</div>\n\t\t\t\t\t\t\t<div *ngIf=\"f.userName.errors.minlength\">\n\t\t\t\t\t\t\t\tUsername should be atleast 6 character long\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"col-md-6 col-12\">\n\t\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t\t<label>Password</label>\n\t\t\t\t\t\t<input\n\t\t\t\t\t\t\ttype=\"password\"\n\t\t\t\t\t\t\tformControlName=\"password\"\n\t\t\t\t\t\t\tclass=\"form-control\"\n\t\t\t\t\t\t\t[ngClass]=\"{ 'is-invalid': submitted && f.password.errors }\"\n\t\t\t\t\t\t/>\n\t\t\t\t\t\t<div\n\t\t\t\t\t\t\t*ngIf=\"submitted && f.password.errors\"\n\t\t\t\t\t\t\tclass=\"invalid-feedback\"\n\t\t\t\t\t\t>\n\t\t\t\t\t\t\t<div *ngIf=\"f.password.errors.required\">Password is required</div>\n\t\t\t\t\t\t\t<div *ngIf=\"f.password.errors.minlength\">\n\t\t\t\t\t\t\t\tPassword must be at least 6 characters\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"col-md-6 col-12\">\n\t\t\t\t\t<div class=\"form-group\">\n\t\t\t\t\t\t<label>Confirm Password</label>\n\t\t\t\t\t\t<input\n\t\t\t\t\t\t\ttype=\"password\"\n\t\t\t\t\t\t\tformControlName=\"confirmPassword\"\n\t\t\t\t\t\t\tclass=\"form-control\"\n\t\t\t\t\t\t\t[ngClass]=\"{\n\t\t\t\t\t\t\t\t'is-invalid': submitted && f.confirmPassword.errors\n\t\t\t\t\t\t\t}\"\n\t\t\t\t\t\t/>\n\t\t\t\t\t\t<div\n\t\t\t\t\t\t\t*ngIf=\"submitted && f.confirmPassword.errors\"\n\t\t\t\t\t\t\tclass=\"invalid-feedback\"\n\t\t\t\t\t\t>\n\t\t\t\t\t\t\t<div *ngIf=\"f.confirmPassword.errors.required\">\n\t\t\t\t\t\t\t\tConfirm Password is required\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div *ngIf=\"f.confirmPassword.errors.mustMatch\">\n\t\t\t\t\t\t\t\tPasswords must match\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<input type=\"submit\" class=\"btn btn-primary btn-block\" value=\"Register\" />\n\t\t</form>\n\t</div>\n</div>\n");
 
 /***/ }),
 
@@ -330,7 +330,6 @@ let EmployeerLoginComponent = class EmployeerLoginComponent {
         if (this.loginForm.invalid) {
             return;
         }
-        console.log('here');
         this.store.dispatch(new src_app_store_actions_auth_actions__WEBPACK_IMPORTED_MODULE_5__["AuthLoginStart"]({
             email: this.loginForm.get('userName').value,
             password: this.loginForm.get('password').value
@@ -477,7 +476,6 @@ let ForgotPasswordComponent = class ForgotPasswordComponent {
         if (this.forgotPasswordForm.invalid) {
             return true;
         }
-        console.log(this.forgotPasswordForm);
     }
 };
 ForgotPasswordComponent.ctorParameters = () => [
@@ -544,13 +542,13 @@ let JobSeekerLoginComponent = class JobSeekerLoginComponent {
             userName: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].email]],
             password: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].minLength(6)]]
         });
-        this.store.select('authState').subscribe(authState => {
-            this.error = authState.errorMessage;
-            this.loading = authState.loading;
-            if (authState.user) {
-                this.router.navigate(['/onboarding/personal-info']);
-            }
-        });
+        // this.store.select('authState').subscribe(authState => {
+        // 	this.error = authState.errorMessage;
+        // 	this.loading = authState.loading;
+        // 	if (authState.user) {
+        // 		this.router.navigate(['/onboarding/personal-info']);
+        // 	}
+        // });
     }
     get f() {
         return this.loginForm.controls;
@@ -560,7 +558,11 @@ let JobSeekerLoginComponent = class JobSeekerLoginComponent {
         if (this.loginForm.invalid) {
             return;
         }
-        console.log('here');
+        const loginFormData = new FormData();
+        loginFormData.append('grant_type', 'password');
+        loginFormData.append('client_id', 'spring123');
+        loginFormData.append('username', 'bibhu');
+        loginFormData.append('password', 'nucigent2019');
         this.store.dispatch(new _store_actions_auth_actions__WEBPACK_IMPORTED_MODULE_5__["AuthLoginStart"]({
             email: this.loginForm.get('userName').value,
             password: this.loginForm.get('password').value
@@ -636,12 +638,25 @@ let JobSeekerRegistrationComponent = class JobSeekerRegistrationComponent {
             this.loading = authState.loading;
         });
         this.registerForm = this.formBuilder.group({
-            firstName: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
-            lastName: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
-            phoneNumber: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
-            email: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].email]],
-            password: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].minLength(6)]],
-            confirmPassword: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]
+            firstName: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required,
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].minLength(6)
+            ]),
+            lastName: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required,
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].minLength(6)
+            ]),
+            phoneNumber: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
+            email: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].email]),
+            userName: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required,
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].minLength(6)
+            ]),
+            password: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required,
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].minLength(6)
+            ]),
+            confirmPassword: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required])
         }, {
             validator: Object(_shared_CustomValidatos__WEBPACK_IMPORTED_MODULE_3__["MustMatch"])('password', 'confirmPassword')
         });
@@ -657,11 +672,13 @@ let JobSeekerRegistrationComponent = class JobSeekerRegistrationComponent {
             return;
         }
         this.store.dispatch(new src_app_store_actions_auth_actions__WEBPACK_IMPORTED_MODULE_5__["AuthRegistrationStart"]({
-            firstName: this.registerForm.get('firstName').value,
-            lastName: this.registerForm.get('lastName').value,
-            email: this.registerForm.get('email').value,
-            phoneNumber: this.registerForm.get('phoneNumber').value,
-            password: this.registerForm.get('password').value
+            userType: 'candidate',
+            firstName: this.f.firstName.value,
+            lastName: this.f.lastName.value,
+            emailId: this.f.email.value,
+            userName: this.f.userName.value,
+            contactNumber: this.f.phoneNumber.value,
+            password: this.f.password.value
         }));
     }
 };
@@ -737,7 +754,6 @@ let ResetPasswordComponent = class ResetPasswordComponent {
         if (this.resetPasswordForm.invalid) {
             return;
         }
-        console.log(this.resetPasswordForm);
     }
 };
 ResetPasswordComponent.ctorParameters = () => [

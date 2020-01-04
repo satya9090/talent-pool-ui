@@ -230,9 +230,7 @@ __webpack_require__.r(__webpack_exports__);
 
 let NotificationComponent = class NotificationComponent {
     constructor() { }
-    ngOnInit() {
-        console.log(this.details);
-    }
+    ngOnInit() { }
 };
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()

@@ -22,7 +22,10 @@
 							class="invalid-feedback"
 						>
 							<div *ngIf="f.firstName.errors.required">
-								First Name is required
+								First name is required
+							</div>
+							<div *ngIf="f.firstName.errors.minlength">
+								First name should be atleast 6 character long
 							</div>
 						</div>
 					</div>
@@ -41,7 +44,10 @@
 							class="invalid-feedback"
 						>
 							<div *ngIf="f.lastName.errors.required">
-								Last Name is required
+								Last name is required
+							</div>
+							<div *ngIf="f.lastName.errors.minlength">
+								Last name should be atleast 6 character long
 							</div>
 						</div>
 					</div>
@@ -81,6 +87,26 @@
 							<div *ngIf="f.email.errors.required">Email is required</div>
 							<div *ngIf="f.email.errors.email">
 								Email must be a valid email address
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-12">
+					<div class="form-group">
+						<label>Username</label>
+						<input
+							type="text"
+							formControlName="userName"
+							class="form-control"
+							[ngClass]="{ 'is-invalid': submitted && f.userName.errors }"
+						/>
+						<div
+							*ngIf="submitted && f.userName.errors"
+							class="invalid-feedback"
+						>
+							<div *ngIf="f.userName.errors.required">Username is required</div>
+							<div *ngIf="f.userName.errors.minlength">
+								Username should be atleast 6 character long
 							</div>
 						</div>
 					</div>

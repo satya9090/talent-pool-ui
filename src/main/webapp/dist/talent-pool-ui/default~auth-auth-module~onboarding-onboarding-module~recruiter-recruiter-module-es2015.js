@@ -88,7 +88,6 @@ let AddressComponent = class AddressComponent {
         return this.addressForm.controls;
     }
     toggleEditMode() {
-        console.log(this.restrictEdit);
         if (this.restrictEdit === false) {
             this.editMode = !this.editMode;
         }

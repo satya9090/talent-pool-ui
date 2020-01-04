@@ -3,13 +3,15 @@ import {
 	AUTH_FAILED,
 	AUTH_SUCCESS,
 	AUTH_LOGIN_START,
-	AUTH_REGISTRATION_START
+	AUTH_REGISTRATION_START,
+	AUTH_LOGOUT
 } from '../actions/auth.actions';
+import { AuthUser } from '../models/auth.model';
 
 export interface AuthState {
 	loading: boolean;
 	errorMessage: string;
-	user: any;
+	user: AuthUser;
 }
 const initialState: AuthState = {
 	loading: false,
@@ -30,6 +32,8 @@ export function AuthReducer(state = initialState, action: AuthActions) {
 				loading: false,
 				errorMessage: action.payload
 			};
+		case AUTH_LOGOUT:
+			return { ...state, user: null };
 		default:
 			return state;
 	}

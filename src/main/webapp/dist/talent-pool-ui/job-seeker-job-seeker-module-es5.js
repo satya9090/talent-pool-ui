@@ -194,9 +194,7 @@
             var NotificationComponent = /** @class */ (function () {
                 function NotificationComponent() {
                 }
-                NotificationComponent.prototype.ngOnInit = function () {
-                    console.log(this.details);
-                };
+                NotificationComponent.prototype.ngOnInit = function () { };
                 return NotificationComponent;
             }());
             tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([

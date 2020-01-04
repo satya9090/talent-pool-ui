@@ -14,14 +14,14 @@ export class AddressInformationComponent implements OnInit {
 
 	ngOnInit() {
 		this.permanentAddress = {
-			country: '',
-			state: '',
+			country: { id: 1, name: 'India' },
+			state: { id: 1, name: 'Bhubaneswar', countryId: 1 },
 			zipcode: '',
 			address: ''
 		};
 		this.presentAddress = {
-			country: '',
-			state: '',
+			country: { id: 1, name: 'India' },
+			state: { id: 1, name: 'Bhubaneswar', countryId: 1 },
 			zipcode: '',
 			address: ''
 		};

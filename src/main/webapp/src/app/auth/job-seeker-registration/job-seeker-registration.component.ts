@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {
+	FormGroup,
+	FormBuilder,
+	Validators,
+	FormControl
+} from '@angular/forms';
 import { MustMatch } from '../../shared/CustomValidatos';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/AppState';
@@ -29,12 +34,25 @@ export class JobSeekerRegistrationComponent implements OnInit {
 		});
 		this.registerForm = this.formBuilder.group(
 			{
-				firstName: ['', Validators.required],
-				lastName: ['', Validators.required],
-				phoneNumber: ['', Validators.required],
-				email: ['', [Validators.required, Validators.email]],
-				password: ['', [Validators.required, Validators.minLength(6)]],
-				confirmPassword: ['', Validators.required]
+				firstName: new FormControl('', [
+					Validators.required,
+					Validators.minLength(6)
+				]),
+				lastName: new FormControl('', [
+					Validators.required,
+					Validators.minLength(6)
+				]),
+				phoneNumber: new FormControl('', Validators.required),
+				email: new FormControl('', [Validators.required, Validators.email]),
+				userName: new FormControl('', [
+					Validators.required,
+					Validators.minLength(6)
+				]),
+				password: new FormControl('', [
+					Validators.required,
+					Validators.minLength(6)
+				]),
+				confirmPassword: new FormControl('', [Validators.required])
 			},
 			{
 				validator: MustMatch('password', 'confirmPassword')
@@ -56,11 +74,13 @@ export class JobSeekerRegistrationComponent implements OnInit {
 		}
 		this.store.dispatch(
 			new AuthRegistrationStart({
-				firstName: this.registerForm.get('firstName').value,
-				lastName: this.registerForm.get('lastName').value,
-				email: this.registerForm.get('email').value,
-				phoneNumber: this.registerForm.get('phoneNumber').value,
-				password: this.registerForm.get('password').value
+				userType: 'candidate',
+				firstName: this.f.firstName.value,
+				lastName: this.f.lastName.value,
+				emailId: this.f.email.value,
+				userName: this.f.userName.value,
+				contactNumber: this.f.phoneNumber.value,
+				password: this.f.password.value
 			})
 		);
 	}

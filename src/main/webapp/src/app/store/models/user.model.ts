@@ -1,6 +1,8 @@
+import { Country, State } from './common.model';
+
 export interface Address {
-	country: string;
-	state: string;
+	country: Country;
+	state: State;
 	zipcode: string;
 	address: string;
 }
@@ -31,6 +33,8 @@ export interface PersonalDetails {
 	email: string;
 	alternateEmail: string;
 	gender: 'Male' | 'Female' | 'Others';
+	maritalStatus: 'Married' | 'Unmarried';
+	nationality: Country;
 }
 
 export interface EducationalDetails {

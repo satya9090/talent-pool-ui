@@ -34,7 +34,6 @@ export class AddressComponent implements OnInit {
 		return this.addressForm.controls;
 	}
 	toggleEditMode() {
-		console.log(this.restrictEdit);
 		if (this.restrictEdit === false) {
 			this.editMode = !this.editMode;
 		}

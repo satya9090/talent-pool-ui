@@ -29,7 +29,8 @@ export class PersonalInformationComponent implements OnInit {
 			email: new FormControl('', [Validators.required, Validators.email]),
 			alternateEmail: new FormControl('', [Validators.email]),
 			phoneNumber: new FormControl('', Validators.required),
-			gender: new FormControl('', Validators.required)
+			gender: new FormControl('', Validators.required),
+			nationality: new FormControl('', [Validators.required])
 		});
 	}
 	get f() {

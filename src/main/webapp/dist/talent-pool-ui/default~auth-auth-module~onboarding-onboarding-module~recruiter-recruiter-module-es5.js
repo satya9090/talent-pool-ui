@@ -79,7 +79,6 @@
                     configurable: true
                 });
                 AddressComponent.prototype.toggleEditMode = function () {
-                    console.log(this.restrictEdit);
                     if (this.restrictEdit === false) {
                         this.editMode = !this.editMode;
                     }

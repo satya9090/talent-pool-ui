@@ -20,7 +20,6 @@ export class AboutMeComponent implements OnInit {
 			.getBase64()
 			.then(base => {
 				this.base64 = base;
-				console.log(base);
 			})
 			.catch(e => console.error(e));
 	}
