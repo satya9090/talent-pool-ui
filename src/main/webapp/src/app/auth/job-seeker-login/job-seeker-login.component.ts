@@ -28,8 +28,11 @@ export class JobSeekerLoginComponent implements OnInit {
 
 	ngOnInit() {
 		this.loginForm = this.formBuilder.group({
-			userName: ['', [Validators.required]],
-			password: ['', [Validators.required, Validators.minLength(6)]]
+			userName: new FormControl('', [Validators.required]),
+			password: new FormControl('', [
+				Validators.required,
+				Validators.minLength(6)
+			])
 		});
 		this.store.select('authState').subscribe(authState => {
 			this.error = authState.errorMessage;
@@ -49,7 +52,7 @@ export class JobSeekerLoginComponent implements OnInit {
 		}
 		this.store.dispatch(
 			new AuthLoginStart({
-				email: this.loginForm.get('userName').value,
+				userName: this.loginForm.get('userName').value,
 				password: this.loginForm.get('password').value
 			})
 		);

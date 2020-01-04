@@ -15,7 +15,10 @@
 			The world of oppertunies is at a stone throw distance. Grab it at the
 			earliest
 		</p>
-		<a [routerLink]="['job-seeker-login']" class="btn btn-primary btn-block"
+		<a
+			[routerLink]="['job-seeker-login']"
+			queryParamsHandling="merge"
+			class="btn btn-primary btn-block"
 			>Login</a
 		>
 	</div>

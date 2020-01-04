@@ -21,4 +21,7 @@ export class AuthUser {
 		}
 		return this.access_token;
 	}
+	get expiresIn() {
+		return this._tokenExpirationDate;
+	}
 }

@@ -11,7 +11,7 @@ export const AUTH_REGISTRATION_START = 'AUTH_REGISTRATION_START';
 export class AuthLoginStart implements Action {
 	readonly type = AUTH_LOGIN_START;
 
-	constructor(public payload: { email: string; password: string }) {}
+	constructor(public payload: { userName: string; password: string }) {}
 }
 
 export class AuthSuccess implements Action {

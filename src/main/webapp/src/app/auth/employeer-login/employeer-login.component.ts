@@ -52,7 +52,7 @@ export class EmployeerLoginComponent implements OnInit {
 		}
 		this.store.dispatch(
 			new AuthLoginStart({
-				email: this.loginForm.get('userName').value,
+				userName: this.loginForm.get('userName').value,
 				password: this.loginForm.get('password').value
 			})
 		);

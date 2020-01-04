@@ -11,28 +11,25 @@
 
   <name>talent-pool-ui</name>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.7</maven.compiler.source>
-    <maven.compiler.target>1.7</maven.compiler.target>
-  </properties>
+   <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
 
-  <build>
-    <finalName>talent-pool-ui</finalName>
-     <plugins>
-    <plugin>
-        <artifactId>maven-war-plugin</artifactId>
-        <version>3.2.2</version>
-        <configuration>
-            <failOnMissingWebXml>false</failOnMissingWebXml>
-            <!-- Add frontend folder to war package -->
-            <webResources>
-                <resource>
-                    <directory>src/main/webapp/dist/talent-pool-ui</directory>
-                </resource>
-            </webResources>
-        </configuration>
-    </plugin>
-    </plugins>
-</build>
+    <build>
+        <finalName>talent-pool-ui</finalName>
+        <plugins>
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <webXml>src\main\webapp\WEB-INF\web.xml</webXml>
+                    <warName>talent-pool-ui</warName>
+                    <warSourceDirectory>src\main\webapp\dist\talent-pool-ui</warSourceDirectory>
+                    <packagingExcludes>node_modules\**</packagingExcludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

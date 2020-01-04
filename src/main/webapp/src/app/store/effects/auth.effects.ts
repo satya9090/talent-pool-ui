@@ -21,6 +21,7 @@ import {
 	AuthLogout
 } from '../actions/auth.actions';
 import { AuthResponse, AuthUser } from '../models/auth.model';
+import { getStoredUser } from 'src/app/shared/helper';
 
 @Injectable()
 export class AuthEffects {
@@ -32,8 +33,8 @@ export class AuthEffects {
 			const body = new HttpParams()
 				.set('grant_type', 'password')
 				.set('client_id', 'spring123')
-				.set('username', 'bibhu')
-				.set('password', 'nucigent2019');
+				.set('username', authData.payload.userName)
+				.set('password', authData.payload.password);
 
 			const headers = new HttpHeaders({
 				'Content-Type': 'application/x-www-form-urlencoded',
@@ -41,7 +42,9 @@ export class AuthEffects {
 			});
 
 			return this.http
-				.post<AuthResponse>('/oauth/token', body.toString(), { headers })
+				.post<AuthResponse>('/TalentPool/oauth/token', body.toString(), {
+					headers
+				})
 				.pipe(
 					map(response => {
 						const expirationDate = new Date(
@@ -85,27 +88,13 @@ export class AuthEffects {
 	autoLogin = this.actions$.pipe(
 		ofType(AUTH_AUTO_LOGIN),
 		map(() => {
-			const userData: {
-				access_token: string;
-				refresh_token: string;
-				token_type: string;
-				role: string[];
-				expires_in: string;
-			} = JSON.parse(localStorage.getItem('auth'));
-			if (!userData) {
+			const loadedUser = getStoredUser();
+			if (!loadedUser) {
 				return { type: 'DUMMY' };
 			}
-			const loadedUser = new AuthUser(
-				userData.access_token,
-				userData.token_type,
-				userData.refresh_token,
-				new Date(userData.expires_in),
-				userData.role
-			);
-
 			if (loadedUser.token) {
 				const expirationDuration =
-					new Date(userData.expires_in).getTime() - new Date().getTime();
+					new Date(loadedUser.expiresIn).getTime() - new Date().getTime();
 				this.tokenExpirationTimer = setTimeout(() => {
 					this.logout();
 				}, expirationDuration);

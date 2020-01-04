@@ -20,6 +20,8 @@ export class AddressComponent implements OnInit {
 	submitted = false;
 	addressForm: FormGroup;
 	editMode = false;
+	countries = [];
+	states = [];
 	constructor(private formBuilder: FormBuilder) {}
 
 	ngOnInit() {
