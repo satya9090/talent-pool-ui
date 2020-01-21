@@ -18,7 +18,10 @@ import {
 	AuthRegistrationStart,
 	AUTH_AUTO_LOGIN,
 	AUTH_LOGOUT,
-	AuthLogout
+	AuthLogout,
+	AUTH_FORGOT_PASSWORD_START,
+	AuthForgotPasswordStart,
+	AuthForgotPasswordComplete
 } from '../actions/auth.actions';
 import { AuthResponse, AuthUser } from '../models/auth.model';
 
@@ -31,13 +34,13 @@ export class AuthEffects {
 		switchMap((authData: AuthLoginStart) => {
 			const body = new HttpParams()
 				.set('grant_type', 'password')
-				.set('client_id', 'spring123')
+				.set('client_id', 'Huntill')
 				.set('username', authData.payload.userName)
 				.set('password', authData.payload.password);
 
 			const headers = new HttpHeaders({
 				'Content-Type': 'application/x-www-form-urlencoded',
-				Authorization: 'Basic ' + btoa('spring123:talentpool')
+				Authorization: 'Basic ' + btoa('Huntill:nucigent')
 			});
 
 			return this.http
@@ -66,22 +69,41 @@ export class AuthEffects {
 		})
 	);
 
-	// @Effect()
-	// Register = this.actions$.pipe(
-	// 	ofType(AUTH_REGISTRATION_START),
-	// 	switchMap((authData: AuthRegistrationStart) => {
-	// 		return this.http
-	// 			.post('/api/candidateRegistration', authData.payload)
-	// 			.pipe(
-	// 				map(response => {
-	// 					return new AuthSuccess(response);
-	// 				}),
-	// 				catchError((error: HttpErrorResponse) => {
-	// 					return of(new AuthFailed(error.message));
-	// 				})
-	// 			);
-	// 	})
-	// );
+	@Effect()
+	Register = this.actions$.pipe(
+		ofType(AUTH_REGISTRATION_START),
+		switchMap((authData: AuthRegistrationStart) => {
+			return this.http
+				.post('/TalentPool/api/v1/createUser', authData.payload)
+				.pipe(
+					map(response => {
+						return new AuthSuccess(null);
+					}),
+					catchError((error: HttpErrorResponse) => {
+						return of(new AuthFailed(error.message));
+					})
+				);
+		})
+	);
+
+	@Effect()
+	forgotPassword = this.actions$.pipe(
+		ofType(AUTH_FORGOT_PASSWORD_START),
+		switchMap((data: AuthForgotPasswordStart) => {
+			return this.http
+				.post('/TalentPool/api/v1/forgotPassword', {
+					emailId: data.payload
+				})
+				.pipe(
+					map(() => {
+						return new AuthForgotPasswordComplete();
+					}),
+					catchError(() => {
+						return of(new AuthForgotPasswordComplete());
+					})
+				);
+		})
+	);
 
 	@Effect()
 	autoLogin = this.actions$.pipe(

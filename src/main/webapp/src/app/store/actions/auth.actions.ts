@@ -8,6 +8,9 @@ export const AUTH_LOGOUT = 'AUTH_LOGOUT';
 
 export const AUTH_REGISTRATION_START = 'AUTH_REGISTRATION_START';
 
+export const AUTH_FORGOT_PASSWORD_START = 'AUTH_FORGOT_PASSWORD_START';
+export const AUTH_FORGOT_PASSWORD_COMPLETE = 'AUTH_FORGOT_PASSWORD_COMPLETE';
+
 export class AuthLoginStart implements Action {
 	readonly type = AUTH_LOGIN_START;
 
@@ -38,10 +41,21 @@ export class AuthLogout implements Action {
 	readonly type = AUTH_LOGOUT;
 }
 
+export class AuthForgotPasswordStart implements Action {
+	readonly type = AUTH_FORGOT_PASSWORD_START;
+	constructor(public payload: string) {}
+}
+
+export class AuthForgotPasswordComplete implements Action {
+	readonly type = AUTH_FORGOT_PASSWORD_COMPLETE;
+}
+
 export type AuthActions =
 	| AuthLoginStart
 	| AuthSuccess
 	| AuthFailed
 	| AuthRegistrationStart
 	| AuthAutoLogin
-	| AuthLogout;
+	| AuthLogout
+	| AuthForgotPasswordStart
+	| AuthForgotPasswordComplete;

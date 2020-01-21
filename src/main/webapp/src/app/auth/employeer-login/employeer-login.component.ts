@@ -37,9 +37,9 @@ export class EmployeerLoginComponent implements OnInit {
 		this.store.select('authState').subscribe(authState => {
 			this.error = authState.errorMessage;
 			this.loading = authState.loading;
-			// if (authState.user) {
-			// 	this.router.navigate(['/onboarding/personal-info']);
-			// }
+			if (authState.user) {
+				this.router.navigate(['/']);
+			}
 		});
 	}
 	get f() {

@@ -6,7 +6,8 @@ import {
 	UrlSegment,
 	ActivatedRouteSnapshot,
 	RouterStateSnapshot,
-	UrlTree
+	UrlTree,
+	Router
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
@@ -17,7 +18,7 @@ import { map, take } from 'rxjs/operators';
 	providedIn: 'root'
 })
 export class AuthGuard implements CanActivate, CanLoad {
-	constructor(private store: Store<AppState>) {}
+	constructor(private store: Store<AppState>, private router: Router) {}
 	canActivate(
 		next: ActivatedRouteSnapshot,
 		state: RouterStateSnapshot
@@ -26,7 +27,15 @@ export class AuthGuard implements CanActivate, CanLoad {
 		| Promise<boolean | UrlTree>
 		| boolean
 		| UrlTree {
-		return true;
+		return this.store.select('authState').pipe(
+			take(1),
+			map(authState => {
+				if (!!authState.user && authState.user.token !== '') {
+					return true;
+				}
+				return this.router.createUrlTree(['/auth']);
+			})
+		);
 	}
 	canLoad(
 		route: Route,

@@ -6,7 +6,7 @@ import {
 	HttpHandler,
 	HttpRequest
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router, RouterState, RouterStateSnapshot } from '@angular/router';
 
@@ -29,20 +29,21 @@ export class ErrorInterceptor implements HttpInterceptor {
 					console.log(
 						`Backend returned code ${err.status}, body was: ${err.error}`
 					);
-					if (err.status === 401) {
-						const state: RouterState = this.router.routerState;
-						const snapshot: RouterStateSnapshot = state.snapshot;
-						this.router.navigate(['/auth'], {
-							queryParams: { returnUrl: snapshot.url }
-						});
-					} else if (err.status === 404) {
-						this.router.navigate(['/**'], { skipLocationChange: true });
-					} else {
-						return Observable.throw(err.error);
-					}
+					// if (err.status === 401) {
+					// 	const state: RouterState = this.router.routerState;
+					// 	const snapshot: RouterStateSnapshot = state.snapshot;
+					// 	this.router.navigate(['/auth'], {
+					// 		queryParams: { returnUrl: snapshot.url }
+					// 	});
+					// } else if (err.status === 404) {
+					// 	this.router.navigate(['/**'], { skipLocationChange: true });
+					// } else {
+					// 	return Observable.throw(err.error);
+					// }
+					return Observable.throw(err.error);
 				}
 
-				return Observable.throw(new Error('Your custom error'));
+				throwError(new Error('Your custom error'));
 			})
 		);
 	}

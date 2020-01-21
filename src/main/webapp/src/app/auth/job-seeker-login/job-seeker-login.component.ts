@@ -5,7 +5,7 @@ import {
 	FormControl,
 	Validators
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/AppState';
 import { AuthLoginStart } from '../../store/actions/auth.actions';
@@ -23,6 +23,7 @@ export class JobSeekerLoginComponent implements OnInit {
 	constructor(
 		private formBuilder: FormBuilder,
 		private router: Router,
+		private route: ActivatedRoute,
 		private store: Store<AppState>
 	) {}
 
@@ -37,9 +38,10 @@ export class JobSeekerLoginComponent implements OnInit {
 		this.store.select('authState').subscribe(authState => {
 			this.error = authState.errorMessage;
 			this.loading = authState.loading;
-			// if (authState.user) {
-			// 	this.router.navigate(['/onboarding/personal-info']);
-			// }
+			if (authState.user) {
+				const returnUrl = this.route.snapshot.queryParamMap['returnUrl'] || '/';
+				this.router.navigate([returnUrl]);
+			}
 		});
 	}
 	get f() {

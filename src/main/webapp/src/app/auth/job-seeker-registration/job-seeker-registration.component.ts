@@ -74,7 +74,7 @@ export class JobSeekerRegistrationComponent implements OnInit {
 		}
 		this.store.dispatch(
 			new AuthRegistrationStart({
-				userType: 'candidate',
+				role: 'candidate',
 				firstName: this.f.firstName.value,
 				lastName: this.f.lastName.value,
 				emailId: this.f.email.value,
