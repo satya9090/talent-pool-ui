@@ -26,9 +26,6 @@ export class ErrorInterceptor implements HttpInterceptor {
 				} else {
 					// The backend returned an unsuccessful response code.
 					// The response body may contain clues as to what went wrong,
-					console.log(
-						`Backend returned code ${err.status}, body was: ${err.error}`
-					);
 					// if (err.status === 401) {
 					// 	const state: RouterState = this.router.routerState;
 					// 	const snapshot: RouterStateSnapshot = state.snapshot;
@@ -40,10 +37,10 @@ export class ErrorInterceptor implements HttpInterceptor {
 					// } else {
 					// 	return Observable.throw(err.error);
 					// }
-					return Observable.throw(err.error);
+					return throwError(err.error);
 				}
 
-				throwError(new Error('Your custom error'));
+				return throwError(err.error);
 			})
 		);
 	}

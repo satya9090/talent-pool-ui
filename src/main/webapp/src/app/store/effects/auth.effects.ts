@@ -52,18 +52,27 @@ export class AuthEffects {
 						const expirationDate = new Date(
 							new Date().getTime() + response.expires_in * 1000
 						);
-						const authUser = new AuthUser(
-							response.access_token,
-							response.token_type,
-							response.refresh_token,
-							expirationDate,
-							response.scope.split(' ')
-						);
+						const authUser = {
+							access_token: response.access_token,
+							token_type: response.token_type,
+							refresh_token: response.refresh_token,
+							expires_in: expirationDate,
+							role: response.scope.split(' ')
+						};
 						localStorage.setItem('auth', JSON.stringify(authUser));
-						return new AuthSuccess(authUser);
+						return new AuthSuccess(
+							new AuthUser(
+								authUser.access_token,
+								authUser.token_type,
+								authUser.refresh_token,
+								authUser.expires_in,
+								authUser.role
+							)
+						);
 					}),
-					catchError((error: HttpErrorResponse) => {
-						return of(new AuthFailed(error.message));
+					catchError(error => {
+						console.log(error);
+						return of(new AuthFailed(error.error_description));
 					})
 				);
 		})
@@ -133,10 +142,13 @@ export class AuthEffects {
 					this.logout();
 				}, expirationDuration);
 				return new AuthSuccess(loadedUser);
+			} else {
+				this.logout();
 			}
 			return { type: 'DUMMY' };
 		})
 	);
+
 	@Effect()
 	authLogout = this.actions$.pipe(
 		ofType(AUTH_LOGOUT),

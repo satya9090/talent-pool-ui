@@ -30,6 +30,7 @@ export class AuthGuard implements CanActivate, CanLoad {
 		return this.store.select('authState').pipe(
 			take(1),
 			map(authState => {
+				console.log(authState);
 				if (!!authState.user && authState.user.token !== '') {
 					return true;
 				}
