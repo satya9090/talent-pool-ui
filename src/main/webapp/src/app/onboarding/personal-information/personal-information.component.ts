@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {
-	NgForm,
-	FormGroup,
-	FormBuilder,
-	FormControl,
-	Validators
-} from '@angular/forms';
+import { NgForm, FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store/AppState';
+import { SaveUserPersonalInfoStart } from 'src/app/store/actions/user.actions';
+import { User } from 'src/app/store/models/user.model';
 
 @Component({
 	selector: 'app-personal-information',
@@ -16,21 +14,30 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class PersonalInformationComponent implements OnInit {
 	personalDetailsForm: FormGroup;
 	submitted = false;
+	currentUser: User = null;
+	loading = false;
 	constructor(
 		private router: Router,
 		private activatedRoute: ActivatedRoute,
-		private formBuilder: FormBuilder
+		private formBuilder: FormBuilder,
+		private store: Store<AppState>
 	) {}
 
 	ngOnInit() {
-		this.personalDetailsForm = this.formBuilder.group({
-			firstName: new FormControl('', Validators.required),
-			lastName: new FormControl('', Validators.required),
-			email: new FormControl('', [Validators.required, Validators.email]),
-			alternateEmail: new FormControl('', [Validators.email]),
-			phoneNumber: new FormControl('', Validators.required),
-			gender: new FormControl('', Validators.required),
-			nationality: new FormControl('', [Validators.required])
+		this.store.select('userState').subscribe(userState => {
+			this.currentUser = userState.currentUser;
+			this.loading = userState.loading;
+			if (this.currentUser) {
+				this.personalDetailsForm = this.formBuilder.group({
+					firstName: new FormControl(this.currentUser.firstName, Validators.required),
+					lastName: new FormControl(this.currentUser.lastName, Validators.required),
+					email: new FormControl(this.currentUser.emailId, [Validators.required, Validators.email]),
+					alternateEmail: new FormControl(this.currentUser.alternateEmailId, [Validators.email]),
+					phoneNumber: new FormControl(this.currentUser.contactNumber, Validators.required),
+					gender: new FormControl(this.currentUser.gender, Validators.required),
+					nationality: new FormControl('', [Validators.required])
+				});
+			}
 		});
 	}
 	get f() {
@@ -41,6 +48,17 @@ export class PersonalInformationComponent implements OnInit {
 		if (this.personalDetailsForm.invalid) {
 			return;
 		}
+		this.store.dispatch(
+			new SaveUserPersonalInfoStart({
+				...this.currentUser,
+				firstName: this.f.firstName.value,
+				lastName: this.f.lastName.value,
+				emailId: this.f.email.value,
+				alternateEmailId: this.f.alternateEmail.value,
+				contactNumber: this.f.phoneNumber.value,
+				gender: this.f.gender.value
+			})
+		);
 		this.router.navigate(['../address-info'], {
 			relativeTo: this.activatedRoute
 		});

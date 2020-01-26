@@ -9,6 +9,8 @@ import { JobSeekerReducer } from './reducers/jobseeker.reducer';
 import { RecruiterReducer } from './reducers/recruiter.reducer';
 import { UserReducer } from './reducers/user.reducer';
 import { UserEffects } from './effects/user.effects';
+import { UserService } from './services/user.service';
+import { UserResolver } from './user-resolver';
 
 @NgModule({
 	imports: [
@@ -21,6 +23,7 @@ import { UserEffects } from './effects/user.effects';
 			userState: UserReducer
 		})
 	],
-	exports: [StoreModule]
+	exports: [StoreModule],
+	providers: [UserService, UserResolver]
 })
 export class AppStoreModule {}

@@ -66,7 +66,7 @@ export interface Skill {
 	experienceInYears: number;
 }
 
-export interface User {
+export interface IdealUser {
 	userId?: string;
 	personalDetails: PersonalDetails;
 	educationalDetails: EducationalDetails;
@@ -76,4 +76,26 @@ export interface User {
 	aboutMe: string;
 	skills: Skill[];
 	isProfileCompleted: boolean;
+}
+
+export interface User{
+	candidateUniqueId: string,
+    firstName:string,
+    middleName: string,
+    lastName:string,
+    contactNumber: number,
+    emailId: string,
+    alternateEmailId: string,
+    gender: string,
+    skills: string[],
+    currentLocation: null,
+    experience: null,
+    role: "candidate" | "admin" | 'employeer',
+    isVerify: "Y" | "N",
+    isActive: "Y" | "N",
+    isProfileComplete: "Y" | "N",
+    createdBy: string,
+    createdDate: Date,
+    updateBy: string,
+    updateDate:Date
 }

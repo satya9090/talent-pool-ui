@@ -2,12 +2,7 @@ import { map, catchError, switchMap, tap } from 'rxjs/operators';
 import { ofType, Actions, Effect } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import {
-	HttpClient,
-	HttpErrorResponse,
-	HttpHeaders,
-	HttpParams
-} from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { of } from 'rxjs';
 import {
 	AuthLoginStart,
@@ -49,9 +44,7 @@ export class AuthEffects {
 				})
 				.pipe(
 					map(response => {
-						const expirationDate = new Date(
-							new Date().getTime() + response.expires_in * 1000
-						);
+						const expirationDate = new Date(new Date().getTime() + response.expires_in * 1000);
 						const authUser = {
 							access_token: response.access_token,
 							token_type: response.token_type,
@@ -71,7 +64,6 @@ export class AuthEffects {
 						);
 					}),
 					catchError(error => {
-						console.log(error);
 						return of(new AuthFailed(error.error_description));
 					})
 				);
@@ -82,16 +74,14 @@ export class AuthEffects {
 	Register = this.actions$.pipe(
 		ofType(AUTH_REGISTRATION_START),
 		switchMap((authData: AuthRegistrationStart) => {
-			return this.http
-				.post('/TalentPool/api/v1/createUser', authData.payload)
-				.pipe(
-					map(response => {
-						return new AuthSuccess(null);
-					}),
-					catchError((error: HttpErrorResponse) => {
-						return of(new AuthFailed(error.message));
-					})
-				);
+			return this.http.post('/TalentPool/api/v1/createUser', authData.payload).pipe(
+				map(response => {
+					return new AuthSuccess(null);
+				}),
+				catchError((error: HttpErrorResponse) => {
+					return of(new AuthFailed(error.message));
+				})
+			);
 		})
 	);
 
@@ -136,8 +126,7 @@ export class AuthEffects {
 				userData.role
 			);
 			if (loadedUser.token) {
-				const expirationDuration =
-					new Date(loadedUser.expiresIn).getTime() - new Date().getTime();
+				const expirationDuration = new Date(loadedUser.expiresIn).getTime() - new Date().getTime();
 				this.tokenExpirationTimer = setTimeout(() => {
 					this.logout();
 				}, expirationDuration);
@@ -164,9 +153,5 @@ export class AuthEffects {
 		return new AuthLogout();
 	}
 
-	constructor(
-		private actions$: Actions,
-		private http: HttpClient,
-		private router: Router
-	) {}
+	constructor(private actions$: Actions, private http: HttpClient, private router: Router) {}
 }

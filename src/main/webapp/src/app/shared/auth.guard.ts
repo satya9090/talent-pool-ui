@@ -22,15 +22,10 @@ export class AuthGuard implements CanActivate, CanLoad {
 	canActivate(
 		next: ActivatedRouteSnapshot,
 		state: RouterStateSnapshot
-	):
-		| Observable<boolean | UrlTree>
-		| Promise<boolean | UrlTree>
-		| boolean
-		| UrlTree {
+	): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 		return this.store.select('authState').pipe(
 			take(1),
 			map(authState => {
-				console.log(authState);
 				if (!!authState.user && authState.user.token !== '') {
 					return true;
 				}
@@ -38,10 +33,7 @@ export class AuthGuard implements CanActivate, CanLoad {
 			})
 		);
 	}
-	canLoad(
-		route: Route,
-		segments: UrlSegment[]
-	): Observable<boolean> | Promise<boolean> | boolean {
+	canLoad(route: Route, segments: UrlSegment[]): Observable<boolean> | Promise<boolean> | boolean {
 		return this.store.select('authState').pipe(
 			take(1),
 			map(authState => {
