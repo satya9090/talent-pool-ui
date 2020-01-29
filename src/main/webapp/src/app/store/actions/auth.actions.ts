@@ -11,6 +11,9 @@ export const AUTH_REGISTRATION_START = 'AUTH_REGISTRATION_START';
 export const AUTH_FORGOT_PASSWORD_START = 'AUTH_FORGOT_PASSWORD_START';
 export const AUTH_FORGOT_PASSWORD_COMPLETE = 'AUTH_FORGOT_PASSWORD_COMPLETE';
 
+export const AUTH_RESET_PASSWORD_START = 'AUTH_RESET_PASSWORD_START';
+export const AUTH_RESET_PASSWORD_COMPLETE = 'AUTH_RESET_PASSWORD_COMPLETE';
+
 export class AuthLoginStart implements Action {
 	readonly type = AUTH_LOGIN_START;
 
@@ -50,6 +53,15 @@ export class AuthForgotPasswordComplete implements Action {
 	readonly type = AUTH_FORGOT_PASSWORD_COMPLETE;
 }
 
+export class AuthResetPasswordStart implements Action {
+	readonly type = AUTH_RESET_PASSWORD_START;
+	constructor(public payload: { resetPasswordToken: string; password: string }) {}
+}
+
+export class AuthResetPasswordComplete implements Action {
+	readonly type = AUTH_RESET_PASSWORD_COMPLETE;
+}
+
 export type AuthActions =
 	| AuthLoginStart
 	| AuthSuccess
@@ -58,4 +70,6 @@ export type AuthActions =
 	| AuthAutoLogin
 	| AuthLogout
 	| AuthForgotPasswordStart
-	| AuthForgotPasswordComplete;
+	| AuthForgotPasswordComplete
+	| AuthResetPasswordStart
+	| AuthResetPasswordComplete;

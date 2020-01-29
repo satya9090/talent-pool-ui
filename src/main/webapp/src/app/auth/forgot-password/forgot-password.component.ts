@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import {
-	FormGroup,
-	FormBuilder,
-	FormControl,
-	Validators
-} from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { AppState } from 'src/app/store/AppState';
 import { AuthForgotPasswordStart } from 'src/app/store/actions/auth.actions';
 
@@ -18,17 +13,14 @@ export class ForgotPasswordComponent implements OnInit {
 	forgotPasswordForm: FormGroup;
 	submitted = false;
 	loading = false;
-	constructor(
-		private formBuilder: FormBuilder,
-		private store: Store<AppState>
-	) {}
+	constructor(private formBuilder: FormBuilder, private store: Store<AppState>) {}
 
 	ngOnInit() {
 		this.store.select('authState').subscribe(authState => {
 			this.loading = authState.loading;
 		});
 		this.forgotPasswordForm = this.formBuilder.group({
-			email: new FormControl('', [Validators.required, Validators.email])
+			userName: new FormControl('', [Validators.required])
 		});
 	}
 
@@ -41,6 +33,6 @@ export class ForgotPasswordComponent implements OnInit {
 		if (this.forgotPasswordForm.invalid) {
 			return;
 		}
-		this.store.dispatch(new AuthForgotPasswordStart(this.f.email.value));
+		this.store.dispatch(new AuthForgotPasswordStart(this.f.userName.value));
 	}
 }

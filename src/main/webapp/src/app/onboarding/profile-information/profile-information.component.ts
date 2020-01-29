@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { take, tap } from 'rxjs/operators';
+
 import { AppState } from 'src/app/store/AppState';
 import { GetUserDetailsStart } from 'src/app/store/actions/user.actions';
-import { take, tap } from 'rxjs/operators';
 
 @Component({
 	selector: 'app-profile-information',

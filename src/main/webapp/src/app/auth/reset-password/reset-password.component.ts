@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {
-	FormGroup,
-	FormControl,
-	Validators,
-	AbstractControl,
-	FormBuilder
-} from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { ActivatedRoute } from '@angular/router';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+
 import { MustMatch } from '../../shared/CustomValidatos';
+import { AppState } from 'src/app/store/AppState';
+import { AuthResetPasswordStart } from 'src/app/store/actions/auth.actions';
 
 @Component({
 	selector: 'app-reset-password',
@@ -16,15 +15,22 @@ import { MustMatch } from '../../shared/CustomValidatos';
 export class ResetPasswordComponent implements OnInit {
 	resetPasswordForm: FormGroup;
 	submitted = false;
-	constructor(private formBuilder: FormBuilder) {}
+	resetPasswordToken = '';
+	loading = false;
+	errorMessage = null;
+	constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private store: Store<AppState>) {}
 
 	ngOnInit() {
+		this.route.queryParams.subscribe(queryParmas => {
+			this.resetPasswordToken = queryParmas['token'];
+		});
+		this.store.select('authState').subscribe(authState => {
+			this.loading = authState.loading;
+			this.errorMessage = authState.errorMessage;
+		});
 		this.resetPasswordForm = this.formBuilder.group(
 			{
-				newPassword: new FormControl('', [
-					Validators.required,
-					Validators.minLength(6)
-				]),
+				newPassword: new FormControl('', [Validators.required, Validators.minLength(6)]),
 				confirmPassword: new FormControl('', [Validators.required])
 			},
 			{
@@ -42,5 +48,10 @@ export class ResetPasswordComponent implements OnInit {
 		if (this.resetPasswordForm.invalid) {
 			return;
 		}
+		const payload = {
+			resetPasswordToken: this.resetPasswordToken,
+			password: this.f.newPassword.value
+		};
+		this.store.dispatch(new AuthResetPasswordStart(payload));
 	}
 }

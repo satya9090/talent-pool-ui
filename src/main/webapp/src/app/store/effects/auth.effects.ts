@@ -16,7 +16,10 @@ import {
 	AuthLogout,
 	AUTH_FORGOT_PASSWORD_START,
 	AuthForgotPasswordStart,
-	AuthForgotPasswordComplete
+	AuthForgotPasswordComplete,
+	AuthResetPasswordStart,
+	AuthResetPasswordComplete,
+	AUTH_RESET_PASSWORD_START
 } from '../actions/auth.actions';
 import { AuthResponse, AuthUser } from '../models/auth.model';
 
@@ -91,7 +94,7 @@ export class AuthEffects {
 		switchMap((data: AuthForgotPasswordStart) => {
 			return this.http
 				.post('/TalentPool/api/v1/forgotPassword', {
-					emailId: data.payload
+					userName: data.payload
 				})
 				.pipe(
 					map(() => {
@@ -99,6 +102,27 @@ export class AuthEffects {
 					}),
 					catchError(() => {
 						return of(new AuthForgotPasswordComplete());
+					})
+				);
+		})
+	);
+
+	@Effect()
+	resetPassword = this.actions$.pipe(
+		ofType(AUTH_RESET_PASSWORD_START),
+		switchMap((data: AuthResetPasswordStart) => {
+			return this.http
+				.post('/TalentPool/api/v1/UpdatePassword', {
+					resetPasswordToken: data.payload.resetPasswordToken,
+					password: data.payload.password
+				})
+				.pipe(
+					map(() => {
+						return new AuthResetPasswordComplete();
+					}),
+					catchError(error => {
+						console.log(error);
+						return of(new AuthFailed(error.error_description));
 					})
 				);
 		})

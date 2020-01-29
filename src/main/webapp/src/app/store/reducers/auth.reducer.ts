@@ -6,7 +6,9 @@ import {
 	AUTH_REGISTRATION_START,
 	AUTH_LOGOUT,
 	AUTH_FORGOT_PASSWORD_START,
-	AUTH_FORGOT_PASSWORD_COMPLETE
+	AUTH_FORGOT_PASSWORD_COMPLETE,
+	AUTH_RESET_PASSWORD_START,
+	AUTH_RESET_PASSWORD_COMPLETE
 } from '../actions/auth.actions';
 import { AuthUser } from '../models/auth.model';
 
@@ -27,7 +29,6 @@ export function AuthReducer(state = initialState, action: AuthActions) {
 		case AUTH_LOGIN_START:
 		case AUTH_REGISTRATION_START:
 			return { ...state, user: null, loading: true, errorMessage: null };
-		// return { ...state, loading: true,	 errorMessage: null };
 		case AUTH_SUCCESS:
 			return { ...state, user: action.payload, loading: false };
 		case AUTH_FAILED:
@@ -40,8 +41,10 @@ export function AuthReducer(state = initialState, action: AuthActions) {
 		case AUTH_LOGOUT:
 			return { ...state, user: null };
 		case AUTH_FORGOT_PASSWORD_START:
-			return { ...state, loading: true };
+		case AUTH_RESET_PASSWORD_START:
+			return { ...state, loading: true, errorMessage: null };
 		case AUTH_FORGOT_PASSWORD_COMPLETE:
+		case AUTH_RESET_PASSWORD_COMPLETE:
 			return { ...state, loading: false };
 		default:
 			return { ...state };
