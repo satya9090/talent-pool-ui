@@ -1,10 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-	FormGroup,
-	FormBuilder,
-	Validators,
-	FormControl
-} from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { MustMatch } from '../../shared/CustomValidatos';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/AppState';
@@ -21,11 +16,7 @@ export class JobSeekerRegistrationComponent implements OnInit {
 	submitted = false;
 	error: string = null;
 	loading = false;
-	constructor(
-		private formBuilder: FormBuilder,
-		private store: Store<AppState>,
-		private router: Router
-	) {}
+	constructor(private formBuilder: FormBuilder, private store: Store<AppState>, private router: Router) {}
 
 	ngOnInit() {
 		this.store.select('authState').subscribe(authState => {
@@ -34,24 +25,13 @@ export class JobSeekerRegistrationComponent implements OnInit {
 		});
 		this.registerForm = this.formBuilder.group(
 			{
-				firstName: new FormControl('', [
-					Validators.required,
-					Validators.minLength(6)
-				]),
-				lastName: new FormControl('', [
-					Validators.required,
-					Validators.minLength(6)
-				]),
+				firstName: new FormControl('', [Validators.required, Validators.minLength(4)]),
+				middleName: new FormControl('', [Validators.minLength(4)]),
+				lastName: new FormControl('', [Validators.required, Validators.minLength(4)]),
 				phoneNumber: new FormControl('', Validators.required),
 				email: new FormControl('', [Validators.required, Validators.email]),
-				userName: new FormControl('', [
-					Validators.required,
-					Validators.minLength(6)
-				]),
-				password: new FormControl('', [
-					Validators.required,
-					Validators.minLength(6)
-				]),
+				userName: new FormControl('', [Validators.required, Validators.minLength(6)]),
+				password: new FormControl('', [Validators.required, Validators.minLength(6)]),
 				confirmPassword: new FormControl('', [Validators.required])
 			},
 			{
@@ -67,8 +47,6 @@ export class JobSeekerRegistrationComponent implements OnInit {
 
 	register() {
 		this.submitted = true;
-
-		// stop here if form is invalid
 		if (this.registerForm.invalid) {
 			return;
 		}
@@ -76,6 +54,7 @@ export class JobSeekerRegistrationComponent implements OnInit {
 			new AuthRegistrationStart({
 				role: 'candidate',
 				firstName: this.f.firstName.value,
+				middleName: this.f.middleName.value,
 				lastName: this.f.lastName.value,
 				emailId: this.f.email.value,
 				userName: this.f.userName.value,

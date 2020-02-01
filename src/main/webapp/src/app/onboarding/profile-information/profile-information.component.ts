@@ -1,9 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { take, tap } from 'rxjs/operators';
-
-import { AppState } from 'src/app/store/AppState';
-import { GetUserDetailsStart } from 'src/app/store/actions/user.actions';
 
 @Component({
 	selector: 'app-profile-information',
@@ -11,21 +6,7 @@ import { GetUserDetailsStart } from 'src/app/store/actions/user.actions';
 	styleUrls: ['./profile-information.component.scss']
 })
 export class ProfileInformationComponent implements OnInit {
-	constructor(private store: Store<AppState>) {}
+	constructor() {}
 
-	ngOnInit() {
-		this.store
-			.select('userState')
-			.pipe(
-				take(1),
-				tap(userState => {
-					if (!userState.currentUser) {
-						this.store.dispatch(new GetUserDetailsStart());
-					}
-				})
-			)
-			.subscribe(userState => {
-				console.log(userState);
-			});
-	}
+	ngOnInit() {}
 }

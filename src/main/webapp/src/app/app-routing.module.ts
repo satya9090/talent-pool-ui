@@ -19,6 +19,7 @@ const routes: Routes = [
 	{
 		path: 'onboarding',
 		canLoad: [AuthGuard],
+		resolve: { currentUser: UserResolver },
 		loadChildren: () => import('./onboarding/onboarding.module').then(mod => mod.OnboardingModule)
 	},
 	{

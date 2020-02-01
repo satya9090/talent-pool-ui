@@ -18,7 +18,6 @@ export class HomeComponent implements OnInit {
 
 	ngOnInit() {
 		this.store.select('userState').subscribe(userState => {
-			console.log(userState);
 			this.loading = userState.loading;
 			this.currentUser = userState.currentUser;
 			this.errorMessage = userState.errorMessage;

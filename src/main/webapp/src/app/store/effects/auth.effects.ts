@@ -100,8 +100,8 @@ export class AuthEffects {
 					map(() => {
 						return new AuthForgotPasswordComplete();
 					}),
-					catchError(() => {
-						return of(new AuthForgotPasswordComplete());
+					catchError(error => {
+						return of(new AuthFailed(error.error_description));
 					})
 				);
 		})
@@ -112,7 +112,7 @@ export class AuthEffects {
 		ofType(AUTH_RESET_PASSWORD_START),
 		switchMap((data: AuthResetPasswordStart) => {
 			return this.http
-				.post('/TalentPool/api/v1/UpdatePassword', {
+				.post('/TalentPool/api/v1/resetPassword', {
 					resetPasswordToken: data.payload.resetPasswordToken,
 					password: data.payload.password
 				})
@@ -121,7 +121,6 @@ export class AuthEffects {
 						return new AuthResetPasswordComplete();
 					}),
 					catchError(error => {
-						console.log(error);
 						return of(new AuthFailed(error.error_description));
 					})
 				);
@@ -162,7 +161,7 @@ export class AuthEffects {
 		})
 	);
 
-	@Effect()
+	@Effect({ dispatch: false })
 	authLogout = this.actions$.pipe(
 		ofType(AUTH_LOGOUT),
 		tap(() => {
