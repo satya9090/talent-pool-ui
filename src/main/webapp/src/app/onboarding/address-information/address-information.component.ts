@@ -14,19 +14,28 @@ export class AddressInformationComponent implements OnInit {
 
 	ngOnInit() {
 		this.permanentAddress = {
-			country: { id: 1, name: 'India' },
-			state: { id: 1, name: 'Bhubaneswar', countryId: 1 },
-			zipcode: '',
-			address: ''
+			country: null,
+			state: null,
+			city: null,
+			pincode: null,
+			address: '',
+			type: 'permanent'
 		};
 		this.presentAddress = {
-			country: { id: 1, name: 'India' },
-			state: { id: 1, name: 'Bhubaneswar', countryId: 1 },
-			zipcode: '',
-			address: ''
+			country: '',
+			state: '',
+			city: '',
+			pincode: null,
+			address: '',
+			type: 'present'
 		};
 	}
-
+	savePresentAddress(presentAddress: Address) {
+		this.presentAddress = presentAddress;
+	}
+	savePermanentAddress(permanentAddress: Address) {
+		this.permanentAddress = permanentAddress;
+	}
 	proceed() {
 		this.router.navigate(['../educational-info'], {
 			relativeTo: this.activatedRoute

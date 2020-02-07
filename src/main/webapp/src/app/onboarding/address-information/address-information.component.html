@@ -7,6 +7,7 @@
 			title="Permanent Address"
 			[address]="permanentAddress"
 			[restrictEdit]="false"
+			(saveAddress)="savePermanentAddress($event)"
 		></app-address>
 	</div>
 </div>
@@ -17,6 +18,7 @@
 			title="Present Address"
 			[address]="presentAddress"
 			[restrictEdit]="false"
+			(saveAddress)="savePresentAddress($event)"
 		></app-address>
 	</div>
 </div>

@@ -35,7 +35,10 @@ export class PersonalInformationComponent implements OnInit {
 					alternateEmail: new FormControl(this.currentUser.alternateEmailId, [Validators.email]),
 					phoneNumber: new FormControl(this.currentUser.contactNumber, Validators.required),
 					gender: new FormControl(this.currentUser.gender, Validators.required),
-					nationality: new FormControl('', [Validators.required])
+					experience: new FormControl(this.currentUser.experience, [
+						Validators.required,
+						Validators.pattern(`^\\d+(\\.\\d{1,2})?$`)
+					])
 				});
 			}
 		});
@@ -56,7 +59,8 @@ export class PersonalInformationComponent implements OnInit {
 				emailId: this.f.email.value,
 				alternateEmailId: this.f.alternateEmail.value,
 				contactNumber: this.f.phoneNumber.value,
-				gender: this.f.gender.value
+				gender: this.f.gender.value,
+				experience: this.f.experience.value
 			})
 		);
 		this.router.navigate(['../address-info'], {

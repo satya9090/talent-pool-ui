@@ -1,9 +1,10 @@
-import { Country, State } from './common.model';
-
 export interface Address {
-	country: Country;
-	state: State;
-	zipcode: string;
+	addressId?: number;
+	type: 'permanent' | 'present';
+	country: string;
+	state: string;
+	city: string;
+	pincode: number;
 	address: string;
 }
 
@@ -16,47 +17,25 @@ export interface Company {
 }
 
 export interface ProjectDetails {
-	projectId?: string;
-	name: string;
+	projectId?: number;
+	projectName: string;
 	startDate: Date;
 	endDate: Date;
-	technologies: string[];
-	description: string;
+	technologyUsed: string;
+	projectDetails: string;
 	role: string;
-	company: Company;
-}
-
-export interface PersonalDetails {
-	firstName: string;
-	lastName: string;
-	phoneNumber: string;
-	email: string;
-	alternateEmail: string;
-	gender: 'Male' | 'Female' | 'Others';
-	maritalStatus: 'Married' | 'Unmarried';
-	nationality: Country;
+	roleDescription: string;
+	companyName: string;
 }
 
 export interface EducationalDetails {
-	gradDegree: string;
-	gradPassingYear: number;
-	gradUniversity: string;
-
-	highschoolPercentage: number;
-	highSchoolPassingYear: number;
-}
-
-export interface CompanyExperience {
-	joiningDate: Date;
-	LeavingDate?: Date;
-	company: Company;
-}
-
-export interface ProfessionalDetails {
-	totalExperience: number;
-	technologies: string[];
-	companyExperiences: CompanyExperience[];
-	projects: ProjectDetails[];
+	educationId?: number;
+	qualification: string;
+	instituteName: string;
+	passingYear: number;
+	specification: string;
+	percentage: number;
+	courseType: string;
 }
 
 export interface Skill {
@@ -66,36 +45,23 @@ export interface Skill {
 	experienceInYears: number;
 }
 
-export interface IdealUser {
-	userId?: string;
-	personalDetails: PersonalDetails;
-	educationalDetails: EducationalDetails;
-	professionalDetails: ProfessionalDetails;
-	permanentAddress?: Address;
-	presentAddress?: Address;
-	aboutMe: string;
+export interface User {
+	candidateUniqueId: string;
+	firstName: string;
+	middleName: string;
+	lastName: string;
+	contactNumber: number;
+	emailId: string;
+	alternateEmailId: string;
+	gender: 'Male' | 'Female' | 'Other';
 	skills: Skill[];
-	isProfileCompleted: boolean;
-}
-
-export interface User{
-	candidateUniqueId: string,
-    firstName:string,
-    middleName: string,
-    lastName:string,
-    contactNumber: number,
-    emailId: string,
-    alternateEmailId: string,
-    gender: string,
-    skills: string[],
-    currentLocation: null,
-    experience: null,
-    role: "candidate" | "admin" | 'employeer',
-    isVerify: "Y" | "N",
-    isActive: "Y" | "N",
-    isProfileComplete: "Y" | "N",
-    createdBy: string,
-    createdDate: Date,
-    updateBy: string,
-    updateDate:Date
+	currentLocation: null;
+	experience?: number;
+	role: 'candidate' | 'admin' | 'employeer';
+	isVerify: 'Y' | 'N';
+	isActive: 'Y' | 'N';
+	isProfileComplete: 'Y' | 'N';
+	projectDetails: ProjectDetails[];
+	educationDetails: EducationalDetails[];
+	address: Address[];
 }

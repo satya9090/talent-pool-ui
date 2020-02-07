@@ -63,7 +63,7 @@
 			</div>
 		</div>
 		<div class="form-group col-md-6 col-12">
-			<label for="phone">Phone</label>
+			<label for="phoneNumber">Phone</label>
 			<input
 				type="tel"
 				formControlName="phoneNumber"
@@ -91,16 +91,19 @@
 			</div>
 		</div>
 		<div class="form-group col-md-6 col-12">
-			<label for="phone">Nationality</label>
+			<label for="experience">Total Experience</label>
 			<input
-				type="text"
-				formControlName="nationality"
+				type="number"
+				formControlName="experience"
 				class="form-control"
-				[ngClass]="{ 'is-invalid': submitted && f.nationality.errors }"
+				[ngClass]="{ 'is-invalid': submitted && f.experience.errors }"
 			/>
-			<div *ngIf="submitted && f.nationality.errors" class="invalid-feedback">
-				<div *ngIf="f.nationality.errors.required">
-					Nationality is required
+			<div *ngIf="submitted && f.experience.errors" class="invalid-feedback">
+				<div *ngIf="f.experience.errors.required">
+					Experience is required
+				</div>
+				<div *ngIf="f.experience.errors.pattern">
+					Invalid Experience
 				</div>
 			</div>
 		</div>
