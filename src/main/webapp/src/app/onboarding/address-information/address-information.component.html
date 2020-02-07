@@ -1,6 +1,11 @@
 <h5 class="text-center">Address Information</h5>
 <hr />
-
+<div *ngIf="loading">
+	<app-loading></app-loading>
+</div>
+<div class="alert alert-danger" *ngIf="error">
+	{{ error }}
+</div>
 <div class="row">
 	<div class="col-12">
 		<app-address

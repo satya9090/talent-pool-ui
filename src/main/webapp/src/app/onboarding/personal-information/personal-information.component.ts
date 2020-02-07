@@ -16,6 +16,7 @@ export class PersonalInformationComponent implements OnInit {
 	submitted = false;
 	currentUser: User = null;
 	loading = false;
+	error: string;
 	constructor(
 		private router: Router,
 		private activatedRoute: ActivatedRoute,
@@ -27,6 +28,12 @@ export class PersonalInformationComponent implements OnInit {
 		this.store.select('userState').subscribe(userState => {
 			this.currentUser = userState.currentUser;
 			this.loading = userState.loading;
+			this.error = userState.errorMessage;
+			if (userState.personalDetailsSaved) {
+				this.router.navigate(['../address-info'], {
+					relativeTo: this.activatedRoute
+				});
+			}
 			if (this.currentUser) {
 				this.personalDetailsForm = this.formBuilder.group({
 					firstName: new FormControl(this.currentUser.firstName, Validators.required),
@@ -63,8 +70,5 @@ export class PersonalInformationComponent implements OnInit {
 				experience: this.f.experience.value
 			})
 		);
-		this.router.navigate(['../address-info'], {
-			relativeTo: this.activatedRoute
-		});
 	}
 }

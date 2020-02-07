@@ -9,7 +9,7 @@
 		<div *ngIf="!editMode; else editAddress">
 			<address>
 				{{ address.address }}, {{ address.state }}, {{ address.country }},
-				{{ address.zipcode }}
+				{{ address.pincode }}
 			</address>
 		</div>
 		<ng-template #editAddress>

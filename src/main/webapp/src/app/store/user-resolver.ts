@@ -6,9 +6,7 @@ import { map, switchMap, take } from 'rxjs/operators';
 
 import { User } from './models/user.model';
 import { AppState } from './AppState';
-import { UserActionSuccess, GetUserDetailsStart, USER_ACTION_SUCCESS } from './actions/user.actions';
-import { UserService } from './services/user.service';
-import { Action } from 'rxjs/internal/scheduler/Action';
+import { GetUserDetailsStart, USER_GET_DETAILS_SUCCESS } from './actions/user.actions';
 import { Actions, ofType } from '@ngrx/effects';
 
 @Injectable()
@@ -26,7 +24,7 @@ export class UserResolver implements Resolve<User> {
 			switchMap((user: User) => {
 				if (!user) {
 					this.store.dispatch(new GetUserDetailsStart());
-					return this.actions$.pipe(ofType(USER_ACTION_SUCCESS), take(1));
+					return this.actions$.pipe(ofType(USER_GET_DETAILS_SUCCESS), take(1));
 				} else {
 					return of(user);
 				}
