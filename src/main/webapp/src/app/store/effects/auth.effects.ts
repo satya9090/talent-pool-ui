@@ -27,7 +27,7 @@ import { AuthResponse, AuthUser } from '../models/auth.model';
 export class AuthEffects {
 	tokenExpirationTimer = null;
 	@Effect()
-	Login$ = this.actions$.pipe(
+	login$ = this.actions$.pipe(
 		ofType(AUTH_LOGIN_START),
 		switchMap((authData: AuthLoginStart) => {
 			const body = new HttpParams()
@@ -74,7 +74,7 @@ export class AuthEffects {
 	);
 
 	@Effect()
-	Register = this.actions$.pipe(
+	register = this.actions$.pipe(
 		ofType(AUTH_REGISTRATION_START),
 		switchMap((authData: AuthRegistrationStart) => {
 			return this.http.post('/TalentPool/api/v1/createUser', authData.payload).pipe(

@@ -22,7 +22,7 @@ export class ResetPasswordComponent implements OnInit {
 
 	ngOnInit() {
 		this.route.queryParams.subscribe(queryParmas => {
-			this.resetPasswordToken = queryParmas['token'];
+			this.resetPasswordToken = queryParmas.token;
 		});
 		this.store.select('authState').subscribe(authState => {
 			this.loading = authState.loading;
