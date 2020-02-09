@@ -14,7 +14,6 @@ export class UserService {
 	savePersonalInfo(userDetails: User): Observable<User> {
 		return this.httpClient.post<string>('/TalentPool/api/v1/saveCandidateProfileDetails', userDetails).pipe(
 			map(resp => {
-				console.log(resp, userDetails);
 				return userDetails;
 			})
 		);

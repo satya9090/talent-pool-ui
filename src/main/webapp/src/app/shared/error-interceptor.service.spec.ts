@@ -3,17 +3,22 @@ import { TestBed } from '@angular/core/testing';
 import { ErrorInterceptor } from './error-interceptor.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { UserService } from '../store/services/user.service';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ErrorInterceptor', () => {
-	beforeEach(() =>
+	let service: UserService;
+	beforeEach(() => {
 		TestBed.configureTestingModule({
-			imports: [HttpClientTestingModule],
-			providers: [{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }]
-		})
-	);
+			imports: [HttpClientTestingModule, RouterTestingModule],
+			providers: [UserService, { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }]
+		});
+		service = TestBed.get(UserService);
+	});
 
 	it('should be created', () => {
-		const service: ErrorInterceptor = TestBed.get(ErrorInterceptor);
-		expect(service).toBeTruthy();
+		service.getUserDetails().subscribe(response => {
+			expect(response).toBeTruthy();
+		});
 	});
 });
