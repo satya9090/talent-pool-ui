@@ -12,11 +12,14 @@ import {
 	SaveUserPersonalInfoSuccess,
 	SaveUserPersonalInfoFailed,
 	SaveUserAddressInfoSuccess,
-	SaveUserAddressInfoFailed
+	SaveUserAddressInfoFailed,
+	USER_SAVE_EDUCATIONAL_INFO_START,
+	SaveUserEducationalInfoStart,
+	SaveUserEducationalInfoSuccess,
+	SaveUserEducationalInfoFailed
 } from '../actions/user.actions';
 import { switchMap, map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { User } from '../models/user.model';
 import { UserService } from '../services/user.service';
 
 @Injectable()
@@ -40,8 +43,7 @@ export class UserEffects {
 		switchMap((data: SaveUserPersonalInfoStart) => {
 			return this.userService.savePersonalInfo(data.payload).pipe(
 				map(response => {
-					console.log(response);
-					return new SaveUserPersonalInfoSuccess(data.payload);
+					return new SaveUserPersonalInfoSuccess(response);
 				}),
 				catchError((error: HttpErrorResponse) => {
 					return of(new SaveUserPersonalInfoFailed(error.message));
@@ -58,6 +60,19 @@ export class UserEffects {
 				map(response => new SaveUserAddressInfoSuccess(data.payload.modifiedUser)),
 				catchError((error: HttpErrorResponse) => {
 					return of(new SaveUserAddressInfoFailed(error.message));
+				})
+			);
+		})
+	);
+
+	@Effect()
+	saveUserEducationInfo = this.actions$.pipe(
+		ofType(USER_SAVE_EDUCATIONAL_INFO_START),
+		switchMap((data: SaveUserEducationalInfoStart) => {
+			return this.userService.saveEducationalInfo(data.payload.educationList).pipe(
+				map(response => new SaveUserEducationalInfoSuccess(data.payload.modifiedUser)),
+				catchError((error: HttpErrorResponse) => {
+					return of(new SaveUserEducationalInfoFailed(error.message));
 				})
 			);
 		})

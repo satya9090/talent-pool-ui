@@ -8,7 +8,10 @@ import {
 	USER_SAVE_PERSONAL_INFO_SUCCESS,
 	USER_SAVE_ADDRESS_INFO_SUCCESS,
 	USER_SAVE_ADDRESS_INFO_FAILED,
-	USER_SAVE_PERSONAL_INFO_FAILED
+	USER_SAVE_PERSONAL_INFO_FAILED,
+	USER_SAVE_EDUCATIONAL_INFO_SUCCESS,
+	USER_SAVE_EDUCATIONAL_INFO_FAILED,
+	USER_SAVE_EDUCATIONAL_INFO_START
 } from '../actions/user.actions';
 import { User } from '../models/user.model';
 
@@ -52,15 +55,18 @@ export function UserReducer(state = initialState, action: UserActions) {
 		case USER_GET_DETAILS_FAILED:
 		case USER_SAVE_PERSONAL_INFO_FAILED:
 		case USER_SAVE_ADDRESS_INFO_FAILED:
+		case USER_SAVE_EDUCATIONAL_INFO_FAILED:
 			return { ...state, loading: false, errorMessage: action.payload };
 		case USER_SAVE_PERSONAL_INFO_START:
 		case USER_SAVE_ADDRESS_INFO_START:
+		case USER_SAVE_EDUCATIONAL_INFO_START:
 			return { ...state, loading: true, errorMessage: null };
 		case USER_SAVE_PERSONAL_INFO_SUCCESS:
-			console.log(action.payload);
 			return { ...state, currentUser: action.payload, loading: false, personalDetailsSaved: true };
 		case USER_SAVE_ADDRESS_INFO_SUCCESS:
 			return { ...state, currentUser: action.payload, loading: false, addressDetailsSaved: true };
+		case USER_SAVE_EDUCATIONAL_INFO_SUCCESS:
+			return { ...state, currentUser: action.payload, loading: false, educationDetailsSaved: true };
 		default:
 			return state;
 	}

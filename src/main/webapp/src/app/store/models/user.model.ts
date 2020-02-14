@@ -6,6 +6,7 @@ export interface Address {
 	city: string;
 	pincode: number;
 	address: string;
+	candidateUniqueId?: string;
 }
 
 export interface Company {
@@ -18,10 +19,11 @@ export interface Company {
 
 export interface ProjectDetails {
 	projectId?: number;
+	candidateUniqueId?: string;
 	projectName: string;
 	startDate: Date;
 	endDate: Date;
-	technologyUsed: string;
+	technologyUsed: string[];
 	projectDetails: string;
 	role: string;
 	roleDescription: string;
@@ -30,12 +32,13 @@ export interface ProjectDetails {
 
 export interface EducationalDetails {
 	educationId?: number;
+	candidateUniqueId?: string;
 	qualification: string;
-	instituteName: string;
-	passingYear: number;
-	specification: string;
+	institution: string;
+	startYear: number;
+	endYear: number;
+	subject: string;
 	percentage: number;
-	courseType: string;
 }
 
 export interface Skill {

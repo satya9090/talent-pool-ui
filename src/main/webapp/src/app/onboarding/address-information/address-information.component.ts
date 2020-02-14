@@ -55,9 +55,14 @@ export class AddressInformationComponent implements OnInit {
 		this.permanentAddress = permanentAddress;
 	}
 	proceed() {
+		const permanentAddress: Address = {
+			...this.permanentAddress,
+			candidateUniqueId: this.currentUser.candidateUniqueId
+		};
+		const presentAddress: Address = { ...this.presentAddress, candidateUniqueId: this.currentUser.candidateUniqueId };
 		this.store.dispatch(
 			new SaveUserAddressInfoStart({
-				addressList: [this.permanentAddress, this.presentAddress],
+				addressList: [permanentAddress, presentAddress],
 				modifiedUser: this.currentUser
 			})
 		);

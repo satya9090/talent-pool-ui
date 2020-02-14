@@ -1,22 +1,24 @@
 <h5 class="text-center">Educational Information</h5>
 <hr />
-
-<form
-	#educationalDetailsForm="ngForm"
-	(ngSubmit)="proceed(educationalDetailsForm)"
->
+<div *ngIf="loading">
+	<app-loading></app-loading>
+</div>
+<div class="alert alert-danger" *ngIf="error">
+	{{ error }}
+</div>
+<form (ngSubmit)="proceed()">
+	<div class="text-center">
+		<button class="btn btn-primary" (click)="addEducation()" *ngIf="educations.length < 1">Add Education</button>
+	</div>
+	<div class="educations" *ngFor="let education of educations; let i = index">
+		<app-education-form
+			[education]="education"
+			(onAddition)="addEducation()"
+			(onRemoval)="removeEducation(i)"
+			(onSave)="saveEducation($event, i)"
+		></app-education-form>
+	</div>
 	<div class="row">
-		<div class="form-group col-md-6 col-12">
-			<label for="schoolName">School Name</label>
-			<input
-				type="text"
-				class="form-control"
-				name="schoolName"
-				ngModel
-				#schoolName="ngModel"
-				required
-			/>
-		</div>
 		<div class="form-group col-12 d-flex justify-content-between">
 			<a class="btn btn-secondary" [routerLink]="['../address-info']">
 				Back

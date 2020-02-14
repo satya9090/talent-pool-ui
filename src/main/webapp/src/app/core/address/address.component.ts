@@ -17,10 +17,13 @@ export class AddressComponent implements OnInit {
 	editMode = false;
 	countries = [];
 	states = [];
+	isAddressInvalid = true;
 	constructor(private formBuilder: FormBuilder) {}
 
 	ngOnInit() {
-		console.log(this.address);
+		this.isAddressInvalid = !this.validateAddress(this.address);
+		this.title = (this.address.type || 'Present') + ' Address';
+
 		this.addressForm = this.formBuilder.group({
 			country: new FormControl(this.address.country, [Validators.required]),
 			state: new FormControl(this.address.state, [Validators.required]),
@@ -33,6 +36,17 @@ export class AddressComponent implements OnInit {
 	get f() {
 		return this.addressForm.controls;
 	}
+	isEmptyOrSpaces(str: string) {
+		return str === null || str.match(/^ *$/) !== null;
+	}
+	validateAddress(address: Address) {
+		return !(
+			this.isEmptyOrSpaces(address.country) ||
+			this.isEmptyOrSpaces(address.state) ||
+			this.isEmptyOrSpaces(address.city) ||
+			this.isEmptyOrSpaces(address.pincode.toString())
+		);
+	}
 	toggleEditMode() {
 		if (this.restrictEdit === false) {
 			this.editMode = !this.editMode;
@@ -44,6 +58,7 @@ export class AddressComponent implements OnInit {
 		if (this.addressForm.invalid) {
 			return;
 		}
+
 		const updatedAddress: Address = {
 			country: this.addressForm.get('country').value,
 			state: this.addressForm.get('state').value,
@@ -52,6 +67,8 @@ export class AddressComponent implements OnInit {
 			city: this.addressForm.get('city').value,
 			type: this.addressForm.get('type').value
 		};
+		this.isAddressInvalid = !this.validateAddress(updatedAddress);
+		this.title = (updatedAddress.type || 'Present') + ' Address';
 		this.saveAddress.emit(updatedAddress);
 		this.editMode = false;
 	}

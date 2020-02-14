@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { User, Address } from '../models/user.model';
+import { User, Address, EducationalDetails } from '../models/user.model';
 
 export const USER_GET_DETAILS_START = 'USER_GET_DETAILS_START';
 export const USER_GET_DETAILS_SUCCESS = 'USER_GET_DETAILS_SUCCESS';
@@ -12,6 +12,10 @@ export const USER_SAVE_PERSONAL_INFO_FAILED = 'USER_SAVE_PERSONAL_INFO_FAILED';
 export const USER_SAVE_ADDRESS_INFO_START = 'USER_SAVE_ADDRESS_INFO_START';
 export const USER_SAVE_ADDRESS_INFO_SUCCESS = 'USER_SAVE_ADDRESS_INFO_SUCCESS';
 export const USER_SAVE_ADDRESS_INFO_FAILED = 'USER_SAVE_ADDRESS_INFO_FAILED';
+
+export const USER_SAVE_EDUCATIONAL_INFO_START = 'USER_SAVE_EDUCATIONAL_INFO_START';
+export const USER_SAVE_EDUCATIONAL_INFO_SUCCESS = 'USER_SAVE_EDUCATIONAL_INFO_SUCCESS';
+export const USER_SAVE_EDUCATIONAL_INFO_FAILED = 'USER_SAVE_EDUCATIONAL_INFO_FAILED';
 
 export class GetUserDetailsStart implements Action {
 	readonly type = USER_GET_DETAILS_START;
@@ -57,6 +61,21 @@ export class SaveUserAddressInfoFailed implements Action {
 	constructor(public payload: string) {}
 }
 
+export class SaveUserEducationalInfoStart implements Action {
+	readonly type = USER_SAVE_EDUCATIONAL_INFO_START;
+	constructor(public payload: { educationList: EducationalDetails[]; modifiedUser: User }) {}
+}
+
+export class SaveUserEducationalInfoSuccess implements Action {
+	readonly type = USER_SAVE_EDUCATIONAL_INFO_SUCCESS;
+	constructor(public payload: User) {}
+}
+
+export class SaveUserEducationalInfoFailed implements Action {
+	readonly type = USER_SAVE_EDUCATIONAL_INFO_FAILED;
+	constructor(public payload: string) {}
+}
+
 export type UserActions =
 	| GetUserDetailsStart
 	| GetUserDetailsSuccess
@@ -66,4 +85,7 @@ export type UserActions =
 	| SaveUserPersonalInfoFailed
 	| SaveUserAddressInfoStart
 	| SaveUserAddressInfoSuccess
-	| SaveUserAddressInfoFailed;
+	| SaveUserAddressInfoFailed
+	| SaveUserEducationalInfoStart
+	| SaveUserEducationalInfoSuccess
+	| SaveUserEducationalInfoFailed;

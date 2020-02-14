@@ -1,0 +1,115 @@
+<div class="card">
+	<div class="card-body">
+		<form class="row" [formGroup]="educationForm" (ngSubmit)="save()">
+			<div class="col-md-11 col-12">
+				<div class="row">
+					<div class="form-group col-md-4 col-12">
+						<label for="qualification">Degree / Qualification</label>
+						<input
+							type="text"
+							id="qualification"
+							class="form-control"
+							formControlName="qualification"
+							[ngClass]="{ 'is-invalid': submitted && f.qualification.errors }"
+						/>
+						<div *ngIf="submitted && f.qualification.errors" class="invalid-feedback">
+							<div *ngIf="f.qualification.errors.required">
+								Qualification is required
+							</div>
+						</div>
+					</div>
+					<div class="form-group col-md-4 col-12">
+						<label for="subject">Subject</label>
+						<input
+							type="text"
+							id="subject"
+							class="form-control"
+							formControlName="subject"
+							[ngClass]="{ 'is-invalid': submitted && f.subject.errors }"
+						/>
+						<div *ngIf="submitted && f.subject.errors" class="invalid-feedback">
+							<div *ngIf="f.subject.errors.required">
+								Subject is required
+							</div>
+						</div>
+					</div>
+					<div class="form-group col-md-4 col-12">
+						<label for="institution">Institution Name</label>
+						<input
+							type="text"
+							id="institution"
+							class="form-control"
+							formControlName="institution"
+							[ngClass]="{ 'is-invalid': submitted && f.institution.errors }"
+						/>
+						<div *ngIf="submitted && f.institution.errors" class="invalid-feedback">
+							<div *ngIf="f.institution.errors.required">
+								Institution is required
+							</div>
+						</div>
+					</div>
+					<div class="form-group col-md-4 col-12">
+						<label for="startYear">Starting Year</label>
+						<input
+							type="number"
+							id="startYear"
+							class="form-control"
+							formControlName="startYear"
+							[ngClass]="{ 'is-invalid': submitted && f.startYear.errors }"
+						/>
+						<div *ngIf="submitted && f.startYear.errors" class="invalid-feedback">
+							<div *ngIf="f.startYear.errors.required">
+								Starting Year is required
+							</div>
+							<div *ngIf="f.startYear.errors.pattern">
+								Invalid Starting Year
+							</div>
+						</div>
+					</div>
+					<div class="form-group col-md-4 col-12">
+						<label for="endYear">Passing Year</label>
+						<input
+							type="number"
+							id="endYear"
+							class="form-control"
+							formControlName="endYear"
+							[ngClass]="{ 'is-invalid': submitted && f.endYear.errors }"
+						/>
+						<div *ngIf="submitted && f.endYear.errors" class="invalid-feedback">
+							<div *ngIf="f.endYear.errors.required">
+								Passing Year is required
+							</div>
+							<div *ngIf="f.endYear.errors.pattern">
+								Invalid Passing Year
+							</div>
+						</div>
+					</div>
+					<div class="form-group col-md-4 col-12">
+						<label for="percentage">Percentage / Grade</label>
+						<input
+							type="text"
+							id="percentage"
+							class="form-control"
+							formControlName="percentage"
+							[ngClass]="{ 'is-invalid': submitted && f.percentage.errors }"
+						/>
+						<div *ngIf="submitted && f.percentage.errors" class="invalid-feedback">
+							<div *ngIf="f.percentage.errors.required">
+								Percentage / Grade is required
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-1 col-12 d-flex flex-column justify-content-center">
+				<button type="submit" class="btn btn-primary mb-1"><fa-icon [icon]="faCheckCircle"></fa-icon></button>
+				<button class="btn btn-success mb-1" (click)="add()" type="button">
+					<fa-icon [icon]="faPlusCircle"></fa-icon>
+				</button>
+				<button class="btn btn-danger" (click)="remove()" type="button">
+					<fa-icon [icon]="faTimesCircle"></fa-icon>
+				</button>
+			</div>
+		</form>
+	</div>
+</div>
