@@ -1,0 +1,24 @@
+<div class="card" *ngIf="!!education.educationId && !editMode; else editForm">
+	<div class="card-header d-flex">
+		{{ education.qualification }}
+		<div class="ml-auto">
+			<button class="btn btn-link btn sm" (click)="edit()">Edit</button>
+			<button class="btn btn-link btn sm" (click)="delete()">Delete</button>
+		</div>
+	</div>
+	<div class="card-body">
+		<dl class="info">
+			<dt>Institute :</dt>
+			<dd>{{ education.institution }}</dd>
+			<dt>Subject / Stream :</dt>
+			<dd>{{ education.subject }}</dd>
+			<dt>Duration :</dt>
+			<dd>{{ education.startDate | date }} - {{ education.endDate | date }}</dd>
+			<dt>Percentage / Aggregate :</dt>
+			<dd>{{ education.percentage }}</dd>
+		</dl>
+	</div>
+</div>
+<ng-template #editForm>
+	<app-education-form [education]="education" (onSave)="save($event)" (onCancel)="cancelEdit()"> </app-education-form>
+</ng-template>

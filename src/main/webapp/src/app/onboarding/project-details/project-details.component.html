@@ -1,0 +1,28 @@
+<div class="card" *ngIf="!!project.projectId && !editMode; else projectForm">
+	<div class="card-header d-flex">
+		{{ project.projectName }}
+		<div class="ml-auto">
+			<button class="btn btn-link btn-sm" (click)="edit()">Edit</button>
+			<button class="btn btn-link btn-sm" (click)="delete()">Delete</button>
+		</div>
+	</div>
+	<div class="card-body">
+		<dl class="info">
+			<dt>Company Name</dt>
+			<dd>{{ project.companyName }}</dd>
+			<dt>Description</dt>
+			<dd>{{ project.projectDetails }}</dd>
+			<dt>Start Date</dt>
+			<dd>{{ project.startDate | date }}</dd>
+			<dt>End Date</dt>
+			<dd>{{ project.endDate | date }}</dd>
+			<dt>Role</dt>
+			<dd>{{ project.role }}</dd>
+			<dt>Role Description</dt>
+			<dd>{{ project.roleDescription }}</dd>
+		</dl>
+	</div>
+</div>
+<ng-template #projectForm>
+	<app-project-form [project]="project" (onSave)="save($event)" (onCancel)="cancelEdit()"></app-project-form>
+</ng-template>

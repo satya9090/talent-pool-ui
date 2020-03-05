@@ -7,17 +7,14 @@
 	{{ error }}
 </div>
 <form (ngSubmit)="proceed()">
-	<div class="text-center">
-		<button class="btn btn-primary" (click)="addEducation()" *ngIf="educations.length < 1">Add Education</button>
-	</div>
-	<div class="educations" *ngFor="let education of educations; let i = index">
-		<app-education-form
+	<div class="education" *ngFor="let education of educations; let i = index">
+		<app-education-details
 			[education]="education"
-			(onAddition)="addEducation()"
-			(onRemoval)="removeEducation(i)"
+			(onDelete)="removeEducation(i)"
 			(onSave)="saveEducation($event, i)"
-		></app-education-form>
+		></app-education-details>
 	</div>
+	<button type="button" class="btn btn-secondary btn-sm" (click)="addEducation()">+</button>
 	<div class="row">
 		<div class="form-group col-12 d-flex justify-content-between">
 			<a class="btn btn-secondary" [routerLink]="['../address-info']">

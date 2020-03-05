@@ -1,0 +1,26 @@
+<div class="card" *ngIf="!!exp.professionalDetailsId && !editMode; else editForm">
+	<div class="card-header d-flex">
+		{{ exp.company }}
+		<div class="ml-auto">
+			<button class="btn btn-link btn-sm" (click)="edit()">Edit</button>
+			<button class="btn btn-link btn-sm" (click)="delete()">Delete</button>
+		</div>
+	</div>
+	<div class="card-body">
+		<dl class="info">
+			<dt>Duration :</dt>
+			<dd>{{ exp.startDate | date }} To {{ exp.endDate | date }}</dd>
+			<dt>Job Title :</dt>
+			<dd>{{ exp.jobTitle }}</dd>
+			<dt>Job Description :</dt>
+			<dd>{{ exp.description }}</dd>
+		</dl>
+	</div>
+</div>
+<ng-template #editForm>
+	<app-professional-details-form
+		[exp]="exp"
+		(onSave)="save($event)"
+		(onCancel)="cancelEdit()"
+	></app-professional-details-form>
+</ng-template>

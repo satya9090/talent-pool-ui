@@ -16,12 +16,14 @@ export class JobSeekerRegistrationComponent implements OnInit {
 	submitted = false;
 	error: string = null;
 	loading = false;
+	registrationSuccess = false;
 	constructor(private formBuilder: FormBuilder, private store: Store<AppState>, private router: Router) {}
 
 	ngOnInit() {
 		this.store.select('authState').subscribe(authState => {
 			this.error = authState.errorMessage;
 			this.loading = authState.loading;
+			this.registrationSuccess = authState.registrationDone;
 		});
 		this.registerForm = this.formBuilder.group(
 			{

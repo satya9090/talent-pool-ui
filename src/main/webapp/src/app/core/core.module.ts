@@ -6,11 +6,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LoadingComponent } from './loading/loading.component';
 import { AddressComponent } from './address/address.component';
 import { ChipComponent } from './chip/chip.component';
-import { EducationFormComponent } from './education-form/education-form.component';
 
 @NgModule({
-	declarations: [LoadingComponent, AddressComponent, ChipComponent, EducationFormComponent],
+	declarations: [LoadingComponent, AddressComponent, ChipComponent],
 	imports: [CommonModule, FormsModule, ReactiveFormsModule, FontAwesomeModule],
-	exports: [LoadingComponent, AddressComponent, EducationFormComponent]
+	exports: [LoadingComponent, AddressComponent]
 })
 export class CoreModule {}

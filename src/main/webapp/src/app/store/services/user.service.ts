@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { User, Address, EducationalDetails } from '../models/user.model';
+import { User, Address, EducationalDetails, ProfessionalDetails, ProjectDetails } from '../models/user.model';
 import { Observable } from 'rxjs';
 
 @Injectable()
@@ -16,7 +16,13 @@ export class UserService {
 	saveAddressInfo(addressList: Address[]) {
 		return this.httpClient.post('/TalentPool/api/v1/saveCandidateAddressDetails', addressList);
 	}
-	saveEducationalInfo(educationList: EducationalDetails[]) {
-		return this.httpClient.post('/TalentPool/api/v1/saveCandidateEducationDetails', educationList);
+	saveEducationalInfo(education: EducationalDetails) {
+		return this.httpClient.post('/TalentPool/api/v1/saveCandidateEducationDetails', education);
+	}
+	saveProfessionalInfo(experience: ProfessionalDetails) {
+		return this.httpClient.post('/TalentPool/api/v1/saveProfessionalDetails', experience);
+	}
+	saveProjectInfo(project: ProjectDetails) {
+		return this.httpClient.post('/TalentPool/api/v1/saveCandidateProjectDetails', project);
 	}
 }

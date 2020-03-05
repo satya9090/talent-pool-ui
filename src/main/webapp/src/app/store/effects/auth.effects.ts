@@ -7,7 +7,8 @@ import { of } from 'rxjs';
 import {
 	AuthLoginStart,
 	AuthFailed,
-	AuthSuccess,
+	AuthLoginSuccess,
+	AuthRegistrationSuccess,
 	AUTH_LOGIN_START,
 	AUTH_REGISTRATION_START,
 	AuthRegistrationStart,
@@ -56,7 +57,7 @@ export class AuthEffects {
 							role: response.scope.split(' ')
 						};
 						localStorage.setItem('auth', JSON.stringify(authUser));
-						return new AuthSuccess(
+						return new AuthLoginSuccess(
 							new AuthUser(
 								authUser.access_token,
 								authUser.token_type,
@@ -79,7 +80,7 @@ export class AuthEffects {
 		switchMap((authData: AuthRegistrationStart) => {
 			return this.http.post('/TalentPool/api/v1/createUser', authData.payload).pipe(
 				map(response => {
-					return new AuthSuccess(null);
+					return new AuthRegistrationSuccess(null);
 				}),
 				catchError((error: HttpErrorResponse) => {
 					return of(new AuthFailed(error.message));
@@ -101,7 +102,7 @@ export class AuthEffects {
 						return new AuthForgotPasswordComplete();
 					}),
 					catchError(error => {
-						return of(new AuthFailed(error.error_description));
+						return of(new AuthFailed(error.error_description || error.statusText));
 					})
 				);
 		})
@@ -153,7 +154,7 @@ export class AuthEffects {
 				this.tokenExpirationTimer = setTimeout(() => {
 					this.logout();
 				}, expirationDuration);
-				return new AuthSuccess(loadedUser);
+				return new AuthLoginSuccess(loadedUser);
 			} else {
 				this.logout();
 			}

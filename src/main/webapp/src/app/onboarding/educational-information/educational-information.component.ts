@@ -4,7 +4,7 @@ import { FormGroup, FormBuilder, FormArray, FormControl, Validators } from '@ang
 import { User, EducationalDetails } from 'src/app/store/models/user.model';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/AppState';
-import { SaveUserEducationalInfoStart } from 'src/app/store/actions/user.actions';
+import { SaveUserEducationalInfo, SaveUserEducationStart } from 'src/app/store/actions/user.actions';
 
 @Component({
 	selector: 'app-educational-information',
@@ -34,8 +34,8 @@ export class EducationalInformationComponent implements OnInit {
 	}
 	addEducation() {
 		this.educations.push({
-			startYear: null,
-			endYear: null,
+			startDate: null,
+			endDate: null,
 			institution: null,
 			percentage: null,
 			subject: null,
@@ -54,11 +54,15 @@ export class EducationalInformationComponent implements OnInit {
 				return edu;
 			}
 		});
+		this.store.dispatch(
+			new SaveUserEducationStart({
+				education: education,
+				modifiedUser: { ...this.currentUser, educationDetails: this.educations }
+			})
+		);
 	}
 	proceed() {
 		this.currentUser = { ...this.currentUser, educationDetails: this.educations };
-		this.store.dispatch(
-			new SaveUserEducationalInfoStart({ educationList: this.educations, modifiedUser: this.currentUser })
-		);
+		this.store.dispatch(new SaveUserEducationalInfo());
 	}
 }

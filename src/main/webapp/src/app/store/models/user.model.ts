@@ -12,7 +12,7 @@ export interface Address {
 export interface Company {
 	id: string;
 	name: string;
-	registredOn?: Date;
+	registeredOn?: Date;
 	address?: Address;
 	profileImage: string;
 }
@@ -35,8 +35,8 @@ export interface EducationalDetails {
 	candidateUniqueId?: string;
 	qualification: string;
 	institution: string;
-	startYear: number;
-	endYear: number;
+	startDate: Date;
+	endDate: Date;
 	subject: string;
 	percentage: number;
 }
@@ -46,6 +46,16 @@ export interface Skill {
 	minor: string;
 	lastUsedOn: number;
 	experienceInYears: number;
+}
+
+export interface ProfessionalDetails {
+	professionalDetailsId?: number;
+	candidateUniqueId?: string;
+	jobTitle: string;
+	company: string;
+	startDate: Date;
+	endDate?: Date;
+	description: string;
 }
 
 export interface User {
@@ -60,11 +70,12 @@ export interface User {
 	skills: Skill[];
 	currentLocation: null;
 	experience?: number;
-	role: 'candidate' | 'admin' | 'employeer';
+	role: 'candidate' | 'admin' | 'employer';
 	isVerify: 'Y' | 'N';
 	isActive: 'Y' | 'N';
 	isProfileComplete: 'Y' | 'N';
 	projectDetails: ProjectDetails[];
 	educationDetails: EducationalDetails[];
+	professionalDetails: ProfessionalDetails[];
 	address: Address[];
 }

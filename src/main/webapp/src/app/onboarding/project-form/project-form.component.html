@@ -1,0 +1,127 @@
+<form [formGroup]="projectForm" class="row" (ngSubmit)="save()">
+	<div class="form-group col-md-4 col-12">
+		<label for="projectName">Project Name</label>
+		<input
+			type="text"
+			class="form-control"
+			id="projectName"
+			formControlName="projectName"
+			[ngClass]="{ 'is-invalid': submitted && f.projectName.errors }"
+		/>
+		<div *ngIf="submitted && f.projectName.errors" class="invalid-feedback">
+			<div *ngIf="f.projectName.errors.required">
+				Project name is required
+			</div>
+		</div>
+	</div>
+	<div class="form-group col-md-4 col-12">
+		<label for="companyName">Company Name</label>
+		<input
+			type="text"
+			class="form-control"
+			id="companyName"
+			formControlName="companyName"
+			[ngClass]="{ 'is-invalid': submitted && f.companyName.errors }"
+		/>
+		<div *ngIf="submitted && f.companyName.errors" class="invalid-feedback">
+			<div *ngIf="f.companyName.errors.required">
+				Company name is required
+			</div>
+		</div>
+	</div>
+	<div class="form-group col-md-4 col-12">
+		<label for="role">Role</label>
+		<input
+			type="text"
+			class="form-control"
+			id="role"
+			formControlName="role"
+			[ngClass]="{ 'is-invalid': submitted && f.role.errors }"
+		/>
+		<div *ngIf="submitted && f.role.errors" class="invalid-feedback">
+			<div *ngIf="f.role.errors.required">
+				Role name is required
+			</div>
+		</div>
+	</div>
+	<div class="form-group col-md-4 col-12">
+		<label for="technologyUsed">Technologies</label>
+		<input
+			type="text"
+			class="form-control"
+			id="technologyUsed"
+			formControlName="technologyUsed"
+			[ngClass]="{ 'is-invalid': submitted && f.technologyUsed.errors }"
+		/>
+		<div *ngIf="submitted && f.technologyUsed.errors" class="invalid-feedback">
+			<div *ngIf="f.technologyUsed.errors.required">
+				Technologies are required
+			</div>
+		</div>
+	</div>
+	<div class="form-group col-md-4 col-12">
+		<label for="startDate">Start Date</label>
+		<input
+			type="date"
+			class="form-control"
+			id="startDate"
+			formControlName="startDate"
+			[ngClass]="{ 'is-invalid': submitted && f.startDate.errors }"
+		/>
+		<div *ngIf="submitted && f.startDate.errors" class="invalid-feedback">
+			<div *ngIf="f.startDate.errors.required">
+				Project start date is required
+			</div>
+		</div>
+	</div>
+	<div class="form-group col-md-4 col-12">
+		<label for="endDate">End Date</label>
+		<input
+			type="date"
+			class="form-control"
+			id="endDate"
+			formControlName="endDate"
+			[ngClass]="{ 'is-invalid': submitted && f.endDate.errors }"
+		/>
+		<div *ngIf="submitted && f.endDate.errors" class="invalid-feedback">
+			<div *ngIf="f.endDate.errors.required">
+				Project name is required
+			</div>
+		</div>
+	</div>
+	<div class="form-group col-md-6 col-12">
+		<label for="projectDetails">Description</label>
+		<textarea
+			class="form-control"
+			id="projectDetails"
+			formControlName="projectDetails"
+			[ngClass]="{ 'is-invalid': submitted && f.projectDetails.errors }"
+			rows="3"
+		></textarea>
+		<div *ngIf="submitted && f.projectDetails.errors" class="invalid-feedback">
+			<div *ngIf="f.projectDetails.errors.required">
+				Project Description is required
+			</div>
+		</div>
+	</div>
+
+	<div class="form-group col-md-6 col-12">
+		<label for="roleDescription">Role Description</label>
+		<textarea
+			class="form-control"
+			id="roleDescription"
+			formControlName="roleDescription"
+			[ngClass]="{ 'is-invalid': submitted && f.roleDescription.errors }"
+			rows="3"
+		></textarea>
+		<div *ngIf="submitted && f.roleDescription.errors" class="invalid-feedback">
+			<div *ngIf="f.roleDescription.errors.required">
+				Role Description is required
+			</div>
+		</div>
+	</div>
+	<div class="form-group col-12 d-flex justify-content-between">
+		<button class="btn btn-sm btn-outline-primary" (click)="cancel()">Cancel</button>
+		<input type="submit" value="Save" class="btn btn-outline-success btn-sm" />
+	</div>
+</form>

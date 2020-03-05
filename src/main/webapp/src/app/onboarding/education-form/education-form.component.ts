@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { EducationalDetails } from 'src/app/store/models/user.model';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { faCheckCircle, faPlusCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
 	selector: 'app-education-form',
@@ -10,22 +9,18 @@ import { faCheckCircle, faPlusCircle, faTimesCircle } from '@fortawesome/free-so
 })
 export class EducationFormComponent implements OnInit {
 	@Input() education: EducationalDetails;
-	@Output() onAddition = new EventEmitter<void>();
-	@Output() onRemoval = new EventEmitter<number>();
 	@Output() onSave = new EventEmitter<EducationalDetails>();
+	@Output() onCancel = new EventEmitter<void>();
 	educationForm: FormGroup;
 	submitted = false;
-	faCheckCircle = faCheckCircle;
-	faPlusCircle = faPlusCircle;
-	faTimesCircle = faTimesCircle;
 	constructor(private formBuilder: FormBuilder) {}
 
 	ngOnInit(): void {
 		this.educationForm = this.formBuilder.group({
 			qualification: new FormControl(this.education.qualification, [Validators.required]),
 			institution: new FormControl(this.education.institution, [Validators.required]),
-			startYear: new FormControl(this.education.startYear, [Validators.required, Validators.pattern(/^[1-9]+[0-9]*$/)]),
-			endYear: new FormControl(this.education.endYear, [Validators.required, Validators.pattern(/^[1-9]+[0-9]*$/)]),
+			startDate: new FormControl(this.education.startDate, [Validators.required]),
+			endDate: new FormControl(this.education.endDate, [Validators.required]),
 			percentage: new FormControl(this.education.percentage, [Validators.required]),
 			subject: new FormControl(this.education.subject)
 		});
@@ -38,20 +33,18 @@ export class EducationFormComponent implements OnInit {
 		if (this.educationForm.invalid) {
 			return false;
 		}
-		this.education = {
+		const modifiedEducation = {
+			...this.education,
 			qualification: this.f.qualification.value,
 			subject: this.f.subject.value,
-			startYear: this.f.startYear.value,
-			endYear: this.f.endYear.value,
+			startDate: this.f.startDate.value,
+			endDate: this.f.endDate.value,
 			percentage: this.f.percentage.value,
 			institution: this.f.institution.value
 		};
-		this.onSave.emit(this.education);
+		this.onSave.emit(modifiedEducation);
 	}
-	add() {
-		this.onAddition.emit();
-	}
-	remove() {
-		this.onRemoval.emit(0);
+	cancel() {
+		this.onCancel.emit();
 	}
 }

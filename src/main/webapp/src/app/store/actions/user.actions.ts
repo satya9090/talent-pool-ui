@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { User, Address, EducationalDetails } from '../models/user.model';
+import { User, Address, EducationalDetails, ProfessionalDetails, ProjectDetails } from '../models/user.model';
 
 export const USER_GET_DETAILS_START = 'USER_GET_DETAILS_START';
 export const USER_GET_DETAILS_SUCCESS = 'USER_GET_DETAILS_SUCCESS';
@@ -13,9 +13,20 @@ export const USER_SAVE_ADDRESS_INFO_START = 'USER_SAVE_ADDRESS_INFO_START';
 export const USER_SAVE_ADDRESS_INFO_SUCCESS = 'USER_SAVE_ADDRESS_INFO_SUCCESS';
 export const USER_SAVE_ADDRESS_INFO_FAILED = 'USER_SAVE_ADDRESS_INFO_FAILED';
 
-export const USER_SAVE_EDUCATIONAL_INFO_START = 'USER_SAVE_EDUCATIONAL_INFO_START';
-export const USER_SAVE_EDUCATIONAL_INFO_SUCCESS = 'USER_SAVE_EDUCATIONAL_INFO_SUCCESS';
-export const USER_SAVE_EDUCATIONAL_INFO_FAILED = 'USER_SAVE_EDUCATIONAL_INFO_FAILED';
+export const USER_SAVE_EDUCATION_START = 'USER_SAVE_EDUCATION_START';
+export const USER_SAVE_EDUCATION_SUCCESS = 'USER_SAVE_EDUCATION_SUCCESS';
+export const USER_SAVE_EDUCATION_FAILED = 'USER_SAVE_EDUCATION_FAILED';
+export const USER_SAVE_EDUCATIONAL_INFO = 'USER_SAVE_EDUCATIONAL_INFO';
+
+export const USER_SAVE_EXPERIENCE_START = 'USER_SAVE_EXPERIENCE_START';
+export const USER_SAVE_EXPERIENCE_SUCCESS = 'USER_SAVE_EXPERIENCE_SUCCESS';
+export const USER_SAVE_EXPERIENCE_FAILED = 'USER_SAVE_EXPERIENCE_FAILED';
+export const USER_SAVE_PROFESSIONAL_INFO = 'USER_SAVE_PROFESSIONAL_INFO';
+
+export const USER_SAVE_PROJECT_START = 'USER_SAVE_PROJECT_START';
+export const USER_SAVE_PROJECT_SUCCESS = 'USER_SAVE_PROJECT_SUCCESS';
+export const USER_SAVE_PROJECT_FAILED = 'USER_SAVE_PROJECT_FAILED';
+export const USER_SAVE_PROJECT_INFO = 'USER_SAVE_PROJECT_INFO';
 
 export class GetUserDetailsStart implements Action {
 	readonly type = USER_GET_DETAILS_START;
@@ -61,19 +72,61 @@ export class SaveUserAddressInfoFailed implements Action {
 	constructor(public payload: string) {}
 }
 
-export class SaveUserEducationalInfoStart implements Action {
-	readonly type = USER_SAVE_EDUCATIONAL_INFO_START;
-	constructor(public payload: { educationList: EducationalDetails[]; modifiedUser: User }) {}
+export class SaveUserEducationStart implements Action {
+	readonly type = USER_SAVE_EDUCATION_START;
+	constructor(public payload: { education: EducationalDetails; modifiedUser: User }) {}
 }
 
-export class SaveUserEducationalInfoSuccess implements Action {
-	readonly type = USER_SAVE_EDUCATIONAL_INFO_SUCCESS;
+export class SaveUserEducationSuccess implements Action {
+	readonly type = USER_SAVE_EDUCATION_SUCCESS;
 	constructor(public payload: User) {}
 }
 
-export class SaveUserEducationalInfoFailed implements Action {
-	readonly type = USER_SAVE_EDUCATIONAL_INFO_FAILED;
+export class SaveUserEducationFailed implements Action {
+	readonly type = USER_SAVE_EDUCATION_FAILED;
 	constructor(public payload: string) {}
+}
+
+export class SaveUserEducationalInfo implements Action {
+	readonly type = USER_SAVE_EDUCATIONAL_INFO;
+}
+
+export class SaveUserExperienceStart implements Action {
+	readonly type = USER_SAVE_EXPERIENCE_START;
+	constructor(public payload: { experience: ProfessionalDetails; modifiedUser: User }) {}
+}
+
+export class SaveUserExperienceSuccess implements Action {
+	readonly type = USER_SAVE_EXPERIENCE_SUCCESS;
+	constructor(public payload: User) {}
+}
+
+export class SaveUserExperienceFailed implements Action {
+	readonly type = USER_SAVE_EXPERIENCE_FAILED;
+	constructor(public payload: string) {}
+}
+
+export class SaveUserProfessionalInfo implements Action {
+	readonly type = USER_SAVE_PROFESSIONAL_INFO;
+}
+
+export class SaveUserProjectStart implements Action {
+	readonly type = USER_SAVE_PROJECT_START;
+	constructor(public payload: { project: ProjectDetails; modifiedUser: User }) {}
+}
+
+export class SaveUserProjectSuccess implements Action {
+	readonly type = USER_SAVE_PROJECT_SUCCESS;
+	constructor(public payload: User) {}
+}
+
+export class SaveUserProjectFailed implements Action {
+	readonly type = USER_SAVE_PROJECT_FAILED;
+	constructor(public payload: string) {}
+}
+
+export class SaveUserProjectInfo implements Action {
+	readonly type = USER_SAVE_PROJECT_INFO;
 }
 
 export type UserActions =
@@ -86,6 +139,15 @@ export type UserActions =
 	| SaveUserAddressInfoStart
 	| SaveUserAddressInfoSuccess
 	| SaveUserAddressInfoFailed
-	| SaveUserEducationalInfoStart
-	| SaveUserEducationalInfoSuccess
-	| SaveUserEducationalInfoFailed;
+	| SaveUserEducationStart
+	| SaveUserEducationSuccess
+	| SaveUserEducationFailed
+	| SaveUserEducationalInfo
+	| SaveUserExperienceStart
+	| SaveUserExperienceSuccess
+	| SaveUserExperienceFailed
+	| SaveUserProfessionalInfo
+	| SaveUserProjectStart
+	| SaveUserProjectSuccess
+	| SaveUserProjectFailed
+	| SaveUserProjectInfo;

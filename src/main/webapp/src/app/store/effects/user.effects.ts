@@ -13,10 +13,18 @@ import {
 	SaveUserPersonalInfoFailed,
 	SaveUserAddressInfoSuccess,
 	SaveUserAddressInfoFailed,
-	USER_SAVE_EDUCATIONAL_INFO_START,
-	SaveUserEducationalInfoStart,
-	SaveUserEducationalInfoSuccess,
-	SaveUserEducationalInfoFailed
+	USER_SAVE_EDUCATION_START,
+	SaveUserEducationStart,
+	SaveUserEducationSuccess,
+	SaveUserEducationFailed,
+	USER_SAVE_EXPERIENCE_START,
+	SaveUserExperienceStart,
+	SaveUserExperienceSuccess,
+	SaveUserExperienceFailed,
+	USER_SAVE_PROJECT_START,
+	SaveUserProjectStart,
+	SaveUserProjectSuccess,
+	SaveUserProjectFailed
 } from '../actions/user.actions';
 import { switchMap, map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
@@ -67,12 +75,38 @@ export class UserEffects {
 
 	@Effect()
 	saveUserEducationInfo = this.actions$.pipe(
-		ofType(USER_SAVE_EDUCATIONAL_INFO_START),
-		switchMap((data: SaveUserEducationalInfoStart) => {
-			return this.userService.saveEducationalInfo(data.payload.educationList).pipe(
-				map(response => new SaveUserEducationalInfoSuccess(data.payload.modifiedUser)),
+		ofType(USER_SAVE_EDUCATION_START),
+		switchMap((data: SaveUserEducationStart) => {
+			return this.userService.saveEducationalInfo(data.payload.education).pipe(
+				map(response => new SaveUserEducationSuccess(data.payload.modifiedUser)),
 				catchError((error: HttpErrorResponse) => {
-					return of(new SaveUserEducationalInfoFailed(error.message));
+					return of(new SaveUserEducationFailed(error.message));
+				})
+			);
+		})
+	);
+
+	@Effect()
+	saveUserProfessionalInfo = this.actions$.pipe(
+		ofType(USER_SAVE_EXPERIENCE_START),
+		switchMap((data: SaveUserExperienceStart) => {
+			return this.userService.saveProfessionalInfo(data.payload.experience).pipe(
+				map(response => new SaveUserExperienceSuccess(data.payload.modifiedUser)),
+				catchError((error: HttpErrorResponse) => {
+					return of(new SaveUserExperienceFailed(error.message));
+				})
+			);
+		})
+	);
+
+	@Effect()
+	saveUserProjectInfo = this.actions$.pipe(
+		ofType(USER_SAVE_PROJECT_START),
+		switchMap((data: SaveUserProjectStart) => {
+			return this.userService.saveProjectInfo(data.payload.project).pipe(
+				map(response => new SaveUserProjectSuccess(data.payload.modifiedUser)),
+				catchError((error: HttpErrorResponse) => {
+					return of(new SaveUserProjectFailed(error.message));
 				})
 			);
 		})

@@ -1,57 +1,57 @@
-<div
-	class="row justify-content-center align-items-center h-100 profile-container"
->
+<div class="row justify-content-center align-items-center h-100 profile-container">
 	<div class="col-md-8 col-12">
 		<div class="card">
 			<div class="card-body h-100">
 				<div class="row h-100">
-					<div class="col-3 h-100 border-right">
+					<div class="col-3 h-100">
 						<div class="list-group">
 							<a
 								class="list-group-item list-group-item-action"
 								[routerLink]="['personal-info']"
 								routerLinkActive="active"
-								>Personal Information</a
 							>
+								Personal Information
+							</a>
 							<a
 								class="list-group-item list-group-item-action"
 								[routerLink]="['address-info']"
 								routerLinkActive="active"
-								>Address Information</a
 							>
+								Address Information
+							</a>
 							<a
 								class="list-group-item list-group-item-action"
 								[routerLink]="['educational-info']"
 								routerLinkActive="active"
-								>Educational Information</a
 							>
+								Educational Information
+							</a>
 							<a
 								class="list-group-item list-group-item-action"
 								[routerLink]="['professional-info']"
 								routerLinkActive="active"
-								>Professional Information</a
 							>
+								Professional Information
+							</a>
 							<a
 								class="list-group-item list-group-item-action"
-								[routerLink]="['skills']"
+								[routerLink]="['project-info']"
 								routerLinkActive="active"
-								>Skills</a
 							>
-							<a
-								class="list-group-item list-group-item-action"
-								[routerLink]="['about-me']"
-								routerLinkActive="active"
-								>About Me</a
-							>
-							<a
-								class="list-group-item list-group-item-action"
-								[routerLink]="['payment']"
-								routerLinkActive="active"
-								>Payment</a
-							>
+								Project Information
+							</a>
+							<a class="list-group-item list-group-item-action" [routerLink]="['skills']" routerLinkActive="active">
+								Skills
+							</a>
+							<a class="list-group-item list-group-item-action" [routerLink]="['about-me']" routerLinkActive="active">
+								About Me
+							</a>
+							<a class="list-group-item list-group-item-action" [routerLink]="['payment']" routerLinkActive="active">
+								Payment
+							</a>
 						</div>
 					</div>
-					<div class="col-9 main-content">
+					<div class="col-9 main-content border-left">
 						<router-outlet></router-outlet>
 					</div>
 				</div>

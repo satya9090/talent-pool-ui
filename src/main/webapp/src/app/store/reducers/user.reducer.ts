@@ -9,9 +9,18 @@ import {
 	USER_SAVE_ADDRESS_INFO_SUCCESS,
 	USER_SAVE_ADDRESS_INFO_FAILED,
 	USER_SAVE_PERSONAL_INFO_FAILED,
-	USER_SAVE_EDUCATIONAL_INFO_SUCCESS,
-	USER_SAVE_EDUCATIONAL_INFO_FAILED,
-	USER_SAVE_EDUCATIONAL_INFO_START
+	USER_SAVE_EDUCATION_SUCCESS,
+	USER_SAVE_EDUCATION_FAILED,
+	USER_SAVE_EDUCATION_START,
+	USER_SAVE_EDUCATIONAL_INFO,
+	USER_SAVE_EXPERIENCE_FAILED,
+	USER_SAVE_EXPERIENCE_START,
+	USER_SAVE_PROFESSIONAL_INFO,
+	USER_SAVE_EXPERIENCE_SUCCESS,
+	USER_SAVE_PROJECT_FAILED,
+	USER_SAVE_PROJECT_START,
+	USER_SAVE_PROJECT_SUCCESS,
+	USER_SAVE_PROJECT_INFO
 } from '../actions/user.actions';
 import { User } from '../models/user.model';
 
@@ -55,18 +64,30 @@ export function UserReducer(state = initialState, action: UserActions) {
 		case USER_GET_DETAILS_FAILED:
 		case USER_SAVE_PERSONAL_INFO_FAILED:
 		case USER_SAVE_ADDRESS_INFO_FAILED:
-		case USER_SAVE_EDUCATIONAL_INFO_FAILED:
+		case USER_SAVE_EDUCATION_FAILED:
+		case USER_SAVE_EXPERIENCE_FAILED:
+		case USER_SAVE_PROJECT_FAILED:
 			return { ...state, loading: false, errorMessage: action.payload };
 		case USER_SAVE_PERSONAL_INFO_START:
 		case USER_SAVE_ADDRESS_INFO_START:
-		case USER_SAVE_EDUCATIONAL_INFO_START:
+		case USER_SAVE_EDUCATION_START:
+		case USER_SAVE_EXPERIENCE_START:
+		case USER_SAVE_PROJECT_START:
 			return { ...state, loading: true, errorMessage: null };
 		case USER_SAVE_PERSONAL_INFO_SUCCESS:
 			return { ...state, currentUser: action.payload, loading: false, personalDetailsSaved: true };
 		case USER_SAVE_ADDRESS_INFO_SUCCESS:
 			return { ...state, currentUser: action.payload, loading: false, addressDetailsSaved: true };
-		case USER_SAVE_EDUCATIONAL_INFO_SUCCESS:
-			return { ...state, currentUser: action.payload, loading: false, educationDetailsSaved: true };
+		case USER_SAVE_EDUCATION_SUCCESS:
+		case USER_SAVE_EXPERIENCE_SUCCESS:
+		case USER_SAVE_PROJECT_SUCCESS:
+			return { ...state, currentUser: action.payload, loading: false };
+		case USER_SAVE_EDUCATIONAL_INFO:
+			return { ...state, educationDetailsSaved: true };
+		case USER_SAVE_PROFESSIONAL_INFO:
+			return { ...state, professionalDetailsSaved: true };
+		case USER_SAVE_PROJECT_INFO:
+			return { ...state, projectDetailsSaved: true };
 		default:
 			return state;
 	}

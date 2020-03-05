@@ -3,7 +3,7 @@
 		<div class="alert alert-danger" *ngIf="error">
 			{{ error }}
 		</div>
-		<div class="alert alert-success" *ngIf="!error && !loading && registerForm.valid && submitted">
+		<div class="alert alert-success" *ngIf="registrationSuccess">
 			User created successfully. Now you can visit
 			<a [routerLink]="['/auth/job-seeker-login']" class="ml-auto">Login</a>
 		</div>
