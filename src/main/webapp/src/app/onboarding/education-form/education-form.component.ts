@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { EducationalDetails } from 'src/app/store/models/user.model';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
 	selector: 'app-education-form',
@@ -13,14 +14,16 @@ export class EducationFormComponent implements OnInit {
 	@Output() onCancel = new EventEmitter<void>();
 	educationForm: FormGroup;
 	submitted = false;
-	constructor(private formBuilder: FormBuilder) {}
+	constructor(private formBuilder: FormBuilder, public activeModal: NgbActiveModal) {}
 
 	ngOnInit(): void {
 		this.educationForm = this.formBuilder.group({
 			qualification: new FormControl(this.education.qualification, [Validators.required]),
 			institution: new FormControl(this.education.institution, [Validators.required]),
-			startDate: new FormControl(this.education.startDate, [Validators.required]),
-			endDate: new FormControl(this.education.endDate, [Validators.required]),
+			startDate: new FormControl(new Date(this.education.startDate).toISOString().substring(0, 10), [
+				Validators.required
+			]),
+			endDate: new FormControl(new Date(this.education.endDate).toISOString().substring(0, 10), [Validators.required]),
 			percentage: new FormControl(this.education.percentage, [Validators.required]),
 			subject: new FormControl(this.education.subject)
 		});
@@ -43,8 +46,10 @@ export class EducationFormComponent implements OnInit {
 			institution: this.f.institution.value
 		};
 		this.onSave.emit(modifiedEducation);
+		this.activeModal.dismiss('data saved');
 	}
 	cancel() {
+		this.activeModal.dismiss('Cross click');
 		this.onCancel.emit();
 	}
 }

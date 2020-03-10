@@ -1,81 +1,88 @@
-<form [formGroup]="professionalForm" (ngSubmit)="save()" class="row">
-	<div class="form-group col-md-4 col-12">
-		<label for="company">Company / Employer</label>
-		<input
-			type="text"
-			id="company"
-			class="form-control"
-			formControlName="company"
-			[ngClass]="{ 'is-invalid': submitted && f.company.errors }"
-		/>
-		<div *ngIf="submitted && f.company.errors" class="invalid-feedback">
-			<div *ngIf="f.company.errors.required">
-				Company is required
+<div class="modal-header">
+	<button type="button" class="close" aria-label="Close" (click)="cancel()">
+		<span aria-hidden="true">&times;</span>
+	</button>
+</div>
+<div class="modal-body">
+	<form [formGroup]="professionalForm" (ngSubmit)="save()" class="row">
+		<div class="form-group col-md-4 col-12">
+			<label for="company">Company / Employer</label>
+			<input
+				type="text"
+				id="company"
+				class="form-control"
+				formControlName="company"
+				[ngClass]="{ 'is-invalid': submitted && f.company.errors }"
+			/>
+			<div *ngIf="submitted && f.company.errors" class="invalid-feedback">
+				<div *ngIf="f.company.errors.required">
+					Company is required
+				</div>
 			</div>
 		</div>
-	</div>
-	<div class="form-group col-md-4 col-12">
-		<label for="jobTitle">Job Title / Designation</label>
-		<input
-			type="text"
-			id="jobTitle"
-			class="form-control"
-			formControlName="jobTitle"
-			[ngClass]="{ 'is-invalid': submitted && f.jobTitle.errors }"
-		/>
-		<div *ngIf="submitted && f.jobTitle.errors" class="invalid-feedback">
-			<div *ngIf="f.jobTitle.errors.required">
-				Job Title is required
+		<div class="form-group col-md-4 col-12">
+			<label for="jobTitle">Job Title / Designation</label>
+			<input
+				type="text"
+				id="jobTitle"
+				class="form-control"
+				formControlName="jobTitle"
+				[ngClass]="{ 'is-invalid': submitted && f.jobTitle.errors }"
+			/>
+			<div *ngIf="submitted && f.jobTitle.errors" class="invalid-feedback">
+				<div *ngIf="f.jobTitle.errors.required">
+					Job Title is required
+				</div>
 			</div>
 		</div>
-	</div>
-	<div class="form-group col-md-4 col-12">
-		<label for="startDate">Start Date</label>
-		<input
-			type="date"
-			id="startDate"
-			class="form-control"
-			formControlName="startDate"
-			[ngClass]="{ 'is-invalid': submitted && f.startDate.errors }"
-		/>
-		<div *ngIf="submitted && f.startDate.errors" class="invalid-feedback">
-			<div *ngIf="f.startDate.errors.required">
-				Start Date is required
+		<div class="form-group col-md-4 col-12">
+			<label for="startDate">Start Date</label>
+			<input
+				type="date"
+				id="startDate"
+				class="form-control"
+				formControlName="startDate"
+				[ngClass]="{ 'is-invalid': submitted && f.startDate.errors }"
+			/>
+			<div *ngIf="submitted && f.startDate.errors" class="invalid-feedback">
+				<div *ngIf="f.startDate.errors.required">
+					Start Date is required
+				</div>
 			</div>
 		</div>
-	</div>
-	<div class="form-group col-md-4 col-12">
-		<label for="endDate">End Date</label>
-		<input
-			type="date"
-			id="endDate"
-			class="form-control"
-			formControlName="endDate"
-			[ngClass]="{ 'is-invalid': submitted && f.endDate.errors }"
-		/>
-		<div *ngIf="submitted && f.endDate.errors" class="invalid-feedback">
-			<div *ngIf="f.endDate.errors.required">
-				End Date is required
+		<div class="form-group col-md-4 col-12">
+			<label for="endDate">End Date</label>
+			<input
+				type="date"
+				id="endDate"
+				class="form-control"
+				formControlName="endDate"
+				[ngClass]="{ 'is-invalid': submitted && f.endDate.errors }"
+			/>
+			<div *ngIf="submitted && f.endDate.errors" class="invalid-feedback">
+				<div *ngIf="f.endDate.errors.required">
+					End Date is required
+				</div>
 			</div>
 		</div>
-	</div>
-	<div class="form-group col-md-4 col-12">
-		<label for="description">About Your Role</label>
-		<input
-			type="text"
-			id="description"
-			class="form-control"
-			formControlName="description"
-			[ngClass]="{ 'is-invalid': submitted && f.description.errors }"
-		/>
-		<div *ngIf="submitted && f.description.errors" class="invalid-feedback">
-			<div *ngIf="f.description.errors.required">
-				About your role is required
+		<div class="form-group col-md-4 col-12">
+			<label for="description">About Your Role</label>
+			<input
+				type="text"
+				id="description"
+				class="form-control"
+				formControlName="description"
+				[ngClass]="{ 'is-invalid': submitted && f.description.errors }"
+			/>
+			<div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+				<div *ngIf="f.description.errors.required">
+					About your role is required
+				</div>
 			</div>
 		</div>
-	</div>
-	<div class="form-group col-12 d-flex justify-content-between">
-		<button class="btn btn-sm btn-outline-primary" (click)="cancel()">Cancel</button>
-		<input type="submit" value="Save" class="btn btn-outline-success btn-sm" />
-	</div>
-</form>
+		<div class="form-group col-12 d-flex justify-content-between">
+			<button class="btn btn-sm btn-outline-primary" (click)="cancel()">Cancel</button>
+			<input type="submit" value="Save" class="btn btn-outline-success btn-sm" />
+		</div>
+	</form>
+</div>

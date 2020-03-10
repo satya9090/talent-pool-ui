@@ -1,0 +1,15 @@
+<div class="card">
+	<div class="card-header d-flex justify-content-between">
+		{{ title }}
+		<button class="btn btn-sm btn-link" (click)="toggleEditMode()" *ngIf="!restrictEdit">
+			<fa-icon [icon]="faPencilAlt"></fa-icon>
+		</button>
+	</div>
+	<div class="card-body">
+		<address *ngIf="!isAddressInvalid">
+			{{ address.address }}, {{ address.city }}, {{ address.state }}, {{ address.country }},
+			{{ address.pincode }}
+		</address>
+		<address *ngIf="isAddressInvalid">Invalid Address</address>
+	</div>
+</div>

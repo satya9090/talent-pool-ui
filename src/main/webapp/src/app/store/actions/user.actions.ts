@@ -16,16 +16,19 @@ export const USER_SAVE_ADDRESS_INFO_FAILED = 'USER_SAVE_ADDRESS_INFO_FAILED';
 export const USER_SAVE_EDUCATION_START = 'USER_SAVE_EDUCATION_START';
 export const USER_SAVE_EDUCATION_SUCCESS = 'USER_SAVE_EDUCATION_SUCCESS';
 export const USER_SAVE_EDUCATION_FAILED = 'USER_SAVE_EDUCATION_FAILED';
+export const USER_DELETE_EDUCATION_START = 'USER_DELETE_EDUCATION_START';
 export const USER_SAVE_EDUCATIONAL_INFO = 'USER_SAVE_EDUCATIONAL_INFO';
 
 export const USER_SAVE_EXPERIENCE_START = 'USER_SAVE_EXPERIENCE_START';
 export const USER_SAVE_EXPERIENCE_SUCCESS = 'USER_SAVE_EXPERIENCE_SUCCESS';
 export const USER_SAVE_EXPERIENCE_FAILED = 'USER_SAVE_EXPERIENCE_FAILED';
+export const USER_DELETE_EXPERIENCE_START = 'USER_DELETE_EXPERIENCE_START';
 export const USER_SAVE_PROFESSIONAL_INFO = 'USER_SAVE_PROFESSIONAL_INFO';
 
 export const USER_SAVE_PROJECT_START = 'USER_SAVE_PROJECT_START';
 export const USER_SAVE_PROJECT_SUCCESS = 'USER_SAVE_PROJECT_SUCCESS';
 export const USER_SAVE_PROJECT_FAILED = 'USER_SAVE_PROJECT_FAILED';
+export const USER_DELETE_PROJECT_START = 'USER_DELETE_PROJECT_START';
 export const USER_SAVE_PROJECT_INFO = 'USER_SAVE_PROJECT_INFO';
 
 export class GetUserDetailsStart implements Action {
@@ -87,6 +90,11 @@ export class SaveUserEducationFailed implements Action {
 	constructor(public payload: string) {}
 }
 
+export class DeleteUserEducationStart implements Action {
+	readonly type = USER_DELETE_EDUCATION_START;
+	constructor(public payload: { education: EducationalDetails; modifiedUser: User }) {}
+}
+
 export class SaveUserEducationalInfo implements Action {
 	readonly type = USER_SAVE_EDUCATIONAL_INFO;
 }
@@ -104,6 +112,11 @@ export class SaveUserExperienceSuccess implements Action {
 export class SaveUserExperienceFailed implements Action {
 	readonly type = USER_SAVE_EXPERIENCE_FAILED;
 	constructor(public payload: string) {}
+}
+
+export class DeleteUserExperienceStart implements Action {
+	readonly type = USER_DELETE_EXPERIENCE_START;
+	constructor(public payload: { experience: ProfessionalDetails; modifiedUser: User }) {}
 }
 
 export class SaveUserProfessionalInfo implements Action {
@@ -125,6 +138,11 @@ export class SaveUserProjectFailed implements Action {
 	constructor(public payload: string) {}
 }
 
+export class DeleteUserProjectStart implements Action {
+	readonly type = USER_DELETE_PROJECT_START;
+	constructor(public payload: { project: ProjectDetails; modifiedUser: User }) {}
+}
+
 export class SaveUserProjectInfo implements Action {
 	readonly type = USER_SAVE_PROJECT_INFO;
 }
@@ -142,12 +160,15 @@ export type UserActions =
 	| SaveUserEducationStart
 	| SaveUserEducationSuccess
 	| SaveUserEducationFailed
+	| DeleteUserEducationStart
 	| SaveUserEducationalInfo
 	| SaveUserExperienceStart
 	| SaveUserExperienceSuccess
 	| SaveUserExperienceFailed
+	| DeleteUserExperienceStart
 	| SaveUserProfessionalInfo
 	| SaveUserProjectStart
 	| SaveUserProjectSuccess
 	| SaveUserProjectFailed
+	| DeleteUserProjectStart
 	| SaveUserProjectInfo;

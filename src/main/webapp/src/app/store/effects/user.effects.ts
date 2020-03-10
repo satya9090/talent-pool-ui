@@ -4,8 +4,14 @@ import { Injectable } from '@angular/core';
 import {
 	USER_GET_DETAILS_START,
 	USER_SAVE_PERSONAL_INFO_START,
-	SaveUserPersonalInfoStart,
+	USER_SAVE_EDUCATION_START,
+	USER_SAVE_EXPERIENCE_START,
+	USER_SAVE_PROJECT_START,
+	USER_DELETE_EDUCATION_START,
+	USER_DELETE_EXPERIENCE_START,
+	USER_DELETE_PROJECT_START,
 	USER_SAVE_ADDRESS_INFO_START,
+	SaveUserPersonalInfoStart,
 	SaveUserAddressInfoStart,
 	GetUserDetailsSuccess,
 	GetUserDetailsFailed,
@@ -13,18 +19,18 @@ import {
 	SaveUserPersonalInfoFailed,
 	SaveUserAddressInfoSuccess,
 	SaveUserAddressInfoFailed,
-	USER_SAVE_EDUCATION_START,
 	SaveUserEducationStart,
 	SaveUserEducationSuccess,
 	SaveUserEducationFailed,
-	USER_SAVE_EXPERIENCE_START,
 	SaveUserExperienceStart,
 	SaveUserExperienceSuccess,
 	SaveUserExperienceFailed,
-	USER_SAVE_PROJECT_START,
 	SaveUserProjectStart,
 	SaveUserProjectSuccess,
-	SaveUserProjectFailed
+	SaveUserProjectFailed,
+	DeleteUserEducationStart,
+	DeleteUserExperienceStart,
+	DeleteUserProjectStart
 } from '../actions/user.actions';
 import { switchMap, map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
@@ -77,7 +83,20 @@ export class UserEffects {
 	saveUserEducationInfo = this.actions$.pipe(
 		ofType(USER_SAVE_EDUCATION_START),
 		switchMap((data: SaveUserEducationStart) => {
-			return this.userService.saveEducationalInfo(data.payload.education).pipe(
+			return this.userService.saveEducation(data.payload.education).pipe(
+				map(response => new SaveUserEducationSuccess(data.payload.modifiedUser)),
+				catchError((error: HttpErrorResponse) => {
+					return of(new SaveUserEducationFailed(error.message));
+				})
+			);
+		})
+	);
+
+	@Effect()
+	deleteUserEducationInfo = this.actions$.pipe(
+		ofType(USER_DELETE_EDUCATION_START),
+		switchMap((data: DeleteUserEducationStart) => {
+			return this.userService.deleteEducation(data.payload.education).pipe(
 				map(response => new SaveUserEducationSuccess(data.payload.modifiedUser)),
 				catchError((error: HttpErrorResponse) => {
 					return of(new SaveUserEducationFailed(error.message));
@@ -100,10 +119,36 @@ export class UserEffects {
 	);
 
 	@Effect()
+	deleteUserProfessionalInfo = this.actions$.pipe(
+		ofType(USER_DELETE_EXPERIENCE_START),
+		switchMap((data: DeleteUserExperienceStart) => {
+			return this.userService.deleteProfessionalInfo(data.payload.experience).pipe(
+				map(response => new SaveUserExperienceSuccess(data.payload.modifiedUser)),
+				catchError((error: HttpErrorResponse) => {
+					return of(new SaveUserExperienceFailed(error.message));
+				})
+			);
+		})
+	);
+
+	@Effect()
 	saveUserProjectInfo = this.actions$.pipe(
 		ofType(USER_SAVE_PROJECT_START),
 		switchMap((data: SaveUserProjectStart) => {
-			return this.userService.saveProjectInfo(data.payload.project).pipe(
+			return this.userService.saveProject(data.payload.project).pipe(
+				map(response => new SaveUserProjectSuccess(data.payload.modifiedUser)),
+				catchError((error: HttpErrorResponse) => {
+					return of(new SaveUserProjectFailed(error.message));
+				})
+			);
+		})
+	);
+
+	@Effect()
+	deleteUserProjectInfo = this.actions$.pipe(
+		ofType(USER_DELETE_PROJECT_START),
+		switchMap((data: DeleteUserProjectStart) => {
+			return this.userService.deleteProject(data.payload.project).pipe(
 				map(response => new SaveUserProjectSuccess(data.payload.modifiedUser)),
 				catchError((error: HttpErrorResponse) => {
 					return of(new SaveUserProjectFailed(error.message));

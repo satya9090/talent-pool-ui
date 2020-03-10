@@ -20,7 +20,10 @@ import {
 	USER_SAVE_PROJECT_FAILED,
 	USER_SAVE_PROJECT_START,
 	USER_SAVE_PROJECT_SUCCESS,
-	USER_SAVE_PROJECT_INFO
+	USER_SAVE_PROJECT_INFO,
+	USER_DELETE_EDUCATION_START,
+	USER_DELETE_EXPERIENCE_START,
+	USER_DELETE_PROJECT_START
 } from '../actions/user.actions';
 import { User } from '../models/user.model';
 
@@ -73,6 +76,9 @@ export function UserReducer(state = initialState, action: UserActions) {
 		case USER_SAVE_EDUCATION_START:
 		case USER_SAVE_EXPERIENCE_START:
 		case USER_SAVE_PROJECT_START:
+		case USER_DELETE_EDUCATION_START:
+		case USER_DELETE_EXPERIENCE_START:
+		case USER_DELETE_PROJECT_START:
 			return { ...state, loading: true, errorMessage: null };
 		case USER_SAVE_PERSONAL_INFO_SUCCESS:
 			return { ...state, currentUser: action.payload, loading: false, personalDetailsSaved: true };

@@ -1,28 +1,45 @@
-<div class="card" *ngIf="!!project.projectId && !editMode; else projectForm">
+<div class="card">
 	<div class="card-header d-flex">
 		{{ project.projectName }}
 		<div class="ml-auto">
-			<button class="btn btn-link btn-sm" (click)="edit()">Edit</button>
-			<button class="btn btn-link btn-sm" (click)="delete()">Delete</button>
+			<button type="button" class="btn btn-link btn sm" (click)="edit()">
+				<fa-icon [icon]="faPencilAlt" class="edit"></fa-icon>
+			</button>
+			<button type="button" class="btn btn-link btn sm" (click)="delete()">
+				<fa-icon [icon]="faTrash" class="delete"></fa-icon>
+			</button>
 		</div>
 	</div>
 	<div class="card-body">
-		<dl class="info">
-			<dt>Company Name</dt>
-			<dd>{{ project.companyName }}</dd>
-			<dt>Description</dt>
-			<dd>{{ project.projectDetails }}</dd>
-			<dt>Start Date</dt>
-			<dd>{{ project.startDate | date }}</dd>
-			<dt>End Date</dt>
-			<dd>{{ project.endDate | date }}</dd>
-			<dt>Role</dt>
-			<dd>{{ project.role }}</dd>
-			<dt>Role Description</dt>
-			<dd>{{ project.roleDescription }}</dd>
-		</dl>
+		<div class="d-flex">
+			<div class="info">
+				<label class="info-title">Company</label>
+				<span>{{ project.companyName }}</span>
+			</div>
+			<div class="info ml-auto">
+				<label class="info-title">From</label>
+				<span>{{ project.startDate | date }}</span>
+				-
+				<span>{{ project.endDate | date }}</span>
+			</div>
+		</div>
+		<div class="info">
+			<label class="info-title">Description</label>
+			<span>{{ project.projectDetails }}</span>
+		</div>
+		<div class="d-flex">
+			<div class="info">
+				<label class="info-title">Role</label>
+				<span>{{ project.role }}</span>
+			</div>
+			<div class="info ml-auto">
+				<label class="info-title"> Technologies</label>
+				<span class="chip" *ngFor="let tech of project.technologyUsed">{{ tech }}</span>
+			</div>
+		</div>
+		<div class="info">
+			<label class="info-title">Job Description</label>
+			<span>{{ project.roleDescription }}</span>
+		</div>
 	</div>
 </div>
-<ng-template #projectForm>
-	<app-project-form [project]="project" (onSave)="save($event)" (onCancel)="cancelEdit()"></app-project-form>
-</ng-template>

@@ -2,9 +2,16 @@
 	padding: 0 0.5rem;
 }
 .card {
-	max-width: 20rem;
+	min-width: 20rem;
+	margin: 0 0.5rem 0.5rem 0;
 	.info {
 		font-size: 0.9rem;
 		margin-bottom: 0.5rem;
+	}
+	.edit {
+		color: #666;
+	}
+	.delete {
+		color: red;
 	}
 }

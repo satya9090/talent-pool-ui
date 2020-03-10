@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormGroup, FormBuilder, FormArray, FormControl, Validators } from '@angular/forms';
-import { User, EducationalDetails } from 'src/app/store/models/user.model';
 import { Store } from '@ngrx/store';
+
+import { User, EducationalDetails } from 'src/app/store/models/user.model';
 import { AppState } from 'src/app/store/AppState';
-import { SaveUserEducationalInfo, SaveUserEducationStart } from 'src/app/store/actions/user.actions';
+import {
+	SaveUserEducationalInfo,
+	SaveUserEducationStart,
+	DeleteUserEducationStart
+} from 'src/app/store/actions/user.actions';
 
 @Component({
 	selector: 'app-educational-information',
@@ -43,8 +47,14 @@ export class EducationalInformationComponent implements OnInit {
 			candidateUniqueId: this.currentUser.candidateUniqueId
 		});
 	}
-	removeEducation(index: number) {
+	deleteEducation(index: number) {
 		this.educations = this.educations.filter((edu, ind) => ind !== index);
+	}
+	removeEducation(index: number) {
+		const selectedEducation = { ...this.educations[index] };
+		this.educations = this.educations.filter((edu, ind) => ind !== index);
+		const modifiedUser = { ...this.currentUser, educationDetails: this.educations };
+		this.store.dispatch(new DeleteUserEducationStart({ education: selectedEducation, modifiedUser: modifiedUser }));
 	}
 	saveEducation(education: EducationalDetails, index: number) {
 		this.educations = this.educations.map((edu, ind) => {

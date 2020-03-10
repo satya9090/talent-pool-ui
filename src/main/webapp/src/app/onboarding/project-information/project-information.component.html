@@ -8,7 +8,12 @@
 </div>
 <form (ngSubmit)="proceed()">
 	<div class="profession" *ngFor="let project of projects; let i = index">
-		<app-project-details [project]="project" (onSave)="save($event, i)"></app-project-details>
+		<app-project-details
+			[project]="project"
+			(onRemoval)="remove(i)"
+			(onDelete)="delete(i)"
+			(onSave)="save($event, i)"
+		></app-project-details>
 	</div>
 	<button type="button" class="btn btn-outline-primary btn-sm" (click)="add()">+</button>
 	<div class="row">

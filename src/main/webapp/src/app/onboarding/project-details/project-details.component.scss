@@ -1,0 +1,26 @@
+.card {
+	min-width: 20rem;
+	margin: 0 0.5rem 0.5rem 0;
+	.info {
+		font-size: 0.9rem;
+		margin-bottom: 0.5rem;
+	}
+	.edit {
+		color: #666;
+	}
+	.delete {
+		color: red;
+	}
+	.card-body {
+		.info {
+			.info-title {
+				font-weight: 600;
+				padding-right: 0.5rem;
+			}
+		}
+	}
+}
+
+.btn-link {
+	padding: 0 0.5rem;
+}

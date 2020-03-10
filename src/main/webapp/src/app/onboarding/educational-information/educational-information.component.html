@@ -7,11 +7,13 @@
 	{{ error }}
 </div>
 <form (ngSubmit)="proceed()">
-	<div class="education" *ngFor="let education of educations; let i = index">
+	<div class="education">
 		<app-education-details
 			[education]="education"
-			(onDelete)="removeEducation(i)"
+			(onRemoval)="removeEducation(i)"
+			(onDelete)="deleteEducation(i)"
 			(onSave)="saveEducation($event, i)"
+			*ngFor="let education of educations; let i = index"
 		></app-education-details>
 	</div>
 	<button type="button" class="btn btn-secondary btn-sm" (click)="addEducation()">+</button>

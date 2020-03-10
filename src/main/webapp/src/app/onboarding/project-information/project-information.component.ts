@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ProjectDetails, User } from 'src/app/store/models/user.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
+
+import { ProjectDetails, User } from 'src/app/store/models/user.model';
 import { AppState } from 'src/app/store/AppState';
-import { SaveUserProjectStart, SaveUserProjectInfo } from 'src/app/store/actions/user.actions';
+import { SaveUserProjectStart, SaveUserProjectInfo, DeleteUserProjectStart } from 'src/app/store/actions/user.actions';
 
 @Component({
 	selector: 'app-project-information',
@@ -52,8 +53,14 @@ export class ProjectInformationComponent implements OnInit {
 			technologyUsed: []
 		});
 	}
-	remove(index: number) {
+	delete(index: number) {
 		this.projects = this.projects.filter((prj, ind) => ind !== index);
+	}
+	remove(index: number) {
+		const selectedProject = { ...this.projects[index] };
+		this.projects = this.projects.filter((prj, ind) => ind !== index);
+		const modifiedUser = { ...this.currentUser, projectDetails: this.projects };
+		this.store.dispatch(new DeleteUserProjectStart({ project: selectedProject, modifiedUser: modifiedUser }));
 	}
 	proceed() {
 		this.store.dispatch(new SaveUserProjectInfo());

@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+
 import { AppState } from 'src/app/store/AppState';
 import { User, ProfessionalDetails } from 'src/app/store/models/user.model';
-import { SaveUserExperienceStart, SaveUserProfessionalInfo } from 'src/app/store/actions/user.actions';
+import {
+	SaveUserExperienceStart,
+	SaveUserProfessionalInfo,
+	DeleteUserExperienceStart
+} from 'src/app/store/actions/user.actions';
 
 @Component({
 	selector: 'app-professional-information',
@@ -39,8 +44,14 @@ export class ProfessionalInformationComponent implements OnInit {
 			description: null
 		});
 	}
-	removeExperience(index: number) {
+	deleteExperience(index: number) {
 		this.experiences = this.experiences.filter((exp, ind) => ind !== index);
+	}
+	removeExperience(index: number) {
+		const selectedExperience = { ...this.experiences[index] };
+		this.experiences = this.experiences.filter((exp, ind) => ind !== index);
+		const modifiedUser = { ...this.currentUser, professionalDetails: this.experiences };
+		this.store.dispatch(new DeleteUserExperienceStart({ experience: selectedExperience, modifiedUser: modifiedUser }));
 	}
 	saveExperience(exp: ProfessionalDetails, index: number) {
 		const experience: ProfessionalDetails = { ...exp, candidateUniqueId: this.currentUser.candidateUniqueId };

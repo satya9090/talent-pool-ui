@@ -7,8 +7,14 @@
 	{{ error }}
 </div>
 <form (ngSubmit)="proceed()">
-	<div class="profession" *ngFor="let exp of experiences; let i = index">
-		<app-professional-details [exp]="exp" (onSave)="saveExperience($event, i)"></app-professional-details>
+	<div class="profession">
+		<app-professional-details
+			[exp]="exp"
+			(onRemoval)="removeExperience(i)"
+			(onDelete)="deleteExperience(i)"
+			(onSave)="saveExperience($event, i)"
+			*ngFor="let exp of experiences; let i = index"
+		></app-professional-details>
 	</div>
 	<button type="button" class="btn btn-outline-primary btn-sm" (click)="addExperience()">+</button>
 	<div class="row">

@@ -22,6 +22,9 @@ import { ProfessionalDetailsComponent } from './professional-details/professiona
 import { ProfessionalDetailsFormComponent } from './professional-details-form/professional-details-form.component';
 import { ProjectDetailsComponent } from './project-details/project-details.component';
 import { ProjectFormComponent } from './project-form/project-form.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AddressComponent } from './address/address.component';
+import { AddressFormComponent } from './address-form/address-form.component';
 
 @NgModule({
 	declarations: [
@@ -39,7 +42,9 @@ import { ProjectFormComponent } from './project-form/project-form.component';
 		ProfessionalDetailsComponent,
 		ProfessionalDetailsFormComponent,
 		ProjectDetailsComponent,
-		ProjectFormComponent
+		ProjectFormComponent,
+		AddressComponent,
+		AddressFormComponent
 	],
 	imports: [
 		CommonModule,
@@ -49,7 +54,8 @@ import { ProjectFormComponent } from './project-form/project-form.component';
 		WebCamModule,
 		OnboardingRoutingModule,
 		CoreModule,
-		FontAwesomeModule
+		FontAwesomeModule,
+		NgbModule
 	]
 })
 export class OnboardingModule {}
