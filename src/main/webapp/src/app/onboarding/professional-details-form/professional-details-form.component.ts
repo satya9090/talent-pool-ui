@@ -2,6 +2,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ProfessionalDetails } from 'src/app/store/models/user.model';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
+import { getNgbDate, convertToDate } from 'src/app/shared/helper';
 
 @Component({
 	selector: 'app-professional-details-form',
@@ -14,13 +16,14 @@ export class ProfessionalDetailsFormComponent implements OnInit {
 	@Output() onSave = new EventEmitter<ProfessionalDetails>();
 	@Output() onCancel = new EventEmitter<void>();
 	professionalForm: FormGroup;
+	faCalendarAlt = faCalendarAlt;
 	constructor(private formBuilder: FormBuilder, public activeModal: NgbActiveModal) {}
 
 	ngOnInit(): void {
 		this.professionalForm = this.formBuilder.group({
 			jobTitle: new FormControl(this.exp.jobTitle, [Validators.required]),
-			startDate: new FormControl(new Date(this.exp.startDate).toISOString().substring(0, 10), [Validators.required]),
-			endDate: new FormControl(new Date(this.exp.endDate).toISOString().substring(0, 10), [Validators.required]),
+			startDate: new FormControl(getNgbDate(this.exp.startDate), [Validators.required]),
+			endDate: new FormControl(getNgbDate(this.exp.endDate)),
 			description: new FormControl(this.exp.description, [Validators.required]),
 			company: new FormControl(this.exp.company, [Validators.required])
 		});
@@ -36,13 +39,13 @@ export class ProfessionalDetailsFormComponent implements OnInit {
 		const experience: ProfessionalDetails = {
 			...this.exp,
 			jobTitle: this.f.jobTitle.value,
-			startDate: this.f.startDate.value,
-			endDate: this.f.endDate.value,
+			startDate: convertToDate(this.f.startDate.value),
+			endDate: convertToDate(this.f.endDate.value),
 			company: this.f.company.value,
 			description: this.f.description.value
 		};
-		this.onSave.emit(experience);
 		this.activeModal.dismiss('data saved');
+		this.onSave.emit(experience);
 	}
 	cancel() {
 		this.activeModal.dismiss('Cross click');

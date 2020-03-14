@@ -20,22 +20,18 @@ export class UserService {
 		return this.httpClient.post('/TalentPool/api/v1/saveCandidateEducationDetails', education);
 	}
 	deleteEducation(education: EducationalDetails) {
-		return this.httpClient.request('delete', '/TalentPool/api/v1/DeleteEducationDetails', {
-			body: education
-		});
+		return this.httpClient.delete('/TalentPool/api/v1/DeleteEducationDetails/' + education.educationId);
 	}
 	saveProfessionalInfo(experience: ProfessionalDetails) {
 		return this.httpClient.post('/TalentPool/api/v1/saveProfessionalDetails', experience);
 	}
 	deleteProfessionalInfo(experience: ProfessionalDetails) {
-		return this.httpClient.request('delete', '/TalentPool/api/v1/DeleteProfessionalDetails', {
-			body: experience
-		});
+		return this.httpClient.delete('/TalentPool/api/v1/DeleteProfessionalDetails/' + experience.professionalDetailsId);
 	}
 	saveProject(project: ProjectDetails) {
 		return this.httpClient.post('/TalentPool/api/v1/saveCandidateProjectDetails', project);
 	}
 	deleteProject(project: ProjectDetails) {
-		return this.httpClient.request('delete', '/TalentPool/api/v1/deleteCandidateProjectDetails', { body: project });
+		return this.httpClient.delete('/TalentPool/api/v1/DeleteProjectDetails/' + project.projectId);
 	}
 }

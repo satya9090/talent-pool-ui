@@ -44,8 +44,8 @@ export class AddressFormComponent implements OnInit {
 			city: this.addressForm.get('city').value,
 			type: this.addressForm.get('type').value
 		};
-		this.onSave.emit(updatedAddress);
 		this.activeModal.dismiss('data saved');
+		this.onSave.emit(updatedAddress);
 	}
 	cancel() {
 		this.activeModal.dismiss('Cross click');

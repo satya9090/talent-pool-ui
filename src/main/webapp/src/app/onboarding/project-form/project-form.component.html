@@ -67,31 +67,44 @@
 		</div>
 		<div class="form-group col-md-4 col-12">
 			<label for="startDate">Start Date</label>
-			<input
-				type="date"
-				class="form-control"
-				id="startDate"
-				formControlName="startDate"
-				[ngClass]="{ 'is-invalid': submitted && f.startDate.errors }"
-			/>
-			<div *ngIf="submitted && f.startDate.errors" class="invalid-feedback">
-				<div *ngIf="f.startDate.errors.required">
-					Project start date is required
+			<div class="input-group">
+				<input
+					class="form-control"
+					placeholder="yyyy-mm-dd"
+					name="startDate"
+					formControlName="startDate"
+					ngbDatepicker
+					#startDate="ngbDatepicker"
+					[ngClass]="{ 'is-invalid': submitted && f.startDate.errors }"
+				/>
+				<div class="input-group-append">
+					<button class="btn btn-outline-secondary" (click)="startDate.toggle()" type="button">
+						<fa-icon [icon]="faCalendarAlt"></fa-icon>
+					</button>
+				</div>
+				<div *ngIf="submitted && f.startDate.errors" class="invalid-feedback">
+					<div *ngIf="f.startDate.errors.required">
+						Starting Date is required
+					</div>
 				</div>
 			</div>
 		</div>
 		<div class="form-group col-md-4 col-12">
 			<label for="endDate">End Date</label>
-			<input
-				type="date"
-				class="form-control"
-				id="endDate"
-				formControlName="endDate"
-				[ngClass]="{ 'is-invalid': submitted && f.endDate.errors }"
-			/>
-			<div *ngIf="submitted && f.endDate.errors" class="invalid-feedback">
-				<div *ngIf="f.endDate.errors.required">
-					Project name is required
+			<div class="input-group">
+				<input
+					class="form-control"
+					placeholder="yyyy-mm-dd"
+					name="endDate"
+					formControlName="endDate"
+					ngbDatepicker
+					#endDate="ngbDatepicker"
+					[ngClass]="{ 'is-invalid': submitted && f.endDate.errors }"
+				/>
+				<div class="input-group-append">
+					<button class="btn btn-outline-secondary" (click)="endDate.toggle()" type="button">
+						<fa-icon [icon]="faCalendarAlt"></fa-icon>
+					</button>
 				</div>
 			</div>
 		</div>
