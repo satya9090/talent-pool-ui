@@ -27,7 +27,7 @@ export class ProfessionalInformationComponent implements OnInit {
 			this.loading = userState.loading;
 			this.error = userState.errorMessage;
 			this.currentUser = userState.currentUser;
-			this.experiences = userState.currentUser.professionalDetails;
+			this.experiences = [...userState.currentUser.professionalDetails];
 			if (userState.professionalDetailsSaved) {
 				this.router.navigate(['../project-info'], {
 					relativeTo: this.activatedRoute

@@ -24,7 +24,7 @@ export class ProjectInformationComponent implements OnInit {
 			this.loading = userState.loading;
 			this.error = userState.errorMessage;
 			this.currentUser = userState.currentUser;
-			this.projects = userState.currentUser.projectDetails;
+			this.projects = [...userState.currentUser.projectDetails];
 			if (userState.projectDetailsSaved) {
 				this.router.navigate(['../skills'], {
 					relativeTo: this.activatedRoute

@@ -28,7 +28,7 @@ export class EducationalInformationComponent implements OnInit {
 			this.currentUser = userState.currentUser;
 			this.loading = userState.loading;
 			this.error = userState.errorMessage;
-			this.educations = userState.currentUser.educationDetails;
+			this.educations = [...userState.currentUser.educationDetails];
 			if (userState.educationDetailsSaved) {
 				this.router.navigate(['../professional-info'], {
 					relativeTo: this.activatedRoute

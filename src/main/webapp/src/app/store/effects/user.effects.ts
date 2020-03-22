@@ -84,7 +84,17 @@ export class UserEffects {
 		ofType(USER_SAVE_EDUCATION_START),
 		switchMap((data: SaveUserEducationStart) => {
 			return this.userService.saveEducation(data.payload.education).pipe(
-				map(response => new SaveUserEducationSuccess(data.payload.modifiedUser)),
+				map(response => {
+					const user = { ...data.payload.modifiedUser };
+					user.educationDetails = data.payload.modifiedUser.educationDetails.map(edu => {
+						if (edu.educationId) {
+							return edu;
+						} else {
+							return response;
+						}
+					});
+					return new SaveUserEducationSuccess(user);
+				}),
 				catchError((error: HttpErrorResponse) => {
 					return of(new SaveUserEducationFailed(error.message));
 				})
@@ -110,7 +120,17 @@ export class UserEffects {
 		ofType(USER_SAVE_EXPERIENCE_START),
 		switchMap((data: SaveUserExperienceStart) => {
 			return this.userService.saveProfessionalInfo(data.payload.experience).pipe(
-				map(response => new SaveUserExperienceSuccess(data.payload.modifiedUser)),
+				map(response => {
+					const user = { ...data.payload.modifiedUser };
+					user.professionalDetails = data.payload.modifiedUser.professionalDetails.map(exp => {
+						if (exp.professionalDetailsId) {
+							return exp;
+						} else {
+							return response;
+						}
+					});
+					return new SaveUserExperienceSuccess(data.payload.modifiedUser);
+				}),
 				catchError((error: HttpErrorResponse) => {
 					return of(new SaveUserExperienceFailed(error.message));
 				})
@@ -136,7 +156,18 @@ export class UserEffects {
 		ofType(USER_SAVE_PROJECT_START),
 		switchMap((data: SaveUserProjectStart) => {
 			return this.userService.saveProject(data.payload.project).pipe(
-				map(response => new SaveUserProjectSuccess(data.payload.modifiedUser)),
+				map(response => {
+					const user = { ...data.payload.modifiedUser };
+					user.projectDetails = data.payload.modifiedUser.projectDetails.map(proj => {
+						if (proj.projectDetails) {
+							return proj;
+						} else {
+							return response;
+						}
+					});
+
+					return new SaveUserProjectSuccess(data.payload.modifiedUser);
+				}),
 				catchError((error: HttpErrorResponse) => {
 					return of(new SaveUserProjectFailed(error.message));
 				})

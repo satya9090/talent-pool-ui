@@ -16,20 +16,20 @@ export class UserService {
 	saveAddressInfo(addressList: Address[]) {
 		return this.httpClient.post('/TalentPool/api/v1/saveCandidateAddressDetails', addressList);
 	}
-	saveEducation(education: EducationalDetails) {
-		return this.httpClient.post('/TalentPool/api/v1/saveCandidateEducationDetails', education);
+	saveEducation(education: EducationalDetails): Observable<EducationalDetails> {
+		return this.httpClient.post<EducationalDetails>('/TalentPool/api/v1/saveCandidateEducationDetails', education);
 	}
 	deleteEducation(education: EducationalDetails) {
 		return this.httpClient.delete('/TalentPool/api/v1/DeleteEducationDetails/' + education.educationId);
 	}
-	saveProfessionalInfo(experience: ProfessionalDetails) {
-		return this.httpClient.post('/TalentPool/api/v1/saveProfessionalDetails', experience);
+	saveProfessionalInfo(experience: ProfessionalDetails): Observable<ProfessionalDetails> {
+		return this.httpClient.post<ProfessionalDetails>('/TalentPool/api/v1/saveProfessionalDetails', experience);
 	}
 	deleteProfessionalInfo(experience: ProfessionalDetails) {
 		return this.httpClient.delete('/TalentPool/api/v1/DeleteProfessionalDetails/' + experience.professionalDetailsId);
 	}
-	saveProject(project: ProjectDetails) {
-		return this.httpClient.post('/TalentPool/api/v1/saveCandidateProjectDetails', project);
+	saveProject(project: ProjectDetails): Observable<ProjectDetails> {
+		return this.httpClient.post<ProjectDetails>('/TalentPool/api/v1/saveCandidateProjectDetails', project);
 	}
 	deleteProject(project: ProjectDetails) {
 		return this.httpClient.delete('/TalentPool/api/v1/DeleteProjectDetails/' + project.projectId);

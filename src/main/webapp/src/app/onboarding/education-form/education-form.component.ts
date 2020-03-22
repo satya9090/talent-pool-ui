@@ -22,7 +22,6 @@ export class EducationFormComponent implements OnInit {
 	constructor(private formBuilder: FormBuilder, public activeModal: NgbActiveModal) {}
 
 	ngOnInit(): void {
-		console.log(getNgbDate(this.education.startDate));
 		this.educationForm = this.formBuilder.group({
 			qualification: new FormControl(this.education.qualification, [Validators.required]),
 			institution: new FormControl(this.education.institution, [Validators.required]),
@@ -37,7 +36,6 @@ export class EducationFormComponent implements OnInit {
 	}
 	save() {
 		this.submitted = true;
-		console.log(this.f.startDate, this.f.endDate);
 		if (this.educationForm.invalid) {
 			return false;
 		}
