@@ -1,22 +1,79 @@
 <h5 class="text-center">About Me</h5>
 <hr />
-<div class="row">
-	<div class="col-12">
-		<div class="d-flex justify-content-center">
-			<ack-webcam
-				#webcam
-				[options]="options"
-				(success)="onCamSuccess()"
-				(catch)="onCamError($event)"
-			></ack-webcam>
+<form [formGroup]="aboutMeForm" (ngSubmit)="save()" *ngIf="aboutMeForm">
+	<div class="row">
+		<div class="col-12 d-flex justify-content-center mb-3">
+			<img class="img-thumbnail" [src]="profilePic" *ngIf="profilePic" />
+			<fa-icon [icon]="faUserGraduate" size="6x" *ngIf="!profilePic"></fa-icon>
 		</div>
-		<div class="d-flex justify-content-between">
-			<button class="btn btn-sm btn-primary" (click)="genBase64(webcam)">
-				Capture Image
-			</button>
-			<button class="btn btn-sm btn-primary" (click)="genPostData(webcam)">
-				Capture Video
-			</button>
+		<div class="form-group col-6">
+			<div class="input-group">
+				<input type="text" class="form-control" placeholder="Profile Picture" readonly />
+				<div class="input-group-append">
+					<button
+						class="btn btn-secondary"
+						type="button"
+						ngxFilePicker
+						accept="image/*"
+						(filePick)="onProfilePicSelection($event)"
+					>
+						<fa-icon [icon]="faSearch"></fa-icon>
+					</button>
+				</div>
+			</div>
+		</div>
+		<div class="form-group col-6">
+			<div class="input-group">
+				<input type="text" class="form-control" placeholder="Resume" readonly />
+				<div class="input-group-append">
+					<button
+						class="btn btn-secondary"
+						type="button"
+						[readMode]="resumeReadMode"
+						accept=".doc,.docx,.pdf"
+						ngxFilePicker
+						(filePick)="onResumeSelection($event)"
+					>
+						<fa-icon [icon]="faSearch"></fa-icon>
+					</button>
+				</div>
+			</div>
+		</div>
+		<div class="form-group col-md-6 col-12">
+			<label>Total Experience</label>
+			<input
+				type="number"
+				formControlName="totalExperience"
+				class="form-control"
+				[ngClass]="{ 'is-invalid': submitted && f.totalExperience.errors }"
+			/>
+			<div *ngIf="submitted && f.totalExperience.errors" class="invalid-feedback">
+				<div *ngIf="f.totalExperience.errors.pattern">
+					Invalid Experience
+				</div>
+			</div>
+		</div>
+		<div class="form-group col-md-6 col-12">
+			<label>Current Salary</label>
+			<input
+				type="number"
+				formControlName="currentSalary"
+				class="form-control"
+				[ngClass]="{ 'is-invalid': submitted && f.currentSalary.errors }"
+			/>
+			<div *ngIf="submitted && f.currentSalary.errors" class="invalid-feedback">
+				<div *ngIf="f.currentSalary.errors.pattern">
+					Invalid Salary
+				</div>
+			</div>
 		</div>
 	</div>
-</div>
+	<div class="row">
+		<div class="form-group col-12 d-flex justify-content-between">
+			<a class="btn btn-secondary" [routerLink]="['../skills']">
+				Back
+			</a>
+			<input type="submit" value="Next" class="btn btn-success" />
+		</div>
+	</div>
+</form>

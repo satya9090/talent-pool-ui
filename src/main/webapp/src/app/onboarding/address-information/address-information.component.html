@@ -6,7 +6,7 @@
 <div class="alert alert-danger" *ngIf="error">
 	{{ error }}
 </div>
-<div class="row">
+<div class="row  onboarding-form-body">
 	<div class="col-12">
 		<app-address
 			title="Permanent Address"
@@ -15,9 +15,6 @@
 			(saveAddress)="savePermanentAddress($event)"
 		></app-address>
 	</div>
-</div>
-<br />
-<div class="row">
 	<div class="col-12">
 		<app-address
 			title="Present Address"
@@ -27,7 +24,6 @@
 		></app-address>
 	</div>
 </div>
-<br />
 <div class="row">
 	<div class="col-12 d-flex justify-content-between">
 		<a class="btn btn-secondary" [routerLink]="['../personal-info']">

@@ -42,7 +42,7 @@ export class PersonalInformationComponent implements OnInit {
 					alternateEmail: new FormControl(this.currentUser.alternateEmailId, [Validators.email]),
 					phoneNumber: new FormControl(this.currentUser.contactNumber, Validators.required),
 					gender: new FormControl(this.currentUser.gender, Validators.required),
-					experience: new FormControl(this.currentUser.experience, [
+					totalExperience: new FormControl(this.currentUser.totalExperience, [
 						Validators.required,
 						Validators.pattern(`^\\d+(\\.\\d{1,2})?$`)
 					])
@@ -67,7 +67,7 @@ export class PersonalInformationComponent implements OnInit {
 				alternateEmailId: this.f.alternateEmail.value,
 				contactNumber: this.f.phoneNumber.value,
 				gender: this.f.gender.value,
-				experience: this.f.experience.value
+				totalExperience: this.f.experience.value
 			})
 		);
 	}

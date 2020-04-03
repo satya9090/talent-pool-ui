@@ -69,7 +69,8 @@ export interface User {
 	gender: 'Male' | 'Female' | 'Other';
 	skills: Skill[];
 	currentLocation: null;
-	experience?: number;
+	totalExperience?: number;
+	currentSalary?: number;
 	role: 'candidate' | 'admin' | 'employer';
 	isVerify: 'Y' | 'N';
 	isActive: 'Y' | 'N';

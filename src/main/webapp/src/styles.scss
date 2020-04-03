@@ -19,3 +19,8 @@ body {
 .invalid-feedback {
 	display: block;
 }
+
+.onboarding-form-body {
+	// height: 23rem;
+	overflow-y: auto;
+}

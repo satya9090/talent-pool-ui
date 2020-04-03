@@ -1,6 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { WebCamComponent } from 'ack-angular-webcam';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { ReadFile } from 'ngx-file-helpers';
+import { faSearch, faUserGraduate } from '@fortawesome/free-solid-svg-icons';
+
+import { AppState } from 'src/app/store/AppState';
+import { User } from 'src/app/store/models/user.model';
 
 @Component({
 	selector: 'app-about-me',
@@ -8,34 +13,40 @@ import { HttpClient } from '@angular/common/http';
 	styleUrls: ['./about-me.component.scss']
 })
 export class AboutMeComponent implements OnInit {
-	base64;
-	options = {
-		video: true,
-		audio: true
-	};
-	constructor(private http: HttpClient) {}
-	ngOnInit() {}
-	genBase64(webcam: WebCamComponent) {
-		webcam
-			.getBase64()
-			.then(base => {
-				this.base64 = base;
-			})
-			.catch(e => console.error(e));
+	profilePic = '';
+	faSearch = faSearch;
+	resumeReadMode = 'arrayBuffer';
+	aboutMeForm: FormGroup;
+	currentUser: User = null;
+	submitted = false;
+	faUserGraduate = faUserGraduate;
+	constructor(private store: Store<AppState>, private formBuilder: FormBuilder) {}
+	ngOnInit() {
+		this.store.select('userState').subscribe(userState => {
+			this.currentUser = userState.currentUser;
+			this.aboutMeForm = this.formBuilder.group({
+				totalExperience: new FormControl(this.currentUser.totalExperience, [
+					Validators.pattern(`^\\d+(\\.\\d{1,2})?$`)
+				]),
+				currentSalary: new FormControl(this.currentUser.currentSalary, [Validators.pattern(`^\\d+(\\.\\d{1,2})?$`)])
+			});
+		});
+	}
+	get f() {
+		return this.aboutMeForm.controls;
+	}
+	onProfilePicSelection(file: ReadFile) {
+		this.profilePic = file.content;
 	}
 
-	//get HTML5 FormData object and pretend to post to server
-	genPostData(webcam: WebCamComponent) {
-		webcam
-			.captureAsFormData({ fileName: 'file.jpg' })
-			.then(formData => this.postFormData(formData))
-			.catch(e => console.error(e));
-	}
-	postFormData(formData) {
-		return this.http.post('http://www.abcd.com/', formData);
+	onResumeSelection(file: ReadFile) {
+		console.log(file);
 	}
 
-	onCamError(err) {}
-
-	onCamSuccess() {}
+	save() {
+		this.submitted = true;
+		if (this.aboutMeForm.invalid) {
+			return;
+		}
+	}
 }

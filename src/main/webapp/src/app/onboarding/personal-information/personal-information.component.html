@@ -7,7 +7,7 @@
 	{{ error }}
 </div>
 <form [formGroup]="personalDetailsForm" (ngSubmit)="proceed()" *ngIf="personalDetailsForm">
-	<div class="row">
+	<div class="row onboarding-form-body">
 		<div class="form-group col-md-6 col-12">
 			<label>First Name</label>
 			<input
@@ -99,17 +99,19 @@
 				type="number"
 				formControlName="experience"
 				class="form-control"
-				[ngClass]="{ 'is-invalid': submitted && f.experience.errors }"
+				[ngClass]="{ 'is-invalid': submitted && f.totalExperience.errors }"
 			/>
-			<div *ngIf="submitted && f.experience.errors" class="invalid-feedback">
-				<div *ngIf="f.experience.errors.required">
+			<div *ngIf="submitted && f.totalExperience.errors" class="invalid-feedback">
+				<div *ngIf="f.totalExperience.errors.required">
 					Experience is required
 				</div>
-				<div *ngIf="f.experience.errors.pattern">
+				<div *ngIf="f.totalExperience.errors.pattern">
 					Invalid Experience
 				</div>
 			</div>
 		</div>
+	</div>
+	<div class="row">
 		<div class="form-group col-12 d-flex justify-content-end">
 			<input type="submit" value="Next" class="btn btn-success" />
 		</div>
