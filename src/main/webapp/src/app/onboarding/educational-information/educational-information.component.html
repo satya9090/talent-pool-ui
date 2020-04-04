@@ -1,5 +1,7 @@
-<h5 class="text-center">Educational Information</h5>
-<hr />
+<div class="onboarding-header">
+	<h5 class="text-center">Educational Information</h5>
+	<button type="button" class="btn btn-outline-primary btn-sm add-btn" (click)="addEducation()">Add Education</button>
+</div>
 <div *ngIf="loading">
 	<app-loading></app-loading>
 </div>
@@ -16,8 +18,8 @@
 			*ngFor="let education of educations; let i = index"
 		></app-education-details>
 	</div>
-	<button type="button" class="btn btn-secondary btn-sm" (click)="addEducation()">+</button>
-	<div class="row">
+
+	<div class="row mt-1">
 		<div class="form-group col-12 d-flex justify-content-between">
 			<a class="btn btn-secondary" [routerLink]="['../address-info']">
 				Back

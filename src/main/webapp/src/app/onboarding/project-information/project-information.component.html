@@ -1,5 +1,7 @@
-<h5 class="text-center">Project Information</h5>
-<hr />
+<div class="onboarding-header">
+	<h5 class="text-center">Project Information</h5>
+	<button type="button" class="btn btn-outline-primary btn-sm add-btn" (click)="add()">Add Project</button>
+</div>
 <div *ngIf="loading">
 	<app-loading></app-loading>
 </div>
@@ -15,9 +17,8 @@
 			(onSave)="save($event, i)"
 		></app-project-details>
 	</div>
-	<button type="button" class="btn btn-outline-primary btn-sm" (click)="add()">+</button>
-	<div class="row">
-		<div class="form-group col-md-6 col-12"></div>
+
+	<div class="row mt-1">
 		<div class="form-group col-12 d-flex justify-content-between">
 			<a class="btn btn-secondary" [routerLink]="['../professional-info']">
 				Back

@@ -7,13 +7,13 @@ import { AppState } from 'src/app/store/AppState';
 import {
 	SaveUserEducationalInfo,
 	SaveUserEducationStart,
-	DeleteUserEducationStart
+	DeleteUserEducationStart,
 } from 'src/app/store/actions/user.actions';
 
 @Component({
 	selector: 'app-educational-information',
 	templateUrl: './educational-information.component.html',
-	styleUrls: ['./educational-information.component.scss']
+	styleUrls: ['../onboarding.scss', './educational-information.component.scss'],
 })
 export class EducationalInformationComponent implements OnInit {
 	educations: EducationalDetails[];
@@ -24,14 +24,14 @@ export class EducationalInformationComponent implements OnInit {
 	constructor(private router: Router, private activatedRoute: ActivatedRoute, private store: Store<AppState>) {}
 
 	ngOnInit() {
-		this.store.select('userState').subscribe(userState => {
+		this.store.select('userState').subscribe((userState) => {
 			this.currentUser = userState.currentUser;
 			this.loading = userState.loading;
 			this.error = userState.errorMessage;
 			this.educations = [...userState.currentUser.educationDetails];
 			if (userState.educationDetailsSaved) {
 				this.router.navigate(['../professional-info'], {
-					relativeTo: this.activatedRoute
+					relativeTo: this.activatedRoute,
 				});
 			}
 		});
@@ -44,7 +44,7 @@ export class EducationalInformationComponent implements OnInit {
 			percentage: null,
 			subject: null,
 			qualification: null,
-			candidateUniqueId: this.currentUser.candidateUniqueId
+			candidateUniqueId: this.currentUser.candidateUniqueId,
 		});
 	}
 	deleteEducation(index: number) {
@@ -67,7 +67,7 @@ export class EducationalInformationComponent implements OnInit {
 		this.store.dispatch(
 			new SaveUserEducationStart({
 				education: education,
-				modifiedUser: { ...this.currentUser, educationDetails: this.educations }
+				modifiedUser: { ...this.currentUser, educationDetails: this.educations },
 			})
 		);
 	}

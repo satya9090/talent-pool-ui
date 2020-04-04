@@ -69,8 +69,8 @@ export interface User {
 	gender: 'Male' | 'Female' | 'Other';
 	skills: Skill[];
 	currentLocation: null;
-	totalExperience?: number;
-	currentSalary?: number;
+	totalYearsOfExperience?: number;
+	annualSalary?: number;
 	role: 'candidate' | 'admin' | 'employer';
 	isVerify: 'Y' | 'N';
 	isActive: 'Y' | 'N';
@@ -79,4 +79,9 @@ export interface User {
 	educationDetails: EducationalDetails[];
 	professionalDetails: ProfessionalDetails[];
 	address: Address[];
+	aboutMe?: string;
+	profilePhoto?: any;
+	resume?: any;
+	resumeDownloadUrl?: string;
+	profilePhotoDownloadUrl?: string;
 }

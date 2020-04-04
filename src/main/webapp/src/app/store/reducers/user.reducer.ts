@@ -23,7 +23,10 @@ import {
 	USER_SAVE_PROJECT_INFO,
 	USER_DELETE_EDUCATION_START,
 	USER_DELETE_EXPERIENCE_START,
-	USER_DELETE_PROJECT_START
+	USER_DELETE_PROJECT_START,
+	USER_SAVE_BASIC_INFO_START,
+	USER_SAVE_BASIC_INFO_FAILED,
+	USER_SAVE_BASIC_INFO_SUCCESS,
 } from '../actions/user.actions';
 import { User } from '../models/user.model';
 
@@ -32,6 +35,7 @@ export interface UserState {
 	errorMessage: string;
 	currentUser: User;
 	personalDetailsSaved: boolean;
+	basicDetailsSaved: boolean;
 	addressDetailsSaved: boolean;
 	educationDetailsSaved: boolean;
 	professionalDetailsSaved: boolean;
@@ -43,10 +47,11 @@ const initialState: UserState = {
 	errorMessage: null,
 	currentUser: null,
 	personalDetailsSaved: false,
+	basicDetailsSaved: false,
 	addressDetailsSaved: false,
 	educationDetailsSaved: false,
 	professionalDetailsSaved: false,
-	projectDetailsSaved: false
+	projectDetailsSaved: false,
 };
 
 export function UserReducer(state = initialState, action: UserActions) {
@@ -59,19 +64,22 @@ export function UserReducer(state = initialState, action: UserActions) {
 				loading: false,
 				currentUser: action.payload,
 				personalDetailsSaved: action.payload.isProfileComplete === 'Y',
+				basicDetailsSaved: action.payload.isProfileComplete === 'Y',
 				addressDetailsSaved: action.payload.isProfileComplete === 'Y',
 				educationDetailsSaved: action.payload.isProfileComplete === 'Y',
 				professionalDetailsSaved: action.payload.isProfileComplete === 'Y',
-				projectDetailsSaved: action.payload.isProfileComplete === 'Y'
+				projectDetailsSaved: action.payload.isProfileComplete === 'Y',
 			};
 		case USER_GET_DETAILS_FAILED:
 		case USER_SAVE_PERSONAL_INFO_FAILED:
+		case USER_SAVE_BASIC_INFO_FAILED:
 		case USER_SAVE_ADDRESS_INFO_FAILED:
 		case USER_SAVE_EDUCATION_FAILED:
 		case USER_SAVE_EXPERIENCE_FAILED:
 		case USER_SAVE_PROJECT_FAILED:
 			return { ...state, loading: false, errorMessage: action.payload };
 		case USER_SAVE_PERSONAL_INFO_START:
+		case USER_SAVE_BASIC_INFO_START:
 		case USER_SAVE_ADDRESS_INFO_START:
 		case USER_SAVE_EDUCATION_START:
 		case USER_SAVE_EXPERIENCE_START:
@@ -82,6 +90,8 @@ export function UserReducer(state = initialState, action: UserActions) {
 			return { ...state, loading: true, errorMessage: null };
 		case USER_SAVE_PERSONAL_INFO_SUCCESS:
 			return { ...state, currentUser: action.payload, loading: false, personalDetailsSaved: true };
+		case USER_SAVE_BASIC_INFO_SUCCESS:
+			return { ...state, currentUser: action.payload, loading: false, basicDetailsSaved: true };
 		case USER_SAVE_ADDRESS_INFO_SUCCESS:
 			return { ...state, currentUser: action.payload, loading: false, addressDetailsSaved: true };
 		case USER_SAVE_EDUCATION_SUCCESS:

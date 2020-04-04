@@ -9,6 +9,10 @@ export const USER_SAVE_PERSONAL_INFO_START = 'USER_SAVE_PERSONAL_INFO_START';
 export const USER_SAVE_PERSONAL_INFO_SUCCESS = 'USER_SAVE_PERSONAL_INFO_SUCCESS';
 export const USER_SAVE_PERSONAL_INFO_FAILED = 'USER_SAVE_PERSONAL_INFO_FAILED';
 
+export const USER_SAVE_BASIC_INFO_START = 'USER_SAVE_BASIC_INFO_START';
+export const USER_SAVE_BASIC_INFO_SUCCESS = 'USER_SAVE_BASIC_INFO_SUCCESS';
+export const USER_SAVE_BASIC_INFO_FAILED = 'USER_SAVE_BASIC_INFO_FAILED';
+
 export const USER_SAVE_ADDRESS_INFO_START = 'USER_SAVE_ADDRESS_INFO_START';
 export const USER_SAVE_ADDRESS_INFO_SUCCESS = 'USER_SAVE_ADDRESS_INFO_SUCCESS';
 export const USER_SAVE_ADDRESS_INFO_FAILED = 'USER_SAVE_ADDRESS_INFO_FAILED';
@@ -57,6 +61,21 @@ export class SaveUserPersonalInfoSuccess implements Action {
 
 export class SaveUserPersonalInfoFailed implements Action {
 	readonly type = USER_SAVE_PERSONAL_INFO_FAILED;
+	constructor(public payload: string) {}
+}
+
+export class SaveUserBasicInfoStart implements Action {
+	readonly type = USER_SAVE_BASIC_INFO_START;
+	constructor(public payload: User) {}
+}
+
+export class SaveUserBasicInfoSuccess implements Action {
+	readonly type = USER_SAVE_BASIC_INFO_SUCCESS;
+	constructor(public payload: User) {}
+}
+
+export class SaveUserBasicInfoFailed implements Action {
+	readonly type = USER_SAVE_BASIC_INFO_FAILED;
 	constructor(public payload: string) {}
 }
 
@@ -154,6 +173,9 @@ export type UserActions =
 	| SaveUserPersonalInfoStart
 	| SaveUserPersonalInfoSuccess
 	| SaveUserPersonalInfoFailed
+	| SaveUserBasicInfoStart
+	| SaveUserBasicInfoSuccess
+	| SaveUserBasicInfoFailed
 	| SaveUserAddressInfoStart
 	| SaveUserAddressInfoSuccess
 	| SaveUserAddressInfoFailed

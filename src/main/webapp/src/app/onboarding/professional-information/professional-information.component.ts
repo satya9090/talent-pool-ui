@@ -7,13 +7,13 @@ import { User, ProfessionalDetails } from 'src/app/store/models/user.model';
 import {
 	SaveUserExperienceStart,
 	SaveUserProfessionalInfo,
-	DeleteUserExperienceStart
+	DeleteUserExperienceStart,
 } from 'src/app/store/actions/user.actions';
 
 @Component({
 	selector: 'app-professional-information',
 	templateUrl: './professional-information.component.html',
-	styleUrls: ['./professional-information.component.scss']
+	styleUrls: ['../onboarding.scss', './professional-information.component.scss'],
 })
 export class ProfessionalInformationComponent implements OnInit {
 	loading = false;
@@ -23,14 +23,14 @@ export class ProfessionalInformationComponent implements OnInit {
 	constructor(private router: Router, private activatedRoute: ActivatedRoute, private store: Store<AppState>) {}
 
 	ngOnInit() {
-		this.store.select('userState').subscribe(userState => {
+		this.store.select('userState').subscribe((userState) => {
 			this.loading = userState.loading;
 			this.error = userState.errorMessage;
 			this.currentUser = userState.currentUser;
 			this.experiences = [...userState.currentUser.professionalDetails];
 			if (userState.professionalDetailsSaved) {
 				this.router.navigate(['../project-info'], {
-					relativeTo: this.activatedRoute
+					relativeTo: this.activatedRoute,
 				});
 			}
 		});
@@ -41,7 +41,7 @@ export class ProfessionalInformationComponent implements OnInit {
 			startDate: null,
 			endDate: null,
 			company: null,
-			description: null
+			description: null,
 		});
 	}
 	deleteExperience(index: number) {
@@ -64,7 +64,7 @@ export class ProfessionalInformationComponent implements OnInit {
 		this.store.dispatch(
 			new SaveUserExperienceStart({
 				experience: experience,
-				modifiedUser: { ...this.currentUser, professionalDetails: expArray }
+				modifiedUser: { ...this.currentUser, professionalDetails: expArray },
 			})
 		);
 	}

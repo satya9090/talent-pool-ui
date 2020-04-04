@@ -9,7 +9,7 @@ import { User } from 'src/app/store/models/user.model';
 @Component({
 	selector: 'app-personal-information',
 	templateUrl: './personal-information.component.html',
-	styleUrls: ['./personal-information.component.scss']
+	styleUrls: ['../onboarding.scss', './personal-information.component.scss'],
 })
 export class PersonalInformationComponent implements OnInit {
 	personalDetailsForm: FormGroup;
@@ -25,13 +25,13 @@ export class PersonalInformationComponent implements OnInit {
 	) {}
 
 	ngOnInit() {
-		this.store.select('userState').subscribe(userState => {
+		this.store.select('userState').subscribe((userState) => {
 			this.currentUser = userState.currentUser;
 			this.loading = userState.loading;
 			this.error = userState.errorMessage;
 			if (userState.personalDetailsSaved) {
 				this.router.navigate(['../address-info'], {
-					relativeTo: this.activatedRoute
+					relativeTo: this.activatedRoute,
 				});
 			}
 			if (this.currentUser) {
@@ -42,10 +42,6 @@ export class PersonalInformationComponent implements OnInit {
 					alternateEmail: new FormControl(this.currentUser.alternateEmailId, [Validators.email]),
 					phoneNumber: new FormControl(this.currentUser.contactNumber, Validators.required),
 					gender: new FormControl(this.currentUser.gender, Validators.required),
-					totalExperience: new FormControl(this.currentUser.totalExperience, [
-						Validators.required,
-						Validators.pattern(`^\\d+(\\.\\d{1,2})?$`)
-					])
 				});
 			}
 		});
@@ -67,7 +63,6 @@ export class PersonalInformationComponent implements OnInit {
 				alternateEmailId: this.f.alternateEmail.value,
 				contactNumber: this.f.phoneNumber.value,
 				gender: this.f.gender.value,
-				totalExperience: this.f.experience.value
 			})
 		);
 	}

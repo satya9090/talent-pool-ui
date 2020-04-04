@@ -1,13 +1,14 @@
-<h5 class="text-center">Address Information</h5>
-<hr />
+<div class="onboarding-header">
+	<h5 class="text-center">Address Information</h5>
+</div>
 <div *ngIf="loading">
 	<app-loading></app-loading>
 </div>
 <div class="alert alert-danger" *ngIf="error">
 	{{ error }}
 </div>
-<div class="row  onboarding-form-body">
-	<div class="col-12">
+<div class="row onboarding-form-body">
+	<div class="col-12 mb-3">
 		<app-address
 			title="Permanent Address"
 			[address]="permanentAddress"
@@ -15,7 +16,7 @@
 			(saveAddress)="savePermanentAddress($event)"
 		></app-address>
 	</div>
-	<div class="col-12">
+	<div class="col-12 mb-3">
 		<app-address
 			title="Present Address"
 			[address]="presentAddress"

@@ -8,7 +8,7 @@ import { SaveUserAddressInfoStart } from 'src/app/store/actions/user.actions';
 @Component({
 	selector: 'app-address-information',
 	templateUrl: './address-information.component.html',
-	styleUrls: ['./address-information.component.scss']
+	styleUrls: ['../onboarding.scss', './address-information.component.scss'],
 })
 export class AddressInformationComponent implements OnInit {
 	permanentAddress: Address;
@@ -25,25 +25,25 @@ export class AddressInformationComponent implements OnInit {
 			city: null,
 			pincode: null,
 			address: '',
-			type: 'permanent'
+			type: 'permanent',
 		};
-		this.store.select('userState').subscribe(userState => {
+		this.store.select('userState').subscribe((userState) => {
 			this.currentUser = userState.currentUser;
 			this.loading = userState.loading;
 			this.error = userState.errorMessage;
 			if (userState.addressDetailsSaved) {
 				this.router.navigate(['../educational-info'], {
-					relativeTo: this.activatedRoute
+					relativeTo: this.activatedRoute,
 				});
 			}
 			if (this.currentUser) {
-				this.permanentAddress = this.currentUser.address.find(addr => addr.type === 'permanent') || {
+				this.permanentAddress = this.currentUser.address.find((addr) => addr.type === 'permanent') || {
 					...addressTemplate,
-					type: 'permanent'
+					type: 'permanent',
 				};
-				this.presentAddress = this.currentUser.address.find(addr => addr.type === 'present') || {
+				this.presentAddress = this.currentUser.address.find((addr) => addr.type === 'present') || {
 					...addressTemplate,
-					type: 'present'
+					type: 'present',
 				};
 			}
 		});
@@ -57,13 +57,13 @@ export class AddressInformationComponent implements OnInit {
 	proceed() {
 		const permanentAddress: Address = {
 			...this.permanentAddress,
-			candidateUniqueId: this.currentUser.candidateUniqueId
+			candidateUniqueId: this.currentUser.candidateUniqueId,
 		};
 		const presentAddress: Address = { ...this.presentAddress, candidateUniqueId: this.currentUser.candidateUniqueId };
 		this.store.dispatch(
 			new SaveUserAddressInfoStart({
 				addressList: [permanentAddress, presentAddress],
-				modifiedUser: this.currentUser
+				modifiedUser: this.currentUser,
 			})
 		);
 	}

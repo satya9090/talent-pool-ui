@@ -1,18 +1,21 @@
-<h5 class="text-center">About Me</h5>
-<hr />
+<div class="onboarding-header">
+	<h5 class="text-center">About Me</h5>
+</div>
 <form [formGroup]="aboutMeForm" (ngSubmit)="save()" *ngIf="aboutMeForm">
 	<div class="row">
-		<div class="col-12 d-flex justify-content-center mb-3">
-			<img class="img-thumbnail" [src]="profilePic" *ngIf="profilePic" />
-			<fa-icon [icon]="faUserGraduate" size="6x" *ngIf="!profilePic"></fa-icon>
+		<div class="col-12 d-flex justify-content-center">
+			<img class="img-thumbnail" [src]="profilePicContent" *ngIf="profilePicContent" />
+			<fa-icon [icon]="faUserGraduate" size="6x" *ngIf="!profilePicContent"></fa-icon>
 		</div>
 		<div class="form-group col-6">
+			<label>Profile Picture</label>
 			<div class="input-group">
-				<input type="text" class="form-control" placeholder="Profile Picture" readonly />
+				<input type="text" class="form-control" formControlName="profilePicFile" readonly />
 				<div class="input-group-append">
 					<button
 						class="btn btn-secondary"
 						type="button"
+						[readMode]="fileReadMode"
 						ngxFilePicker
 						accept="image/*"
 						(filePick)="onProfilePicSelection($event)"
@@ -23,13 +26,14 @@
 			</div>
 		</div>
 		<div class="form-group col-6">
+			<label>Resume</label>
 			<div class="input-group">
-				<input type="text" class="form-control" placeholder="Resume" readonly />
+				<input type="text" class="form-control" formControlName="resumeFile" readonly />
 				<div class="input-group-append">
 					<button
 						class="btn btn-secondary"
 						type="button"
-						[readMode]="resumeReadMode"
+						[readMode]="fileReadMode"
 						accept=".doc,.docx,.pdf"
 						ngxFilePicker
 						(filePick)="onResumeSelection($event)"
@@ -43,29 +47,33 @@
 			<label>Total Experience</label>
 			<input
 				type="number"
-				formControlName="totalExperience"
+				formControlName="totalYearsOfExperience"
 				class="form-control"
-				[ngClass]="{ 'is-invalid': submitted && f.totalExperience.errors }"
+				[ngClass]="{ 'is-invalid': submitted && f.totalYearsOfExperience.errors }"
 			/>
-			<div *ngIf="submitted && f.totalExperience.errors" class="invalid-feedback">
-				<div *ngIf="f.totalExperience.errors.pattern">
+			<div *ngIf="submitted && f.totalYearsOfExperience.errors" class="invalid-feedback">
+				<div *ngIf="f.totalYearsOfExperience.errors.pattern">
 					Invalid Experience
 				</div>
 			</div>
 		</div>
 		<div class="form-group col-md-6 col-12">
-			<label>Current Salary</label>
+			<label>Annual Salary</label>
 			<input
 				type="number"
-				formControlName="currentSalary"
+				formControlName="annualSalary"
 				class="form-control"
-				[ngClass]="{ 'is-invalid': submitted && f.currentSalary.errors }"
+				[ngClass]="{ 'is-invalid': submitted && f.annualSalary.errors }"
 			/>
-			<div *ngIf="submitted && f.currentSalary.errors" class="invalid-feedback">
-				<div *ngIf="f.currentSalary.errors.pattern">
+			<div *ngIf="submitted && f.annualSalary.errors" class="invalid-feedback">
+				<div *ngIf="f.annualSalary.errors.pattern">
 					Invalid Salary
 				</div>
 			</div>
+		</div>
+		<div class="form-group col-12">
+			<label>Description</label>
+			<textarea rows="3" formControlName="aboutMe" class="form-control"></textarea>
 		</div>
 	</div>
 	<div class="row">

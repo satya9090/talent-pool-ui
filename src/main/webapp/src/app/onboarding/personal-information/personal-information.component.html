@@ -1,5 +1,6 @@
-<h5 class="text-center">Personal Information</h5>
-<hr />
+<div class="onboarding-header">
+	<h5 class="text-center">Personal Information</h5>
+</div>
 <div *ngIf="loading">
 	<app-loading></app-loading>
 </div>
@@ -90,23 +91,6 @@
 			<div *ngIf="submitted && f.gender.errors" class="invalid-feedback">
 				<div *ngIf="f.gender.errors.required">
 					Gender is required
-				</div>
-			</div>
-		</div>
-		<div class="form-group col-md-6 col-12">
-			<label for="experience">Total Experience</label>
-			<input
-				type="number"
-				formControlName="experience"
-				class="form-control"
-				[ngClass]="{ 'is-invalid': submitted && f.totalExperience.errors }"
-			/>
-			<div *ngIf="submitted && f.totalExperience.errors" class="invalid-feedback">
-				<div *ngIf="f.totalExperience.errors.required">
-					Experience is required
-				</div>
-				<div *ngIf="f.totalExperience.errors.pattern">
-					Invalid Experience
 				</div>
 			</div>
 		</div>

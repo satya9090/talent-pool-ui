@@ -1,24 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import {
-	FormArray,
-	FormGroup,
-	FormControl,
-	Validators,
-	FormBuilder
-} from '@angular/forms';
+import { FormArray, FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
 	selector: 'app-skills',
 	templateUrl: './skills.component.html',
-	styleUrls: ['./skills.component.scss']
+	styleUrls: ['../onboarding.scss', './skills.component.scss'],
 })
 export class SkillsComponent implements OnInit {
 	skillForm: FormGroup;
-	constructor(private formbuilder: FormBuilder) {}
+	constructor(private formBuilder: FormBuilder) {}
 
 	ngOnInit() {
-		this.skillForm = this.formbuilder.group({
-			skills: new FormArray([])
+		this.skillForm = this.formBuilder.group({
+			skills: new FormArray([]),
 		});
 		this.addSkill();
 	}
@@ -30,14 +24,11 @@ export class SkillsComponent implements OnInit {
 			new FormGroup({
 				major: new FormControl('', [Validators.required]),
 				minor: new FormControl('', [Validators.required]),
-				experienceInYears: new FormControl(0, [
-					Validators.required,
-					Validators.pattern(/^[1-9]+[0-9]*$/)
-				]),
+				experienceInYears: new FormControl(0, [Validators.required, Validators.pattern(/^[1-9]+[0-9]*$/)]),
 				lastUsedOn: new FormControl(new Date().getFullYear(), [
 					Validators.required,
-					Validators.pattern(/^[1-9]+[0-9]*$/)
-				])
+					Validators.pattern(/^[1-9]+[0-9]*$/),
+				]),
 			})
 		);
 	}

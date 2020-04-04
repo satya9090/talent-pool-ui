@@ -9,7 +9,7 @@ import { SaveUserProjectStart, SaveUserProjectInfo, DeleteUserProjectStart } fro
 @Component({
 	selector: 'app-project-information',
 	templateUrl: './project-information.component.html',
-	styleUrls: ['./project-information.component.scss']
+	styleUrls: ['../onboarding.scss', './project-information.component.scss'],
 })
 export class ProjectInformationComponent implements OnInit {
 	submitted = false;
@@ -20,14 +20,14 @@ export class ProjectInformationComponent implements OnInit {
 	constructor(private router: Router, private activatedRoute: ActivatedRoute, private store: Store<AppState>) {}
 
 	ngOnInit(): void {
-		this.store.select('userState').subscribe(userState => {
+		this.store.select('userState').subscribe((userState) => {
 			this.loading = userState.loading;
 			this.error = userState.errorMessage;
 			this.currentUser = userState.currentUser;
 			this.projects = [...userState.currentUser.projectDetails];
 			if (userState.projectDetailsSaved) {
 				this.router.navigate(['../skills'], {
-					relativeTo: this.activatedRoute
+					relativeTo: this.activatedRoute,
 				});
 			}
 		});
@@ -50,7 +50,7 @@ export class ProjectInformationComponent implements OnInit {
 			role: null,
 			roleDescription: null,
 			startDate: null,
-			technologyUsed: []
+			technologyUsed: [],
 		});
 	}
 	delete(index: number) {

@@ -13,6 +13,16 @@ export class UserService {
 	savePersonalInfo(userDetails: User): Observable<User> {
 		return this.httpClient.post<User>('/TalentPool/api/v1/saveCandidateProfileDetails', userDetails);
 	}
+	saveBasicInfo(userDetails: User): Observable<User> {
+		const formData = new FormData();
+		formData.append('candidateUniqueId', userDetails.candidateUniqueId);
+		formData.append('resume', userDetails.resume);
+		formData.append('profilePhoto', userDetails.profilePhoto);
+		formData.append('aboutMe', userDetails.aboutMe);
+		formData.append('annualSalary', userDetails.annualSalary.toString());
+		formData.append('totalYearsOfExperience', userDetails.totalYearsOfExperience.toString());
+		return this.httpClient.post<User>('/TalentPool/api/v1/saveCandidateBasicDetails', formData);
+	}
 	saveAddressInfo(addressList: Address[]) {
 		return this.httpClient.post('/TalentPool/api/v1/saveCandidateAddressDetails', addressList);
 	}
