@@ -8,7 +8,7 @@ import { AuthLoginStart } from '../../store/actions/auth.actions';
 @Component({
 	selector: 'app-job-seeker-login',
 	templateUrl: './job-seeker-login.component.html',
-	styleUrls: ['./job-seeker-login.component.scss']
+	styleUrls: ['./job-seeker-login.component.scss'],
 })
 export class JobSeekerLoginComponent implements OnInit {
 	loginForm: FormGroup;
@@ -25,9 +25,9 @@ export class JobSeekerLoginComponent implements OnInit {
 	ngOnInit() {
 		this.loginForm = this.formBuilder.group({
 			userName: new FormControl('', [Validators.required]),
-			password: new FormControl('', [Validators.required, Validators.minLength(6)])
+			password: new FormControl('', [Validators.required, Validators.minLength(6)]),
 		});
-		this.store.select('authState').subscribe(authState => {
+		this.store.select('authState').subscribe((authState) => {
 			this.error = authState.errorMessage;
 			this.loading = authState.loading;
 			if (authState.user) {
@@ -47,7 +47,7 @@ export class JobSeekerLoginComponent implements OnInit {
 		this.store.dispatch(
 			new AuthLoginStart({
 				userName: this.loginForm.get('userName').value,
-				password: this.loginForm.get('password').value
+				password: this.loginForm.get('password').value,
 			})
 		);
 	}

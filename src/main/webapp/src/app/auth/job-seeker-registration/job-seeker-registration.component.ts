@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { MustMatch } from '../../shared/CustomValidatos';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+
+import { MustMatch } from '../../shared/CustomValidators';
 import { AppState } from 'src/app/store/AppState';
 import { AuthRegistrationStart } from 'src/app/store/actions/auth.actions';
-import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-job-seeker-registration',
 	templateUrl: './job-seeker-registration.component.html',
-	styleUrls: ['./job-seeker-registration.component.scss']
+	styleUrls: ['./job-seeker-registration.component.scss'],
 })
 export class JobSeekerRegistrationComponent implements OnInit {
 	registerForm: FormGroup;
@@ -20,7 +21,7 @@ export class JobSeekerRegistrationComponent implements OnInit {
 	constructor(private formBuilder: FormBuilder, private store: Store<AppState>, private router: Router) {}
 
 	ngOnInit() {
-		this.store.select('authState').subscribe(authState => {
+		this.store.select('authState').subscribe((authState) => {
 			this.error = authState.errorMessage;
 			this.loading = authState.loading;
 			this.registrationSuccess = authState.registrationDone;
@@ -34,10 +35,10 @@ export class JobSeekerRegistrationComponent implements OnInit {
 				email: new FormControl('', [Validators.required, Validators.email]),
 				userName: new FormControl('', [Validators.required, Validators.minLength(6)]),
 				password: new FormControl('', [Validators.required, Validators.minLength(6)]),
-				confirmPassword: new FormControl('', [Validators.required])
+				confirmPassword: new FormControl('', [Validators.required]),
 			},
 			{
-				validator: MustMatch('password', 'confirmPassword')
+				validator: MustMatch('password', 'confirmPassword'),
 			}
 		);
 	}
@@ -61,7 +62,7 @@ export class JobSeekerRegistrationComponent implements OnInit {
 				emailId: this.f.email.value,
 				userName: this.f.userName.value,
 				contactNumber: this.f.phoneNumber.value,
-				password: this.f.password.value
+				password: this.f.password.value,
 			})
 		);
 	}

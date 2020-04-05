@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
-import { MustMatch } from '../../shared/CustomValidatos';
+import { MustMatch } from '../../shared/CustomValidators';
 
 @Component({
-	selector: 'app-employeer-registartion',
-	templateUrl: './employeer-registartion.component.html',
-	styleUrls: ['./employeer-registartion.component.scss']
+	selector: 'app-employer-registration',
+	templateUrl: './employer-registration.component.html',
+	styleUrls: ['./employer-registration.component.scss'],
 })
-export class EmployeerRegistartionComponent implements OnInit {
+export class EmployerRegistrationComponent implements OnInit {
 	registerForm: FormGroup;
 	submitted = false;
 
@@ -21,10 +21,10 @@ export class EmployeerRegistartionComponent implements OnInit {
 				phoneNumber: ['', Validators.required],
 				email: ['', [Validators.required, Validators.email]],
 				password: ['', [Validators.required, Validators.minLength(6)]],
-				confirmPassword: ['', Validators.required]
+				confirmPassword: ['', Validators.required],
 			},
 			{
-				validator: MustMatch('password', 'confirmPassword')
+				validator: MustMatch('password', 'confirmPassword'),
 			}
 		);
 	}

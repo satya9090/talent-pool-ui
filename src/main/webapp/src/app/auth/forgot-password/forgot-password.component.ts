@@ -7,7 +7,7 @@ import { AuthForgotPasswordStart } from 'src/app/store/actions/auth.actions';
 @Component({
 	selector: 'app-forgot-password',
 	templateUrl: './forgot-password.component.html',
-	styleUrls: ['./forgot-password.component.scss']
+	styleUrls: ['./forgot-password.component.scss'],
 })
 export class ForgotPasswordComponent implements OnInit {
 	forgotPasswordForm: FormGroup;
@@ -16,11 +16,11 @@ export class ForgotPasswordComponent implements OnInit {
 	constructor(private formBuilder: FormBuilder, private store: Store<AppState>) {}
 
 	ngOnInit() {
-		this.store.select('authState').subscribe(authState => {
+		this.store.select('authState').subscribe((authState) => {
 			this.loading = authState.loading;
 		});
 		this.forgotPasswordForm = this.formBuilder.group({
-			userName: new FormControl('', [Validators.required])
+			userName: new FormControl('', [Validators.required]),
 		});
 	}
 

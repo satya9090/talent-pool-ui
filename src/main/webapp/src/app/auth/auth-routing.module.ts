@@ -3,32 +3,32 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './auth/auth.component';
 import { JobSeekerLoginComponent } from './job-seeker-login/job-seeker-login.component';
 import { JobSeekerRegistrationComponent } from './job-seeker-registration/job-seeker-registration.component';
-import { EmployeerLoginComponent } from './employeer-login/employeer-login.component';
-import { EmployeerRegistartionComponent } from './employeer-registartion/employeer-registartion.component';
+import { EmployerLoginComponent } from './employer-login/employer-login.component';
+import { EmployerRegistrationComponent } from './employer-registration/employer-registration.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 const authRoutes: Routes = [
 	{
 		path: '',
-		component: AuthComponent
+		component: AuthComponent,
 	},
 	{ path: 'job-seeker-login', component: JobSeekerLoginComponent },
 	{
 		path: 'job-seeker-registration',
-		component: JobSeekerRegistrationComponent
+		component: JobSeekerRegistrationComponent,
 	},
-	{ path: 'employeer-login', component: EmployeerLoginComponent },
+	{ path: 'employer-login', component: EmployerLoginComponent },
 	{
-		path: 'employeer-registration',
-		component: EmployeerRegistartionComponent
+		path: 'employer-registration',
+		component: EmployerRegistrationComponent,
 	},
 	{ path: 'reset-password', component: ResetPasswordComponent },
-	{ path: 'forgot-password', component: ForgotPasswordComponent }
+	{ path: 'forgot-password', component: ForgotPasswordComponent },
 ];
 
 @NgModule({
 	imports: [RouterModule.forChild(authRoutes)],
-	exports: [RouterModule]
+	exports: [RouterModule],
 })
 export class AuthRoutingModule {}

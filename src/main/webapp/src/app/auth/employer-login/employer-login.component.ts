@@ -1,40 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import {
-	FormGroup,
-	FormBuilder,
-	FormControl,
-	Validators
-} from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { AppState } from 'src/app/store/AppState';
 import { AuthLoginStart } from 'src/app/store/actions/auth.actions';
 
 @Component({
-	selector: 'app-employeer-login',
-	templateUrl: './employeer-login.component.html',
-	styleUrls: ['./employeer-login.component.scss']
+	selector: 'app-employer-login',
+	templateUrl: './employer-login.component.html',
+	styleUrls: ['./employer-login.component.scss'],
 })
-export class EmployeerLoginComponent implements OnInit {
+export class EmployerLoginComponent implements OnInit {
 	loginForm: FormGroup;
 	submitted = false;
 	error: string = null;
 	loading = false;
-	constructor(
-		private formBuilder: FormBuilder,
-		private router: Router,
-		private store: Store<AppState>
-	) {}
+	constructor(private formBuilder: FormBuilder, private router: Router, private store: Store<AppState>) {}
 
 	ngOnInit() {
 		this.loginForm = this.formBuilder.group({
 			userName: new FormControl('', [Validators.required]),
-			password: new FormControl('', [
-				Validators.required,
-				Validators.minLength(6)
-			])
+			password: new FormControl('', [Validators.required, Validators.minLength(6)]),
 		});
-		this.store.select('authState').subscribe(authState => {
+		this.store.select('authState').subscribe((authState) => {
 			this.error = authState.errorMessage;
 			this.loading = authState.loading;
 			if (authState.user) {
@@ -53,7 +41,7 @@ export class EmployeerLoginComponent implements OnInit {
 		this.store.dispatch(
 			new AuthLoginStart({
 				userName: this.loginForm.get('userName').value,
-				password: this.loginForm.get('password').value
+				password: this.loginForm.get('password').value,
 			})
 		);
 	}

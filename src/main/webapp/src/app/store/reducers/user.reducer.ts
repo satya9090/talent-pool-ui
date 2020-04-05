@@ -40,6 +40,8 @@ export interface UserState {
 	educationDetailsSaved: boolean;
 	professionalDetailsSaved: boolean;
 	projectDetailsSaved: boolean;
+	skillDetailsSaved: boolean;
+	paymentDetailsSaved: boolean;
 }
 
 const initialState: UserState = {
@@ -52,6 +54,8 @@ const initialState: UserState = {
 	educationDetailsSaved: false,
 	professionalDetailsSaved: false,
 	projectDetailsSaved: false,
+	skillDetailsSaved: false,
+	paymentDetailsSaved: false,
 };
 
 export function UserReducer(state = initialState, action: UserActions) {
@@ -69,6 +73,8 @@ export function UserReducer(state = initialState, action: UserActions) {
 				educationDetailsSaved: action.payload.isProfileComplete === 'Y',
 				professionalDetailsSaved: action.payload.isProfileComplete === 'Y',
 				projectDetailsSaved: action.payload.isProfileComplete === 'Y',
+				skillDetailsSaved: action.payload.isProfileComplete === 'Y',
+				paymentDetailsSaved: action.payload.isProfileComplete === 'Y',
 			};
 		case USER_GET_DETAILS_FAILED:
 		case USER_SAVE_PERSONAL_INFO_FAILED:

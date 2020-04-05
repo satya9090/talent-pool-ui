@@ -1,61 +1,65 @@
-<div class="row justify-content-center align-items-center h-100 profile-container">
-	<div class="col-md-9 col-12">
-		<div class="card">
-			<div class="card-body h-100">
-				<div class="row h-100">
-					<div class="col-3 h-100">
-						<div class="list-group">
-							<a
-								class="list-group-item list-group-item-action"
-								[routerLink]="['personal-info']"
-								routerLinkActive="active"
-							>
-								Personal Information
-							</a>
-							<a
-								class="list-group-item list-group-item-action"
-								[routerLink]="['address-info']"
-								routerLinkActive="active"
-							>
-								Address Information
-							</a>
-							<a
-								class="list-group-item list-group-item-action"
-								[routerLink]="['educational-info']"
-								routerLinkActive="active"
-							>
-								Educational Information
-							</a>
-							<a
-								class="list-group-item list-group-item-action"
-								[routerLink]="['professional-info']"
-								routerLinkActive="active"
-							>
-								Professional Information
-							</a>
-							<a
-								class="list-group-item list-group-item-action"
-								[routerLink]="['project-info']"
-								routerLinkActive="active"
-							>
-								Project Information
-							</a>
-							<a class="list-group-item list-group-item-action" [routerLink]="['skills']" routerLinkActive="active">
-								Skills
-							</a>
-							<a class="list-group-item list-group-item-action" [routerLink]="['about-me']" routerLinkActive="active">
-								About Me
-							</a>
-							<a class="list-group-item list-group-item-action" [routerLink]="['payment']" routerLinkActive="active">
-								Payment
-							</a>
-						</div>
-					</div>
-					<div class="col-9 main-content border-left">
-						<router-outlet></router-outlet>
-					</div>
+<div class="row body-container">
+	<div class="col-3 h-100">
+		<div class="list-group">
+			<a class="list-group-item list-group-item-action" [routerLink]="['personal-info']" routerLinkActive="active">
+				<div class="d-flex">
+					<fa-icon [icon]="faUser" class="mr-3"></fa-icon>
+					Personal Information
+					<fa-icon [icon]="faCheck" class="ml-auto text-success" *ngIf="personalDetailsSaved"></fa-icon>
 				</div>
-			</div>
+			</a>
+			<a class="list-group-item list-group-item-action" [routerLink]="['address-info']" routerLinkActive="active">
+				<div class="d-flex">
+					<fa-icon [icon]="faAddressCard" class="mr-3"></fa-icon>
+					Address Information
+					<fa-icon [icon]="faCheck" class="ml-auto text-success" *ngIf="addressDetailsSaved"></fa-icon>
+				</div>
+			</a>
+			<a class="list-group-item list-group-item-action" [routerLink]="['educational-info']" routerLinkActive="active">
+				<div class="d-flex">
+					<fa-icon [icon]="faGraduationCap" class="mr-3"></fa-icon>
+					Educational Information
+					<fa-icon [icon]="faCheck" class="ml-auto text-success" *ngIf="educationDetailsSaved"></fa-icon>
+				</div>
+			</a>
+			<a class="list-group-item list-group-item-action" [routerLink]="['professional-info']" routerLinkActive="active">
+				<div class="d-flex">
+					<fa-icon [icon]="faGlobe" class="mr-3"></fa-icon>
+					Professional Information
+					<fa-icon [icon]="faCheck" class="ml-auto text-success" *ngIf="professionalDetailsSaved"></fa-icon>
+				</div>
+			</a>
+			<a class="list-group-item list-group-item-action" [routerLink]="['project-info']" routerLinkActive="active">
+				<div class="d-flex">
+					<fa-icon [icon]="faToolbox" class="mr-3"></fa-icon>
+					Project Information
+					<fa-icon [icon]="faCheck" class="ml-auto text-success" *ngIf="projectDetailsSaved"></fa-icon>
+				</div>
+			</a>
+			<a class="list-group-item list-group-item-action" [routerLink]="['skills']" routerLinkActive="active">
+				<div class="d-flex">
+					<fa-icon [icon]="faTools" class="mr-3"></fa-icon>
+					Skills
+					<fa-icon [icon]="faCheck" class="ml-auto text-success" *ngIf="skillDetailsSaved"></fa-icon>
+				</div>
+			</a>
+			<a class="list-group-item list-group-item-action" [routerLink]="['about-me']" routerLinkActive="active">
+				<div class="d-flex">
+					<fa-icon [icon]="faUserCog" class="mr-3"></fa-icon>
+					About Me
+					<fa-icon [icon]="faCheck" class="ml-auto text-success" *ngIf="basicDetailsSaved"></fa-icon>
+				</div>
+			</a>
+			<a class="list-group-item list-group-item-action" [routerLink]="['payment']" routerLinkActive="active">
+				<div class="d-flex">
+					<fa-icon [icon]="faDollarSign" class="mr-3"></fa-icon>
+					Payment
+					<fa-icon [icon]="faCheck" class="ml-auto text-success" *ngIf="paymentDetailsSaved"></fa-icon>
+				</div>
+			</a>
 		</div>
+	</div>
+	<div class="col-9 main-content border-left">
+		<router-outlet></router-outlet>
 	</div>
 </div>

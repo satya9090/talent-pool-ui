@@ -8,7 +8,7 @@ import { User } from '../store/models/user.model';
 @Component({
 	selector: 'app-home',
 	templateUrl: './home.component.html',
-	styleUrls: ['./home.component.scss']
+	styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
 	loading = false;
@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
 	constructor(private store: Store<AppState>, private router: Router) {}
 
 	ngOnInit() {
-		this.store.select('userState').subscribe(userState => {
+		this.store.select('userState').subscribe((userState) => {
 			this.loading = userState.loading;
 			this.currentUser = userState.currentUser;
 			this.errorMessage = userState.errorMessage;

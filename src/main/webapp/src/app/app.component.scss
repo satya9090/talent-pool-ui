@@ -1,3 +1,6 @@
 .body-content {
-	height: calc(100vh - 3.5rem);
+	padding: 1rem;
+	min-height: calc(100vh - 15rem);
+	background: white;
+	position: relative;
 }

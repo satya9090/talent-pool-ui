@@ -1,4 +1,4 @@
-<div class="row justify-content-center h-100 align-items-center">
+<div class="row justify-content-center body-container align-items-center">
 	<div class="col-md-8 col-12">
 		<form [formGroup]="registerForm" (ngSubmit)="register()">
 			<div class="row">
@@ -11,10 +11,7 @@
 							class="form-control"
 							[ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"
 						/>
-						<div
-							*ngIf="submitted && f.firstName.errors"
-							class="invalid-feedback"
-						>
+						<div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
 							<div *ngIf="f.firstName.errors.required">
 								First Name is required
 							</div>
@@ -30,10 +27,7 @@
 							class="form-control"
 							[ngClass]="{ 'is-invalid': submitted && f.lastName.errors }"
 						/>
-						<div
-							*ngIf="submitted && f.lastName.errors"
-							class="invalid-feedback"
-						>
+						<div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
 							<div *ngIf="f.lastName.errors.required">
 								Last Name is required
 							</div>
@@ -52,10 +46,7 @@
 							class="form-control"
 							[ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors }"
 						/>
-						<div
-							*ngIf="submitted && f.phoneNumber.errors"
-							class="invalid-feedback"
-						>
+						<div *ngIf="submitted && f.phoneNumber.errors" class="invalid-feedback">
 							<div *ngIf="f.phoneNumber.errors.required">
 								Phone Number is required
 							</div>
@@ -88,10 +79,7 @@
 							class="form-control"
 							[ngClass]="{ 'is-invalid': submitted && f.password.errors }"
 						/>
-						<div
-							*ngIf="submitted && f.password.errors"
-							class="invalid-feedback"
-						>
+						<div *ngIf="submitted && f.password.errors" class="invalid-feedback">
 							<div *ngIf="f.password.errors.required">Password is required</div>
 							<div *ngIf="f.password.errors.minlength">
 								Password must be at least 6 characters
@@ -110,10 +98,7 @@
 								'is-invalid': submitted && f.confirmPassword.errors
 							}"
 						/>
-						<div
-							*ngIf="submitted && f.confirmPassword.errors"
-							class="invalid-feedback"
-						>
+						<div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
 							<div *ngIf="f.confirmPassword.errors.required">
 								Confirm Password is required
 							</div>
