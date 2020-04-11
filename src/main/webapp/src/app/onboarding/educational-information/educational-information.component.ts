@@ -8,6 +8,7 @@ import {
 	SaveUserEducationalInfo,
 	SaveUserEducationStart,
 	DeleteUserEducationStart,
+	ResetPageSaveStatus,
 } from 'src/app/store/actions/user.actions';
 
 @Component({
@@ -74,5 +75,11 @@ export class EducationalInformationComponent implements OnInit {
 	proceed() {
 		this.currentUser = { ...this.currentUser, educationDetails: this.educations };
 		this.store.dispatch(new SaveUserEducationalInfo());
+	}
+	goBack() {
+		this.store.dispatch(new ResetPageSaveStatus('AddressDetailsInfo'));
+		this.router.navigate(['../address-info'], {
+			relativeTo: this.activatedRoute,
+		});
 	}
 }

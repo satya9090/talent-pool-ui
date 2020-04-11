@@ -4,7 +4,12 @@ import { Store } from '@ngrx/store';
 
 import { ProjectDetails, User } from 'src/app/store/models/user.model';
 import { AppState } from 'src/app/store/AppState';
-import { SaveUserProjectStart, SaveUserProjectInfo, DeleteUserProjectStart } from 'src/app/store/actions/user.actions';
+import {
+	SaveUserProjectStart,
+	SaveUserProjectInfo,
+	DeleteUserProjectStart,
+	ResetPageSaveStatus,
+} from 'src/app/store/actions/user.actions';
 
 @Component({
 	selector: 'app-project-information',
@@ -64,5 +69,11 @@ export class ProjectInformationComponent implements OnInit {
 	}
 	proceed() {
 		this.store.dispatch(new SaveUserProjectInfo());
+	}
+	goBack() {
+		this.store.dispatch(new ResetPageSaveStatus('ProfessionalDetailsInfo'));
+		this.router.navigate(['../professional-info'], {
+			relativeTo: this.activatedRoute,
+		});
 	}
 }

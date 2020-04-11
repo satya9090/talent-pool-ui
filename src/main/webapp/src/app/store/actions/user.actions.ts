@@ -35,6 +35,8 @@ export const USER_SAVE_PROJECT_FAILED = 'USER_SAVE_PROJECT_FAILED';
 export const USER_DELETE_PROJECT_START = 'USER_DELETE_PROJECT_START';
 export const USER_SAVE_PROJECT_INFO = 'USER_SAVE_PROJECT_INFO';
 
+export const RESET_PAGE_SAVE_STATUS = 'RESET_PAGE_SAVE_STATUS';
+
 export class GetUserDetailsStart implements Action {
 	readonly type = USER_GET_DETAILS_START;
 }
@@ -166,6 +168,11 @@ export class SaveUserProjectInfo implements Action {
 	readonly type = USER_SAVE_PROJECT_INFO;
 }
 
+export class ResetPageSaveStatus implements Action {
+	readonly type = RESET_PAGE_SAVE_STATUS;
+	constructor(public payload: string) {}
+}
+
 export type UserActions =
 	| GetUserDetailsStart
 	| GetUserDetailsSuccess
@@ -193,4 +200,5 @@ export type UserActions =
 	| SaveUserProjectSuccess
 	| SaveUserProjectFailed
 	| DeleteUserProjectStart
-	| SaveUserProjectInfo;
+	| SaveUserProjectInfo
+	| ResetPageSaveStatus;

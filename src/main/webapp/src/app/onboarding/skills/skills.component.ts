@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { FormArray, FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { ResetPageSaveStatus } from 'src/app/store/actions/user.actions';
+import { AppState } from 'src/app/store/AppState';
 
 @Component({
 	selector: 'app-skills',
@@ -8,7 +12,12 @@ import { FormArray, FormGroup, FormControl, Validators, FormBuilder } from '@ang
 })
 export class SkillsComponent implements OnInit {
 	skillForm: FormGroup;
-	constructor(private formBuilder: FormBuilder) {}
+	constructor(
+		private formBuilder: FormBuilder,
+		private store: Store<AppState>,
+		private router: Router,
+		private activatedRoute: ActivatedRoute
+	) {}
 
 	ngOnInit() {
 		this.skillForm = this.formBuilder.group({
@@ -34,5 +43,11 @@ export class SkillsComponent implements OnInit {
 	}
 	removeSkill(index: number) {
 		(<FormArray>this.skillForm.get('skills')).removeAt(index);
+	}
+	goBack() {
+		this.store.dispatch(new ResetPageSaveStatus('ProjectDetailsInfo'));
+		this.router.navigate(['../project-info'], {
+			relativeTo: this.activatedRoute,
+		});
 	}
 }

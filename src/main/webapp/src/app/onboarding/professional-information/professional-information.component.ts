@@ -8,6 +8,7 @@ import {
 	SaveUserExperienceStart,
 	SaveUserProfessionalInfo,
 	DeleteUserExperienceStart,
+	ResetPageSaveStatus,
 } from 'src/app/store/actions/user.actions';
 
 @Component({
@@ -70,5 +71,11 @@ export class ProfessionalInformationComponent implements OnInit {
 	}
 	proceed() {
 		this.store.dispatch(new SaveUserProfessionalInfo());
+	}
+	goBack() {
+		this.store.dispatch(new ResetPageSaveStatus('EducationDetailsInfo'));
+		this.router.navigate(['../educational-info'], {
+			relativeTo: this.activatedRoute,
+		});
 	}
 }

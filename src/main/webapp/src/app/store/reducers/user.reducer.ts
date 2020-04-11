@@ -27,6 +27,7 @@ import {
 	USER_SAVE_BASIC_INFO_START,
 	USER_SAVE_BASIC_INFO_FAILED,
 	USER_SAVE_BASIC_INFO_SUCCESS,
+	RESET_PAGE_SAVE_STATUS,
 } from '../actions/user.actions';
 import { User } from '../models/user.model';
 
@@ -57,6 +58,37 @@ const initialState: UserState = {
 	skillDetailsSaved: false,
 	paymentDetailsSaved: false,
 };
+
+function getResetPageSaveStatus(page: string, state: UserState) {
+	const modifiedState = { ...state };
+	switch (page) {
+		case 'PersonalDetailsInfo':
+			modifiedState.personalDetailsSaved = false;
+			break;
+		case 'AddressDetailsInfo':
+			modifiedState.addressDetailsSaved = false;
+			break;
+		case 'EducationDetailsInfo':
+			modifiedState.educationDetailsSaved = false;
+			break;
+		case 'ProfessionalDetailsInfo':
+			modifiedState.professionalDetailsSaved = false;
+			break;
+		case 'ProjectDetailsInfo':
+			modifiedState.professionalDetailsSaved = false;
+			break;
+		case 'SkillsInfo':
+			modifiedState.skillDetailsSaved = false;
+			break;
+		case 'AboutMeInfo':
+			modifiedState.basicDetailsSaved = false;
+			break;
+		case 'PaymentInfo':
+			modifiedState.paymentDetailsSaved = false;
+			break;
+	}
+	return modifiedState;
+}
 
 export function UserReducer(state = initialState, action: UserActions) {
 	switch (action.type) {
@@ -110,6 +142,9 @@ export function UserReducer(state = initialState, action: UserActions) {
 			return { ...state, professionalDetailsSaved: true };
 		case USER_SAVE_PROJECT_INFO:
 			return { ...state, projectDetailsSaved: true };
+		case RESET_PAGE_SAVE_STATUS:
+			const modifiedState = getResetPageSaveStatus(action.payload, state);
+			return { ...modifiedState };
 		default:
 			return state;
 	}

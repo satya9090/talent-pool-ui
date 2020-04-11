@@ -3,7 +3,7 @@ import { Address, User } from '../../store/models/user.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AppState } from 'src/app/store/AppState';
 import { Store } from '@ngrx/store';
-import { SaveUserAddressInfoStart } from 'src/app/store/actions/user.actions';
+import { SaveUserAddressInfoStart, ResetPageSaveStatus } from 'src/app/store/actions/user.actions';
 
 @Component({
 	selector: 'app-address-information',
@@ -66,5 +66,11 @@ export class AddressInformationComponent implements OnInit {
 				modifiedUser: this.currentUser,
 			})
 		);
+	}
+	goBack() {
+		this.store.dispatch(new ResetPageSaveStatus('PersonalDetailsInfo'));
+		this.router.navigate(['../personal-info'], {
+			relativeTo: this.activatedRoute,
+		});
 	}
 }

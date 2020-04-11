@@ -6,7 +6,7 @@ import { faSearch, faUserGraduate } from '@fortawesome/free-solid-svg-icons';
 
 import { AppState } from 'src/app/store/AppState';
 import { User } from 'src/app/store/models/user.model';
-import { SaveUserBasicInfoStart } from 'src/app/store/actions/user.actions';
+import { SaveUserBasicInfoStart, ResetPageSaveStatus } from 'src/app/store/actions/user.actions';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -94,5 +94,11 @@ export class AboutMeComponent implements OnInit {
 			u8arr[n] = bstr.charCodeAt(n);
 		}
 		return new Blob([u8arr], { type: mime });
+	}
+	goBack() {
+		this.store.dispatch(new ResetPageSaveStatus('SkillsInfo'));
+		this.router.navigate(['../skills'], {
+			relativeTo: this.activatedRoute,
+		});
 	}
 }

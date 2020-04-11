@@ -27,9 +27,9 @@
 </div>
 <div class="row">
 	<div class="col-12 d-flex justify-content-between">
-		<a class="btn btn-secondary" [routerLink]="['../personal-info']">
+		<button class="btn btn-secondary" (click)="goBack()">
 			Back
-		</a>
+		</button>
 		<button type="button" (click)="proceed()" class="btn btn-success">
 			Next
 		</button>
