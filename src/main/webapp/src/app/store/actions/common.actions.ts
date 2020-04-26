@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
 import { Country, State } from '../models/common.model';
+import { Skill } from '../models/user.model';
 
 export const LOADING_START = 'LOADING_START';
 export const LOADING_SUCCESS = 'LOADING_SUCCESS';
@@ -12,7 +13,7 @@ export class LoadingStart implements Action {
 export class LoadingSuccess implements Action {
 	readonly type = LOADING_SUCCESS;
 
-	constructor(public payload: { countries: Country[]; states: State[] }) {}
+	constructor(public payload: { skills: Skill[] }) {}
 }
 
 export class LoadingFailed implements Action {
@@ -21,4 +22,4 @@ export class LoadingFailed implements Action {
 	constructor(public payload: string) {}
 }
 
-export type CommonActions = LoadingStart | LoadingSuccess;
+export type CommonActions = LoadingStart | LoadingSuccess | LoadingFailed;

@@ -42,10 +42,17 @@ export interface EducationalDetails {
 }
 
 export interface Skill {
-	major: string;
-	minor: string;
+	id: number;
+	skills: string;
+	metadata: string;
+}
+
+export interface CandidateSkill {
+	skillId?: number;
+	candidateUniqueId?: string;
 	lastUsedOn: number;
 	experienceInYears: number;
+	skill: Skill;
 }
 
 export interface ProfessionalDetails {
@@ -67,7 +74,7 @@ export interface User {
 	emailId: string;
 	alternateEmailId: string;
 	gender: 'Male' | 'Female' | 'Other';
-	skills: Skill[];
+	skills: CandidateSkill[];
 	currentLocation: null;
 	totalYearsOfExperience?: number;
 	annualSalary?: number;

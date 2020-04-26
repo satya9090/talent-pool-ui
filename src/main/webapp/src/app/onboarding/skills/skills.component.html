@@ -1,5 +1,6 @@
 <div class="onboarding-header">
 	<h5 class="text-center">Skills</h5>
+	<button type="button" class="btn btn-outline-primary btn-sm add-btn" (click)="addSkill()">Add Skill</button>
 </div>
 <form [formGroup]="skillForm">
 	<div class="row onboarding-form-body" formArrayName="skills">
@@ -18,8 +19,7 @@
 		<div class="col-12 mb-1" *ngFor="let skillControl of skillControls; let i = index" [formGroupName]="i">
 			<div class="row">
 				<div class="col-5 d-flex">
-					<input type="text" class="form-control mr-1" formControlName="major" />
-					<input type="text" class="form-control" formControlName="minor" />
+					<input type="text" class="form-control mr-1" formControlName="skill" />
 				</div>
 				<div class="col-2">
 					<input type="number" class="form-control" formControlName="experienceInYears" />

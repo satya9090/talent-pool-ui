@@ -4,6 +4,7 @@ import { AppState } from '../store/AppState';
 import { GetUserDetailsStart } from '../store/actions/user.actions';
 import { Router } from '@angular/router';
 import { User } from '../store/models/user.model';
+import { LoadingStart } from '../store/actions/common.actions';
 
 @Component({
 	selector: 'app-home',
@@ -18,13 +19,16 @@ export class HomeComponent implements OnInit {
 
 	ngOnInit() {
 		this.store.select('userState').subscribe((userState) => {
-			this.loading = userState.loading;
-			this.currentUser = userState.currentUser;
-			this.errorMessage = userState.errorMessage;
-			if (this.currentUser && this.currentUser.isProfileComplete === 'N') {
-				this.router.navigate(['/onboarding']);
-			}
+			this.store.select('commonState').subscribe((commonState) => {
+				this.loading = userState.loading;
+				this.currentUser = userState.currentUser;
+				this.errorMessage = userState.errorMessage;
+				if (this.currentUser && this.currentUser.isProfileComplete === 'N') {
+					this.router.navigate(['/onboarding']);
+				}
+			});
 		});
 		this.store.dispatch(new GetUserDetailsStart());
+		this.store.dispatch(new LoadingStart());
 	}
 }

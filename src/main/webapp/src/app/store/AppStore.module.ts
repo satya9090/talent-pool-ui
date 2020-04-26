@@ -11,19 +11,22 @@ import { UserReducer } from './reducers/user.reducer';
 import { UserEffects } from './effects/user.effects';
 import { UserService } from './services/user.service';
 import { UserResolver } from './user-resolver';
+import { CommonReducer } from './reducers/common.reducer';
+import { CommonEffects } from './effects/common.effects';
 
 @NgModule({
 	imports: [
 		HttpClientModule,
-		EffectsModule.forRoot([AuthEffects, UserEffects]),
+		EffectsModule.forRoot([AuthEffects, UserEffects, CommonEffects]),
 		StoreModule.forRoot({
 			authState: AuthReducer,
 			jobSeekerState: JobSeekerReducer,
 			recruiterState: RecruiterReducer,
-			userState: UserReducer
-		})
+			userState: UserReducer,
+			commonState: CommonReducer,
+		}),
 	],
 	exports: [StoreModule],
-	providers: [UserService, UserResolver]
+	providers: [UserService, UserResolver],
 })
 export class AppStoreModule {}
